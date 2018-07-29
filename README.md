@@ -17,7 +17,7 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS
 
 ## Prerequisites
 
-You need [Node.js](https://nodejs.org/en/) installed and available in your `$PATH` environmental variable. Use your preferred package manager to install the Yeoman CLI tool
+You need [Node.js](https://nodejs.org/en/) installed and available in your `PATH` [environmental variable](http://superuser.com/a/284351/195953). Use your preferred package manager to install the Yeoman CLI tool
 
 ```sh
 yarn global add yo || npm install -g yo
