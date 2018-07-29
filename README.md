@@ -35,8 +35,8 @@ yo nsis
 
 ## Related
 
-- [Atom add-on](https://atom.io/packages/atom-yeoman)
-- [Visual Studio Code add-on](https://marketplace.visualstudio.com/items?itemName=samverschueren.yo)
+- [Yeoman for Atom](https://atom.io/packages/atom-yeoman)
+- [Yeoman for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=samverschueren.yo)
 
 ## License
 
