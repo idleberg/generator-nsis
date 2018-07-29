@@ -33,6 +33,11 @@ yo nsis
 
 *“That's all Folks!”*
 
+## Related
+
+- [Atom Package](https://atom.io/packages/atom-yeoman)
+- [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=samverschueren.yo)
+
 ## License
 
 This work is licensed under the [MIT License](https://opensource.org/licenses/MIT)
