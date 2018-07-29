@@ -15,9 +15,17 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS
 - adds callback functions
 - adds translations
 
+## Prerequisites
+
+You need [Node.js](https://nodejs.org/en/) installed and available in your `$PATH` environmental variable. Use your preferred package manager to install the Yeoman CLI tool
+
+```sh
+yarn global add yo || npm install -g yo
+```
+
 ## Installation
 
-Use your preferred [Node](https://nodejs.org/) package manager to install the CLI tool
+ Use your preferred package manager to install this generator
 
 ```sh
 yarn global add generator-nsis || npm i generator-nsis -g
