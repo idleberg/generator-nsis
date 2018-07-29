@@ -24,7 +24,7 @@ module.exports = class extends Generator {
       },
       {
         name: 'unicode',
-        message: 'Unicode',
+        message: 'Unicode installer',
         type: 'list',
         default: 'true',
         store: true,
