@@ -1,0 +1,27 @@
+{
+  "name": "generator-nsis",
+  "version": "0.0.0",
+  "description": "Yeoman generator for NSIS scripts",
+  "files": [
+    "generators"
+  ],
+  "scripts": {},
+  "keywords": [
+    "yeoman-generator",
+    "nsis",
+    "nullsoft",
+    "installer",
+    "setup"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idleberg/generator-nsis"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@sindresorhus/slugify": "^0.3.0",
+    "update-notifier": "^2.5.0",
+    "yeoman-generator": "^3.0.0"
+  }
+}
