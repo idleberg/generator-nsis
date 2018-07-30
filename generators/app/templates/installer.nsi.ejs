@@ -29,8 +29,7 @@ LangString DESC_SECTION_<%= step %> ${LANG_ENGLISH} "Description for section <%=
     !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_<%= step %>} $(DESC_SECTION_<%= step %>)<% } %>
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 <% } %>
-# Functions --------------------------------
-<% pkg.callbacks.forEach( callback => { %>
+# Functions --------------------------------<% pkg.callbacks.forEach( callback => { %>
 Function .<%= callback %>
 FunctionEnd
 <% }) %>
