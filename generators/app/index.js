@@ -85,6 +85,7 @@ module.exports = class extends Generator {
           {
             name: 'instfiles',
             value: 'instfiles',
+            checked: true
           }
         ]
       },
