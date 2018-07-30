@@ -7,6 +7,7 @@
 # Settings ---------------------------------
 Name "<%- pkg.name %>"<% if (typeof pkg.ampersand_name !== 'undefined') { %> "<%- pkg.ampersand_name %>"<% } %>
 OutFile "<%= pkg.outfile %>.exe"
+Unicode <%= pkg.unicode %>
 RequestExecutionLevel <%= pkg.elevation %>
 InstallDir "$PROGRAMFILES\<%- pkg.name %>"
 
