@@ -65,6 +65,27 @@ module.exports = class extends Generator {
         ]
       },
       {
+        name: 'compression',
+        message: 'Set compression',
+        type: 'list',
+        default: 'lzma',
+        store: true,
+        choices: [
+                    {
+            name: 'zlib',
+            value: 'zlib',
+          },
+          {
+            name: 'bzip2',
+            value: 'bzip2',
+          },
+          {
+            name: 'lzma',
+            value: 'lzma',
+          }
+        ]
+      },
+      {
         name: 'pages',
         message: 'Installer pages',
         type: 'checkbox',
