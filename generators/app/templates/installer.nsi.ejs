@@ -24,8 +24,8 @@ Section "section" SECTION_<%= step %>
 SectionEnd
 <% } %><% if (pkg.includes.includes('MUI2')) { %>
 # Descriptions -----------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
-LangString DESC_SECTION_<%= step %> ${LANG_ENGLISH} "Description for section <%= step %>"<% pkg.languages.forEach( language => { %>
-LangString DESC_SECTION_<%= step %> ${LANG_<%= language.toUpperCase() %>} "Description for section <%= step %>"<% }) %>
+LangString DESC_SECTION_<%= step %> ${LANG_ENGLISH} "English description for section <%= step %>"<% pkg.languages.forEach( language => { %>
+LangString DESC_SECTION_<%= step %> ${LANG_<%= language.toUpperCase() %>} "<%= language %> description for section <%= step %>"<% }) %>
 <% } %>
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
     !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_<%= step %>} $(DESC_SECTION_<%= step %>)<% } %>
