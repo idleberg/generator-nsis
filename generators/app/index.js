@@ -118,6 +118,64 @@ module.exports = class extends Generator {
         validate: n => (Number.isInteger(parseInt(n)) && parseInt(n) > 0) ? true : 'Not a valid integer'
       },
       {
+        name: 'callbacks',
+        message: 'Add callback functions',
+        type: 'checkbox',
+        store: true,
+        choices: [
+          {
+            name: '.onInit',
+            value: 'onInit',
+            checked: false
+          },
+          {
+            name: '.onGUIInit',
+            value: 'onGUIInit',
+            checked: false
+          },
+          {
+            name: '.onGUIEnd',
+            value: 'onGUIEnd',
+            checked: false
+          },
+          {
+            name: '.onInstSuccess',
+            value: 'onInstSuccess',
+            checked: false
+          },
+          {
+            name: '.onInstFailed',
+            value: 'onInstFailed',
+            checked: false
+          },
+          {
+            name: '.onUserAbort',
+            value: 'onUserAbort',
+            checked: false
+          },
+          {
+            name: '.onVerifyInstDir',
+            value: 'onVerifyInstDir',
+            checked: false
+          },
+          {
+            name: '.onRebootFailed',
+            value: 'onRebootFailed',
+            checked: false
+          },
+          {
+            name: '.onSelChange',
+            value: 'onSelChange',
+            checked: false
+          },
+          {
+            name: '.onMouseOverSection',
+            value: 'onMouseOverSection',
+            checked: false
+          }
+        ]
+      },
+      {
         name: 'includes',
         message: 'Add libraries',
         type: 'checkbox',
@@ -236,64 +294,6 @@ module.exports = class extends Generator {
           {
             name: 'x64.nsh',
             value: 'x64',
-            checked: false
-          }
-        ]
-      },
-      {
-        name: 'callbacks',
-        message: 'Add callback functions',
-        type: 'checkbox',
-        store: true,
-        choices: [
-          {
-            name: '.onInit',
-            value: 'onInit',
-            checked: false
-          },
-          {
-            name: '.onGUIInit',
-            value: 'onGUIInit',
-            checked: false
-          },
-          {
-            name: '.onGUIEnd',
-            value: 'onGUIEnd',
-            checked: false
-          },
-          {
-            name: '.onInstSuccess',
-            value: 'onInstSuccess',
-            checked: false
-          },
-          {
-            name: '.onInstFailed',
-            value: 'onInstFailed',
-            checked: false
-          },
-          {
-            name: '.onUserAbort',
-            value: 'onUserAbort',
-            checked: false
-          },
-          {
-            name: '.onVerifyInstDir',
-            value: 'onVerifyInstDir',
-            checked: false
-          },
-          {
-            name: '.onRebootFailed',
-            value: 'onRebootFailed',
-            checked: false
-          },
-          {
-            name: '.onSelChange',
-            value: 'onSelChange',
-            checked: false
-          },
-          {
-            name: '.onMouseOverSection',
-            value: 'onMouseOverSection',
             checked: false
           }
         ]
