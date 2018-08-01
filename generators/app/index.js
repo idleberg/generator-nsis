@@ -1,6 +1,7 @@
 const Generator = require('yeoman-generator');
 const pkg = require('../../package.json');
 
+const programm = require('commander');
 const slugify = require('@sindresorhus/slugify');
 const updateNotifier = require('update-notifier');
 
@@ -8,6 +9,13 @@ const updateNotifier = require('update-notifier');
 updateNotifier({ pkg: pkg }).notify();
 
 module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+
+    this.option('unlock-all', { desc: 'Unlocks all disabled features', default: false });
+    this.disabled = (this.options.unlockAll ? false : true);
+  }
+
   inquirer() {
     return this.prompt([
       {
@@ -219,7 +227,7 @@ module.exports = class extends Generator {
           {
             name: 'MUI.nsh',
             value: 'MUI',
-            disabled: true
+            disabled: this.disabled
           },
           {
             name: 'MUI2.nsh',
@@ -307,7 +315,7 @@ module.exports = class extends Generator {
           {
             name: 'English',
             value: 'English',
-            disabled: true
+            disabled: this.disabled
           },
           {
             name: 'Afrikaans',
