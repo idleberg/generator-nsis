@@ -1,7 +1,7 @@
 const Generator = require('yeoman-generator');
 const pkg = require('../../package.json');
 
-const programm = require('commander');
+const semver = require('semver');
 const slugify = require('@sindresorhus/slugify');
 const updateNotifier = require('update-notifier');
 
@@ -12,7 +12,10 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
+    this.option('loose-version', { desc: `Doesn't enforce semantic versioning`, default: false });
     this.option('unlock-all', { desc: 'Unlocks all disabled features', default: false });
+
+    this.looseVersion = (this.options.looseVersion ? true : false);
     this.disabled = (this.options.unlockAll ? false : true);
   }
 
@@ -29,6 +32,7 @@ module.exports = class extends Generator {
         message: `Application version`,
         default: '0.0.0',
         store: true,
+        validate: v => (this.looseVersion === true || semver.valid(v) !== null) ? true : 'Not a valid semantic version (see https://semver.org for details)'
       },
       {
         name: 'unicode',
@@ -123,7 +127,7 @@ module.exports = class extends Generator {
         message: 'Number of sections',
         default: 1,
         store: true,
-        validate: n => (Number.isInteger(parseInt(n)) && parseInt(n) > 0) ? true : 'Not a valid integer'
+        validate: n => (Number.isInteger(parseInt(n)) && parseInt(n) > 0) ? true : 'Not a valid number of sections'
       },
       {
         name: 'callbacks',
