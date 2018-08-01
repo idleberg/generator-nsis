@@ -33,7 +33,7 @@ yarn global add generator-nsis || npm i generator-nsis -g
 
 ## Usage
 
-Run the generator and follow its instructions
+Run the generator and follow its instructions. Use `--help` for available flags.
 
 ```sh
 yo nsis
