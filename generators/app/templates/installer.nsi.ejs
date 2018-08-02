@@ -15,16 +15,16 @@ InstallDir "$PROGRAMFILES\<%- pkg.name %>"
 # Pages ------------------------------------
 <% pkg.pages.forEach( page => { %><% if (pkg.includes.includes('MUI2')) { %>!insertmacro MUI_PAGE_<%= page.toUpperCase() %><% } else { %>Page <%= page %><% } %>
 <% }) %>
-# Languages --------------------------------
-<% if (pkg.includes.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "English"<% } else { %>LoadLanguageFile "English.nlf"<% } %><% pkg.languages.forEach( language => { %>
+# Languages --------------------------------<% if (unlockAll === false) { %>
+<% if (pkg.includes.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "English"<% } else { %>LoadLanguageFile "English.nlf"<% } %><% } %><% pkg.languages.forEach( language => { %>
 <% if (pkg.includes.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "<%= language %>"<% } else { %>LoadLanguageFile "<%= language %>.nlf"<% } %><% }) %>
 
 # Sections ---------------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
 Section "section" SECTION_<%= step %>
 SectionEnd
 <% } %><% if (pkg.includes.includes('MUI2')) { %>
-# Descriptions -----------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
-LangString DESC_SECTION_<%= step %> ${LANG_ENGLISH} "English description for section <%= step %>"<% pkg.languages.forEach( language => { %>
+# Descriptions -----------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %><% if (unlockAll === false) { %>
+LangString DESC_SECTION_<%= step %> ${LANG_ENGLISH} "English description for section <%= step %>"<% } %><% pkg.languages.forEach( language => { %>
 LangString DESC_SECTION_<%= step %> ${LANG_<%= language.toUpperCase() %>} "<%= language %> description for section <%= step %>"<% }) %>
 <% } %>
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
