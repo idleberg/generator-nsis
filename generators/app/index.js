@@ -313,7 +313,7 @@ module.exports = class extends Generator {
       },
       {
         name: 'languages',
-        message: 'Add languages files',
+        message: (this.disabled === true) ? 'Add languages other than English' : 'Add languages',
         type: 'checkbox',
         store: true,
         choices: [
