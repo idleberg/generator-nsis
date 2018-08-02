@@ -40,16 +40,7 @@ module.exports = class extends Generator {
         type: 'list',
         default: 'true',
         store: true,
-        choices: [
-          {
-            name: 'true',
-            value: 'true',
-          },
-          {
-            name: 'false',
-            value: 'false',
-          }
-        ],
+        choices: [ 'true', 'false' ]
       },
       {
         name: 'elevation',
@@ -57,24 +48,7 @@ module.exports = class extends Generator {
         type: 'list',
         default: 'user',
         store: true,
-        choices: [
-                    {
-            name: 'user',
-            value: 'user',
-          },
-          {
-            name: 'highest',
-            value: 'highest',
-          },
-          {
-            name: 'admin',
-            value: 'admin',
-          },
-          {
-            name: 'none',
-            value: 'none',
-          }
-        ]
+        choices: [ 'user', 'highest', 'admin', 'none' ]
       },
       {
         name: 'compression',
@@ -82,20 +56,7 @@ module.exports = class extends Generator {
         type: 'list',
         default: 'lzma',
         store: true,
-        choices: [
-                    {
-            name: 'zlib',
-            value: 'zlib',
-          },
-          {
-            name: 'bzip2',
-            value: 'bzip2',
-          },
-          {
-            name: 'lzma',
-            value: 'lzma',
-          }
-        ]
+        choices: [ 'zlib', 'bzip2', 'lzma' ]
       },
       {
         name: 'pages',
@@ -647,6 +608,32 @@ module.exports = class extends Generator {
             value: 'Welsh',
             checked: false
           },
+        ]
+      },
+      {
+        name: 'languageDialog',
+        message: 'Add language dialog',
+        type: 'list',
+        default: 'true',
+        store: true,
+        when: answers => {
+          switch (true) {
+            case (this.options['unlock-all'] === true && answers.languages.length > 1):
+            case (this.options['unlock-all'] === false && answers.languages.length > 0):
+              return true;
+            default:
+              return false;
+          }
+        },
+        choices: [
+          {
+            name: 'yes',
+            value: 'true',
+          },
+          {
+            name: 'no',
+            value: 'false',
+          }
         ]
       }
     ]).then(props => {
