@@ -32,7 +32,7 @@ module.exports = class extends Generator {
         message: `Application version`,
         default: '0.0.0',
         store: true,
-        validate: v => (this.looseVersion === true || semver.valid(v) !== null) ? true : 'Not a valid semantic version (see https://semver.org for details)'
+        validate: version => (this.looseVersion === true || semver.valid(version) !== null) ? true : 'Not a valid semantic version (see https://semver.org for details)'
       },
       {
         name: 'unicode',
@@ -127,7 +127,7 @@ module.exports = class extends Generator {
         message: 'Number of sections',
         default: 1,
         store: true,
-        validate: n => (Number.isInteger(parseInt(n)) && parseInt(n) > 0) ? true : 'Not a valid number of sections'
+        validate: number => (Number.isInteger(parseInt(number)) && parseInt(number) > 0) ? true : 'Not a valid number of sections'
       },
       {
         name: 'callbacks',
@@ -192,6 +192,7 @@ module.exports = class extends Generator {
         message: 'Add libraries',
         type: 'checkbox',
         store: true,
+        validate: libraries => (libraries.includes('MUI') && libraries.includes('MUI2')) ? `You need to choose between MUI and MUI2` : true,
         choices: [
           {
             name: 'Colors.nsh',
@@ -660,6 +661,7 @@ module.exports = class extends Generator {
         this.templatePath('installer.nsi.ejs'),
         this.destinationPath('installer.nsi'),
         {
+          unlockAll: this.options['unlock-all'],
           pkg: props
         }
       );
