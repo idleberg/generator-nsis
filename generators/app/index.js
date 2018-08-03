@@ -1,6 +1,7 @@
 const Generator = require('yeoman-generator');
 const pkg = require('../../package.json');
 
+const languageData = require('@nsis/language-data');
 const semver = require('semver');
 const slugify = require('@sindresorhus/slugify');
 const updateNotifier = require('update-notifier');
@@ -17,6 +18,50 @@ module.exports = class extends Generator {
 
     this.looseVersion = (this.options.looseVersion ? true : false);
     this.disabled = (this.options.unlockAll ? false : true);
+  }
+
+  languageChoices() {
+    const languageChoices = [];
+
+    Object.entries(languageData).forEach(([key, value]) => {
+      const isDisabled = (key === 'English') ? this.disabled : false;
+
+      // Use long names
+      languageChoices.push({
+        name: value.long || key,
+        value: key,
+        disabled: isDisabled
+      });
+    });
+
+    // Sort names
+    languageChoices.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    return languageChoices;
+  }
+
+  languageDialog(isUnicode) {
+    const languageDialog = [];
+
+    Object.entries(languageData).forEach(([key, value]) => {
+      if (key === 'English') return;
+
+      languageDialog.push({
+        constant: `\$\{LANG_${key.toUpperCase()}\}`,
+        string: (isUnicode) ? value.native : (value.long || key)
+      });
+    });
+
+    return languageDialog;
   }
 
   inquirer() {
@@ -37,10 +82,9 @@ module.exports = class extends Generator {
       {
         name: 'unicode',
         message: 'Unicode installer',
-        type: 'list',
+        type: 'confirm',
         default: 'true',
-        store: true,
-        choices: [ 'true', 'false' ]
+        store: true
       },
       {
         name: 'elevation',
@@ -277,343 +321,12 @@ module.exports = class extends Generator {
         message: (this.disabled === true) ? 'Add languages other than English' : 'Add languages',
         type: 'checkbox',
         store: true,
-        choices: [
-          {
-            name: 'English',
-            value: 'English',
-            disabled: this.disabled
-          },
-          {
-            name: 'Afrikaans',
-            value: 'Afrikaans',
-            checked: false
-          },
-          {
-            name: 'Albanian',
-            value: 'Albanian',
-            checked: false
-          },
-          {
-            name: 'Arabic',
-            value: 'Arabic',
-            checked: false
-          },
-          {
-            name: 'Armenian',
-            value: 'Armenian',
-            checked: false
-          },
-          {
-            name: 'Asturian',
-            value: 'Asturian',
-            checked: false
-          },
-          {
-            name: 'Basque',
-            value: 'Basque',
-            checked: false
-          },
-          {
-            name: 'Belarusian',
-            value: 'Belarusian',
-            checked: false
-          },
-          {
-            name: 'Bosnian',
-            value: 'Bosnian',
-            checked: false
-          },
-          {
-            name: 'Breton',
-            value: 'Breton',
-            checked: false
-          },
-          {
-            name: 'Bulgarian',
-            value: 'Bulgarian',
-            checked: false
-          },
-          {
-            name: 'Catalan',
-            value: 'Catalan',
-            checked: false
-          },
-          {
-            name: 'Corsican',
-            value: 'Corsican',
-            checked: false
-          },
-          {
-            name: 'Croatian',
-            value: 'Croatian',
-            checked: false
-          },
-          {
-            name: 'Czech',
-            value: 'Czech',
-            checked: false
-          },
-          {
-            name: 'Danish',
-            value: 'Danish',
-            checked: false
-          },
-          {
-            name: 'Dutch',
-            value: 'Dutch',
-            checked: false
-          },
-          {
-            name: 'Esperanto',
-            value: 'Esperanto',
-            checked: false
-          },
-          {
-            name: 'Estonian',
-            value: 'Estonian',
-            checked: false
-          },
-          {
-            name: 'Farsi',
-            value: 'Farsi',
-            checked: false
-          },
-          {
-            name: 'Finnish',
-            value: 'Finnish',
-            checked: false
-          },
-          {
-            name: 'French',
-            value: 'French',
-            checked: false
-          },
-          {
-            name: 'Galician',
-            value: 'Galician',
-            checked: false
-          },
-          {
-            name: 'Georgian',
-            value: 'Georgian',
-            checked: false
-          },
-          {
-            name: 'German',
-            value: 'German',
-            checked: false
-          },
-          {
-            name: 'Greek',
-            value: 'Greek',
-            checked: false
-          },
-          {
-            name: 'Hebrew',
-            value: 'Hebrew',
-            checked: false
-          },
-          {
-            name: 'Hungarian',
-            value: 'Hungarian',
-            checked: false
-          },
-          {
-            name: 'Icelandic',
-            value: 'Icelandic',
-            checked: false
-          },
-          {
-            name: 'Indonesian',
-            value: 'Indonesian',
-            checked: false
-          },
-          {
-            name: 'Irish',
-            value: 'Irish',
-            checked: false
-          },
-          {
-            name: 'Italian',
-            value: 'Italian',
-            checked: false
-          },
-          {
-            name: 'Japanese',
-            value: 'Japanese',
-            checked: false
-          },
-          {
-            name: 'Korean',
-            value: 'Korean',
-            checked: false
-          },
-          {
-            name: 'Kurdish',
-            value: 'Kurdish',
-            checked: false
-          },
-          {
-            name: 'Latvian',
-            value: 'Latvian',
-            checked: false
-          },
-          {
-            name: 'Lithuanian',
-            value: 'Lithuanian',
-            checked: false
-          },
-          {
-            name: 'Luxembourgish',
-            value: 'Luxembourgish',
-            checked: false
-          },
-          {
-            name: 'Macedonian',
-            value: 'Macedonian',
-            checked: false
-          },
-          {
-            name: 'Malay',
-            value: 'Malay',
-            checked: false
-          },
-          {
-            name: 'Mongolian',
-            value: 'Mongolian',
-            checked: false
-          },
-          {
-            name: 'Norwegian',
-            value: 'Norwegian',
-            checked: false
-          },
-          {
-            name: 'NorwegianNynorsk',
-            value: 'NorwegianNynorsk',
-            checked: false
-          },
-          {
-            name: 'Pashto',
-            value: 'Pashto',
-            checked: false
-          },
-          {
-            name: 'Polish',
-            value: 'Polish',
-            checked: false
-          },
-          {
-            name: 'Portuguese',
-            value: 'Portuguese',
-            checked: false
-          },
-          {
-            name: 'PortugueseBR',
-            value: 'PortugueseBR',
-            checked: false
-          },
-          {
-            name: 'Romanian',
-            value: 'Romanian',
-            checked: false
-          },
-          {
-            name: 'Russian',
-            value: 'Russian',
-            checked: false
-          },
-          {
-            name: 'ScotsGaelic',
-            value: 'ScotsGaelic',
-            checked: false
-          },
-          {
-            name: 'Serbian',
-            value: 'Serbian',
-            checked: false
-          },
-          {
-            name: 'SerbianLatin',
-            value: 'SerbianLatin',
-            checked: false
-          },
-          {
-            name: 'SimpChinese',
-            value: 'SimpChinese',
-            checked: false
-          },
-          {
-            name: 'Slovak',
-            value: 'Slovak',
-            checked: false
-          },
-          {
-            name: 'Slovenian',
-            value: 'Slovenian',
-            checked: false
-          },
-          {
-            name: 'Spanish',
-            value: 'Spanish',
-            checked: false
-          },
-          {
-            name: 'SpanishInternational',
-            value: 'SpanishInternational',
-            checked: false
-          },
-          {
-            name: 'Swedish',
-            value: 'Swedish',
-            checked: false
-          },
-          {
-            name: 'Tatar',
-            value: 'Tatar',
-            checked: false
-          },
-          {
-            name: 'Thai',
-            value: 'Thai',
-            checked: false
-          },
-          {
-            name: 'TradChinese',
-            value: 'TradChinese',
-            checked: false
-          },
-          {
-            name: 'Turkish',
-            value: 'Turkish',
-            checked: false
-          },
-          {
-            name: 'Ukrainian',
-            value: 'Ukrainian',
-            checked: false
-          },
-          {
-            name: 'Uzbek',
-            value: 'Uzbek',
-            checked: false
-          },
-          {
-            name: 'Vietnamese',
-            value: 'Vietnamese',
-            checked: false
-          },
-          {
-            name: 'Welsh',
-            value: 'Welsh',
-            checked: false
-          },
-        ]
+        choices: this.languageChoices()
       },
       {
         name: 'languageDialog',
         message: 'Add language dialog',
-        type: 'list',
+        type: 'confirm',
         default: 'true',
         store: true,
         when: answers => {
@@ -624,17 +337,7 @@ module.exports = class extends Generator {
             default:
               return false;
           }
-        },
-        choices: [
-          {
-            name: 'yes',
-            value: 'true',
-          },
-          {
-            name: 'no',
-            value: 'false',
-          }
-        ]
+        }
       }
     ]).then(props => {
 
@@ -644,12 +347,19 @@ module.exports = class extends Generator {
 
       props.outfile = props.version ? `${slugify(props.name)}-${props.version}-setup` : `${slugify(props.name)}-setup`;
 
+      if (props.languageDialog) {
+        if (!props.callbacks.includes('onInit')) {
+          props.callbacks.unshift('onInit');
+        }
+      }
+
       this.fs.copyTpl(
         this.templatePath('installer.nsi.ejs'),
         this.destinationPath('installer.nsi'),
         {
-          unlockAll: this.options['unlock-all'],
-          pkg: props
+          languageData: languageData,
+          pkg: props,
+          unlockAll: this.options['unlock-all']
         }
       );
     });

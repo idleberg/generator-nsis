@@ -33,5 +33,18 @@ LangString DESC_SECTION_<%= step %> ${LANG_<%= language.toUpperCase() %>} "<%= l
 <% } %>
 # Functions --------------------------------<% pkg.callbacks.forEach( callback => { %>
 Function .<%= callback %>
-FunctionEnd
-<% }) %>
+<% if (callback === 'onInit' && pkg.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
+<% }) %><% if (pkg.languageDialog) { %>
+Function LanguageDialog
+    Push ""
+    Push ${LANG_ENGLISH}
+    Push English<% pkg.languages.forEach( language => { %>
+    Push ${LANG_<%- language.toUpperCase() %>}
+    Push "<% if (pkg.unicode) { %><%- languageData[language].native %><% } else { %><%- languageData[language].long || language %><% } %>"<% }) %>
+    Push A
+    LangDLL::LangDialog "Installer Language" "Please select the language of the installer"
+
+    Pop $LANGUAGE
+    StrCmp $LANGUAGE "cancel" 0 +2
+    Abort
+FunctionEnd<% } %>
