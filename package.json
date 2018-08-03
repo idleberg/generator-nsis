@@ -20,6 +20,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@nsis/language-data": "^0.1.0",
     "@sindresorhus/slugify": "^0.3.0",
     "semver": "^5.5.0",
     "update-notifier": "^2.5.0",

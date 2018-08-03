@@ -13,6 +13,10 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
+"@nsis/language-data@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@nsis/language-data/-/language-data-0.1.0.tgz#7a4069de32685216a340f1554656167428326494"
+
 "@sindresorhus/slugify@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/slugify/-/slugify-0.3.0.tgz#39ec81f542b4fcaf7f67fbc8916efa990b65e139"
