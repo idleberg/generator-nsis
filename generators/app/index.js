@@ -139,65 +139,12 @@ module.exports = class extends Generator {
         message: 'Add callback functions',
         type: 'checkbox',
         store: true,
-        choices: [
-          {
-            name: '.onInit',
-            value: 'onInit',
-            checked: false
-          },
-          {
-            name: '.onGUIInit',
-            value: 'onGUIInit',
-            checked: false
-          },
-          {
-            name: '.onGUIEnd',
-            value: 'onGUIEnd',
-            checked: false
-          },
-          {
-            name: '.onInstSuccess',
-            value: 'onInstSuccess',
-            checked: false
-          },
-          {
-            name: '.onInstFailed',
-            value: 'onInstFailed',
-            checked: false
-          },
-          {
-            name: '.onUserAbort',
-            value: 'onUserAbort',
-            checked: false
-          },
-          {
-            name: '.onVerifyInstDir',
-            value: 'onVerifyInstDir',
-            checked: false
-          },
-          {
-            name: '.onRebootFailed',
-            value: 'onRebootFailed',
-            checked: false
-          },
-          {
-            name: '.onSelChange',
-            value: 'onSelChange',
-            checked: false
-          },
-          {
-            name: '.onMouseOverSection',
-            value: 'onMouseOverSection',
-            checked: false
-          }
-        ]
-      },
+        choices: ['.onInit', '.onGUIInit', '.onGUIEnd', '.onInstSuccess', '.onInstFailed', '.onUserAbort', '.onVerifyInstDir', '.onRebootFailed', '.onSelChange', '.onMouseOverSection'] },
       {
         name: 'includes',
         message: 'Add libraries',
         type: 'checkbox',
         store: true,
-        validate: libraries => (libraries.includes('MUI') && libraries.includes('MUI2')) ? `You need to choose between MUI and MUI2` : true,
         choices: [
           {
             name: 'Colors.nsh',
@@ -233,11 +180,6 @@ module.exports = class extends Generator {
             name: 'Memento.nsh',
             value: 'Memento',
             checked: false
-          },
-          {
-            name: 'MUI.nsh',
-            value: 'MUI',
-            disabled: this.disabled
           },
           {
             name: 'MUI2.nsh',
@@ -348,8 +290,19 @@ module.exports = class extends Generator {
       props.outfile = props.version ? `${slugify(props.name)}-${props.version}-setup` : `${slugify(props.name)}-setup`;
 
       if (props.languageDialog) {
-        if (!props.callbacks.includes('onInit')) {
-          props.callbacks.unshift('onInit');
+        if (!props.callbacks.includes('.onInit')) {
+          props.callbacks.unshift('.onInit');
+        }
+      }
+
+      if (props.includes.includes('MUI2')) {
+        const indexOfonGUIInit = props.callbacks.indexOf('.onGUIInit');
+        const indexOfonUserAbort = props.callbacks.indexOf('.onUserAbort');
+        if (indexOfonGUIInit !== -1) {
+          props.callbacks.splice(indexOfonGUIInit, 1, '\"custom.onGUIInit\"');
+        }
+        if (indexOfonUserAbort !== -1) {
+          props.callbacks.splice(indexOfonUserAbort, 1, '\"custom.onUserAbort\"');
         }
       }
 

@@ -11,7 +11,11 @@ Unicode <%= pkg.unicode %>
 SetCompressor <%= pkg.compression %>
 RequestExecutionLevel <%= pkg.elevation %>
 InstallDir "$PROGRAMFILES\<%- pkg.name %>"
-
+<% if (pkg.includes.includes('MUI2') && (pkg.callbacks.includes('"custom.onGUIInit"') || pkg.callbacks.includes('"custom.onUserAbort"'))) { %>
+# Modern UI --------------------------------
+<% if (pkg.callbacks.includes('"custom.onGUIInit"')) { %>!define MUI_CUSTOMFUNCTION_GUIINIT "custom.onGUIInit"<% } %><% if (pkg.callbacks.includes('"custom.onUserAbort"')) { %>
+!define MUI_CUSTOMFUNCTION_ABORT "custom.onUserAbort"<% } %>
+<% } %>
 # Pages ------------------------------------
 <% pkg.pages.forEach( page => { %><% if (pkg.includes.includes('MUI2')) { %>!insertmacro MUI_PAGE_<%= page.toUpperCase() %><% } else { %>Page <%= page %><% } %>
 <% }) %>
@@ -32,8 +36,8 @@ LangString DESC_SECTION_<%= step %> ${LANG_<%= language.toUpperCase() %>} "<%= l
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 <% } %>
 # Functions --------------------------------<% pkg.callbacks.forEach( callback => { %>
-Function .<%= callback %>
-<% if (callback === 'onInit' && pkg.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
+Function <%- callback %>
+<% if (callback === '.onInit' && pkg.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
 <% }) %><% if (pkg.languageDialog) { %>
 Function LanguageDialog
     Push ""
