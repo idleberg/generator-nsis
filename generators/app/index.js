@@ -4,10 +4,20 @@ const pkg = require('../../package.json');
 const languageData = require('@nsis/language-data');
 const semver = require('semver');
 const slugify = require('@sindresorhus/slugify');
+const spdxLicenseList = require('spdx-license-list/full');
 const updateNotifier = require('update-notifier');
 
 // Is there a newer version of this generator?
 updateNotifier({ pkg: pkg }).notify();
+
+// Create array of license choices
+const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
+const licenseChoices = spdxCodes.map(obj =>{
+   const licenses = {};
+   licenses['value'] = obj;
+
+   return licenses;
+});
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -126,6 +136,24 @@ module.exports = class extends Generator {
             checked: true
           }
         ]
+      },
+      {
+        name: 'spdxQuestion',
+        message: 'Choose license from SPDX License List',
+        type: 'confirm',
+        default: true,
+        choices: licenseChoices,
+        store: true,
+        when: answers => answers.pages.includes('license') ? true : false
+      },
+      {
+        name: 'spdxLicense',
+        message: 'Choose license',
+        type: 'list',
+        default: 'MIT',
+        choices: licenseChoices,
+        store: true,
+        when: answers => (answers.pages.includes('license') && answers.spdxQuestion) ? true : false
       },
       {
         name: 'sections',
@@ -315,6 +343,16 @@ module.exports = class extends Generator {
           unlockAll: this.options['unlock-all']
         }
       );
+
+      if (typeof props.spdxLicense !== 'undefined') {
+        this.fs.copyTpl(
+          this.templatePath('license.txt.ejs'),
+          this.destinationPath('license.txt'),
+          {
+            licenseText: spdxLicenseList[props.spdxLicense].licenseText
+          }
+        );
+      }
     });
   }
 };
