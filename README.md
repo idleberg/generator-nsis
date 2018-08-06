@@ -18,7 +18,7 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS
 - adds core libaries
 - adds callback functions
 - adds translations
-- add language dialog
+- adds language dialog
 
 ## Prerequisites
 
