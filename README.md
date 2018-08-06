@@ -1,9 +1,9 @@
 # generator-nsis
 
-[![npm](https://img.shields.io/npm/l/generator-nsis.svg?style=flat-square)](https://www.npmjs.org/package/generator-nsis)
-[![npm](https://img.shields.io/npm/v/generator-nsis.svg?style=flat-square)](https://www.npmjs.org/package/generator-nsis)
-[![CircleCI](https://img.shields.io/circleci/project/idleberg/generator-nsis.svg?style=flat-square)](https://circleci.com/gh/idleberg/generator-nsis/)
-[![David](https://img.shields.io/david/idleberg/generator-nsis.svg?style=flat-square)](https://david-dm.org/idleberg/generator-nsis)
+[![npm](https://flat.badgen.net/npm/license/generator-nsis/)](https://www.npmjs.org/package/generator-nsis)
+[![npm](https://flat.badgen.net/npm/v/generator-nsis)](https://www.npmjs.org/package/generator-nsis)
+[![CircleCI](https://flat.badgen.net/circleci/github/idleberg/generator-nsis)](https://circleci.com/gh/idleberg/generator-nsis/)
+[![David](https://flat.badgen.net/david/dev/idleberg/generator-nsis)](https://david-dm.org/idleberg/generator-nsis)
 
 ## Description
 
