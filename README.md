@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/l/generator-nsis.svg?style=flat-square)](https://www.npmjs.org/package/generator-nsis)
 [![npm](https://img.shields.io/npm/v/generator-nsis.svg?style=flat-square)](https://www.npmjs.org/package/generator-nsis)
+[![CircleCI](https://img.shields.io/circleci/project/idleberg/generator-nsis.svg?style=flat-square)](https://circleci.com/gh/idleberg/generator-nsis/)
 [![David](https://img.shields.io/david/idleberg/generator-nsis.svg?style=flat-square)](https://david-dm.org/idleberg/generator-nsis)
 
 ## Description
