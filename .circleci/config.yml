@@ -10,7 +10,7 @@ jobs:
           name: Restore npm Package Data Cache
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Install npm
+          name: Install Node dependencies
           command: npm install
       - save_cache:
           name: Cache npm Package Data
