@@ -5,6 +5,7 @@ const languageData = require('@nsis/language-data');
 const semver = require('semver');
 const slugify = require('@sindresorhus/slugify');
 const spdxLicenseList = require('spdx-license-list/full');
+const terminalLink = require('terminal-link');
 const updateNotifier = require('update-notifier');
 
 // Is there a newer version of this generator?
@@ -87,7 +88,7 @@ module.exports = class extends Generator {
         message: `Application version`,
         default: '0.0.0',
         store: true,
-        validate: version => (this.looseVersion === true || semver.valid(version) !== null) ? true : 'Not a valid semantic version (see https://semver.org for details)'
+        validate: version => (this.looseVersion === true || semver.valid(version) !== null) ? true : `Not a valid ${terminalLink('semantic version', 'https://semver.org')}.`
       },
       {
         name: 'unicode',
@@ -139,7 +140,7 @@ module.exports = class extends Generator {
       },
       {
         name: 'spdxQuestion',
-        message: 'Choose license from SPDX License List',
+        message: `Choose license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/')}?`,
         type: 'confirm',
         default: true,
         choices: licenseChoices,
