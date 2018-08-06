@@ -67,7 +67,7 @@ module.exports = class extends Generator {
       if (key === 'English') return;
 
       languageDialog.push({
-        constant: `\$\{LANG_${key.toUpperCase()}\}`,
+        constant: `$\{LANG_${key.toUpperCase()}}`,
         string: (isUnicode) ? value.native : (value.long || key)
       });
     });
@@ -328,10 +328,10 @@ module.exports = class extends Generator {
         const indexOfonGUIInit = props.callbacks.indexOf('.onGUIInit');
         const indexOfonUserAbort = props.callbacks.indexOf('.onUserAbort');
         if (indexOfonGUIInit !== -1) {
-          props.callbacks.splice(indexOfonGUIInit, 1, '\"custom.onGUIInit\"');
+          props.callbacks.splice(indexOfonGUIInit, 1, '"custom.onGUIInit"');
         }
         if (indexOfonUserAbort !== -1) {
-          props.callbacks.splice(indexOfonUserAbort, 1, '\"custom.onUserAbort\"');
+          props.callbacks.splice(indexOfonUserAbort, 1, '"custom.onUserAbort"');
         }
       }
 
