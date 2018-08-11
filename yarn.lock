@@ -89,9 +89,9 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
-"@nsis/language-data@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@nsis/language-data/-/language-data-0.1.0.tgz#7a4069de32685216a340f1554656167428326494"
+"@nsis/language-data@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@nsis/language-data/-/language-data-0.2.0.tgz#249ebee8da09d63371e188948bd84936c2f07c93"
 
 "@sindresorhus/slugify@^0.3.0":
   version "0.3.0"
