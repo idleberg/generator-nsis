@@ -336,7 +336,7 @@ module.exports = class extends Generator {
       }
 
       this.fs.copyTpl(
-        this.templatePath('installer.nsi.ejs'),
+        this.templatePath('installer.nsi.hbs'),
         this.destinationPath('installer.nsi'),
         {
           languageData: languageData,
@@ -347,7 +347,7 @@ module.exports = class extends Generator {
 
       if (typeof props.spdxLicense !== 'undefined') {
         this.fs.copyTpl(
-          this.templatePath('license.txt.ejs'),
+          this.templatePath('license.txt.hbs'),
           this.destinationPath('license.txt'),
           {
             licenseText: spdxLicenseList[props.spdxLicense].licenseText
