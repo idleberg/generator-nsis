@@ -1,0 +1,56 @@
+# Generated with generator-nsis
+# https://github.com/idleberg/generator-nsis
+
+# Includes ---------------------------------<% pkg.includes.forEach( include => { %>
+!include "<%= include %>.nsh"<% }); %>
+
+# Settings ---------------------------------
+Name "<%- pkg.name %>"<% if (typeof pkg.ampersand_name !== 'undefined') { %> "<%- pkg.ampersand_name %>"<% } %>
+OutFile "<%= pkg.outfile %>.exe"
+Unicode <%= pkg.unicode %>
+SetCompressor <%= pkg.compression %>
+RequestExecutionLevel <%= pkg.elevation %>
+InstallDir "$PROGRAMFILES\<%- pkg.name %>"<% if (!pkg.includes.includes('MUI2') && pkg.pages.includes('license')) { %>
+LicenseData "<% if (typeof pkg.spdxLicense !== 'undefined') { %>license.txt<% } %>"<% } %>
+<% if (pkg.includes.includes('MUI2') && (pkg.callbacks.includes('"custom.onGUIInit"') || pkg.callbacks.includes('"custom.onUserAbort"'))) { %>
+# Modern UI --------------------------------
+<% if (pkg.callbacks.includes('"custom.onGUIInit"')) { %>!define MUI_CUSTOMFUNCTION_GUIINIT "custom.onGUIInit"<% } %><% if (pkg.callbacks.includes('"custom.onUserAbort"')) { %>
+!define MUI_CUSTOMFUNCTION_ABORT "custom.onUserAbort"<% } %>
+<% } %>
+# Pages ------------------------------------
+<% pkg.pages.forEach( page => { %><% if (pkg.includes.includes('MUI2')) { %>!insertmacro MUI_PAGE_<%= page.toUpperCase() %><% if (page === 'license' && typeof pkg.spdxLicense !== 'undefined') { %> "license.txt"<% } %><% } else { %>Page <%= page %><% } %>
+<% }); %>
+# Languages --------------------------------<% if (unlockAll === false) { %>
+<% if (pkg.includes.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "English"<% } else { %>LoadLanguageFile "${NSISDIR}\Contrib\Language files\English.nlf"<% } %><% } %><% pkg.languages.forEach( language => { %>
+<% if (pkg.includes.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "<%= language %>"<% } else { %>LoadLanguageFile "${NSISDIR}\Contrib\Language files\<%= language %>.nlf"<% } %><% }); %>
+
+# Sections ---------------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
+Section "section" SECTION_<%= step %>
+SectionEnd
+<% } %><% if (pkg.includes.includes('MUI2')) { %>
+# Descriptions -----------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %><% if (unlockAll === false) { %>
+LangString DESC_SECTION_<%= step %> ${LANG_ENGLISH} "English description for section <%= step %>"<% } %><% pkg.languages.forEach( language => { %>
+LangString DESC_SECTION_<%= step %> ${LANG_<%= language.toUpperCase() %>} "<%= language %> description for section <%= step %>"<% }); %>
+<% } %>
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
+    !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_<%= step %>} $(DESC_SECTION_<%= step %>)<% } %>
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
+<% } %>
+# Functions --------------------------------<% pkg.callbacks.forEach( callback => { %>
+Function <%- callback %>
+<% if (callback === '.onInit' && pkg.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
+<% }); %><% if (pkg.languageDialog) { %>
+Function LanguageDialog
+    Push ""
+    Push ${LANG_ENGLISH}
+    Push English<% pkg.languages.forEach( language => { %>
+    Push ${LANG_<%- language.toUpperCase() %>}
+    Push "<% if (pkg.unicode) { %><%- languageData[language].native %><% } else { %><%- languageData[language].long || language %><% } %>"<% }); %>
+    Push A
+    LangDLL::LangDialog "Installer Language" "Please select the language of the installer"
+
+    Pop $LANGUAGE
+    StrCmp $LANGUAGE "cancel" 0 +2
+    Abort
+FunctionEnd
+<% } %>
