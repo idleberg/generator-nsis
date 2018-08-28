@@ -15,7 +15,7 @@ updateNotifier({ pkg: pkg }).notify();
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
 const licenseChoices = spdxCodes.map(obj =>{
    const licenses = {};
-   licenses['value'] = obj;
+   licenses['value'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`);
 
    return licenses;
 });
@@ -168,7 +168,48 @@ module.exports = class extends Generator {
         message: 'Add callback functions',
         type: 'checkbox',
         store: true,
-        choices: ['.onInit', '.onGUIInit', '.onGUIEnd', '.onInstSuccess', '.onInstFailed', '.onUserAbort', '.onVerifyInstDir', '.onRebootFailed', '.onSelChange', '.onMouseOverSection'] },
+        choices: [
+          {
+            name: terminalLink('.onInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInit.md'),
+            value: '.onInit'
+          },
+          {
+            name: terminalLink('.onGUIInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIInit.md'),
+            value: '.onGUIInit'
+          },
+          {
+            name: terminalLink('.onGUIEnd', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIEnd.md'),
+            value: '.onGUIEnd'
+          },
+          {
+            name: terminalLink('.onInstSuccess', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstSuccess.md'),
+            value: '.onInstSuccess'
+          },
+          {
+            name: terminalLink('.onInstFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstFailed.md'),
+            value: '.onInstFailed'
+          },
+          {
+            name: terminalLink('.onUserAbort', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onUserAbort.md'),
+            value: '.onUserAbort'
+          },
+          {
+            name: terminalLink('.onVerifyInstDir', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onVerifyInstDir.md'),
+            value: '.onVerifyInstDir'
+          },
+          {
+            name: terminalLink('.onRebootFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onRebootFailed.md'),
+            value: '.onRebootFailed'
+          },
+          {
+            name: terminalLink('.onSelChange', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onSelChange.md'),
+            value: '.onSelChange'
+          },
+          {
+            name: terminalLink('.onMouseOverSection', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onMouseOverSection.md'),
+            value: '.onMouseOverSection'
+          },
+        ] },
       {
         name: 'includes',
         message: 'Add libraries',
@@ -181,7 +222,7 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: 'FileFunc.nsh',
+            name: terminalLink('FileFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/FileFunc'),
             value: 'FileFunc',
             checked: false
           },
@@ -201,12 +242,12 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: 'LogicLib.nsh',
+            name: terminalLink('LogicLib.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/LogicLib'),
             value: 'LogicLib',
             checked: false
           },
           {
-            name: 'Memento.nsh',
+            name: terminalLink('Memento.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/Memento'),
             value: 'Memento',
             checked: false
           },
@@ -231,12 +272,12 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: 'StrFunc.nsh',
+            name: terminalLink('StrFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/StrFunc'),
             value: 'StrFunc',
             checked: false
           },
           {
-            name: 'TextFunc.nsh',
+            name: terminalLink('TextFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/TextFunc'),
             value: 'TextFunc',
             checked: false
           },
@@ -271,17 +312,17 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: 'WinVer.nsh',
+            name: terminalLink('WinVer.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WinVer'),
             value: 'WinVer',
             checked: false
           },
           {
-            name: 'WordFunc.nsh',
+            name: terminalLink('WordFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WordFunc'),
             value: 'WordFunc',
             checked: false
           },
           {
-            name: 'x64.nsh',
+            name: terminalLink('x64.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/x64'),
             value: 'x64',
             checked: false
           }
