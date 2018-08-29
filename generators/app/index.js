@@ -15,7 +15,8 @@ updateNotifier({ pkg: pkg }).notify();
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
 const licenseChoices = spdxCodes.map(obj =>{
    const licenses = {};
-   licenses['value'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`);
+   licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`);
+   licenses['value'] = obj;
 
    return licenses;
 });
@@ -143,7 +144,6 @@ module.exports = class extends Generator {
         message: `Choose license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/')}?`,
         type: 'confirm',
         default: true,
-        choices: licenseChoices,
         store: true,
         when: answers => answers.pages.includes('license') ? true : false
       },
@@ -353,6 +353,10 @@ module.exports = class extends Generator {
       }
     ]).then(props => {
 
+      if (typeof props.spdxLicense !== 'undefined') {
+        props.licenseText = spdxLicenseList[props.spdxLicense].licenseText.replace(/\n{3,}/g, '\n\n');
+      }
+
       if (props.name.includes('&')) {
         props.ampersand_name = props.name.replace('&', '&&');
       }
@@ -386,13 +390,13 @@ module.exports = class extends Generator {
         }
       );
 
-      if (typeof props.spdxLicense !== 'undefined') {
+      if (typeof props.licenseChoices !== 'undefined') {
         this.fs.copyTpl(
           this.templatePath('license.txt.ejs'),
           this.destinationPath('license.txt'),
           {
-            licenseText: spdxLicenseList[props.spdxLicense].licenseText
-          }
+          licenseText: props.licenseText
+        }
         );
       }
     });
