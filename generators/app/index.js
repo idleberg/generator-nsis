@@ -15,7 +15,7 @@ updateNotifier({ pkg: pkg }).notify();
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
 const licenseChoices = spdxCodes.map(obj =>{
    const licenses = {};
-   licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`);
+   licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, { fallback: obj });
    licenses['value'] = obj;
 
    return licenses;
@@ -89,7 +89,7 @@ module.exports = class extends Generator {
         message: `Application version`,
         default: '0.0.0',
         store: true,
-        validate: version => (this.looseVersion === true || semver.valid(version) !== null) ? true : `Not a valid ${terminalLink('semantic version', 'https://semver.org')}.`
+        validate: version => (this.looseVersion === true || semver.valid(version) !== null) ? true : `Not a valid ${terminalLink('semantic version', 'https://semver.org', { fallback: 'semantic version' })}.`
       },
       {
         name: 'unicode',
@@ -141,7 +141,7 @@ module.exports = class extends Generator {
       },
       {
         name: 'spdxQuestion',
-        message: `Choose license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/')}?`,
+        message: `Choose license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/', { fallback: 'SPDX License List' })}?`,
         type: 'confirm',
         default: true,
         store: true,
@@ -170,43 +170,43 @@ module.exports = class extends Generator {
         store: true,
         choices: [
           {
-            name: terminalLink('.onInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInit.md'),
+            name: terminalLink('.onInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInit.md', { fallback: '.onInit' }),
             value: '.onInit'
           },
           {
-            name: terminalLink('.onGUIInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIInit.md'),
+            name: terminalLink('.onGUIInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIInit.md', { fallback: '.onGUIInit' }),
             value: '.onGUIInit'
           },
           {
-            name: terminalLink('.onGUIEnd', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIEnd.md'),
+            name: terminalLink('.onGUIEnd', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIEnd.md', { fallback: '.onGUIEnd' }),
             value: '.onGUIEnd'
           },
           {
-            name: terminalLink('.onInstSuccess', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstSuccess.md'),
+            name: terminalLink('.onInstSuccess', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstSuccess.md', { fallback: '.onInstSuccess' }),
             value: '.onInstSuccess'
           },
           {
-            name: terminalLink('.onInstFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstFailed.md'),
+            name: terminalLink('.onInstFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstFailed.md', { fallback: '.onInstFailed' }),
             value: '.onInstFailed'
           },
           {
-            name: terminalLink('.onUserAbort', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onUserAbort.md'),
+            name: terminalLink('.onUserAbort', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onUserAbort.md', { fallback: '.onUserAbort' }),
             value: '.onUserAbort'
           },
           {
-            name: terminalLink('.onVerifyInstDir', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onVerifyInstDir.md'),
+            name: terminalLink('.onVerifyInstDir', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onVerifyInstDir.md', { fallback: '.onVerifyInstDir' }),
             value: '.onVerifyInstDir'
           },
           {
-            name: terminalLink('.onRebootFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onRebootFailed.md'),
+            name: terminalLink('.onRebootFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onRebootFailed.md', { fallback: '.onRebootFailed' }),
             value: '.onRebootFailed'
           },
           {
-            name: terminalLink('.onSelChange', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onSelChange.md'),
+            name: terminalLink('.onSelChange', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onSelChange.md', { fallback: '.onSelChange' }),
             value: '.onSelChange'
           },
           {
-            name: terminalLink('.onMouseOverSection', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onMouseOverSection.md'),
+            name: terminalLink('.onMouseOverSection', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onMouseOverSection.md', { fallback: '.onMouseOverSection' }),
             value: '.onMouseOverSection'
           },
         ] },
@@ -222,7 +222,7 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: terminalLink('FileFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/FileFunc'),
+            name: terminalLink('FileFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/FileFunc', { fallback: 'FileFunc.nsh' }),
             value: 'FileFunc',
             checked: false
           },
@@ -242,12 +242,12 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: terminalLink('LogicLib.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/LogicLib'),
+            name: terminalLink('LogicLib.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/LogicLib', { fallback: 'LogicLib.nsh' }),
             value: 'LogicLib',
             checked: false
           },
           {
-            name: terminalLink('Memento.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/Memento'),
+            name: terminalLink('Memento.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/Memento', { fallback: 'Memento.nsh' }),
             value: 'Memento',
             checked: false
           },
@@ -272,12 +272,12 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: terminalLink('StrFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/StrFunc'),
+            name: terminalLink('StrFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/StrFunc', { fallback: 'StrFunc.nsh' }),
             value: 'StrFunc',
             checked: false
           },
           {
-            name: terminalLink('TextFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/TextFunc'),
+            name: terminalLink('TextFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/TextFunc', { fallback: 'TextFunc.nsh' }),
             value: 'TextFunc',
             checked: false
           },
@@ -312,17 +312,17 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: terminalLink('WinVer.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WinVer'),
+            name: terminalLink('WinVer.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WinVer', { fallback: 'WinVer.nsh' }),
             value: 'WinVer',
             checked: false
           },
           {
-            name: terminalLink('WordFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WordFunc'),
+            name: terminalLink('WordFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WordFunc', { fallback: 'WordFunc.nsh' }),
             value: 'WordFunc',
             checked: false
           },
           {
-            name: terminalLink('x64.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/x64'),
+            name: terminalLink('x64.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/x64', { fallback: 'x64.nsh' }),
             value: 'x64',
             checked: false
           }
