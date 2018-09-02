@@ -13,13 +13,18 @@ updateNotifier({ pkg: pkg }).notify();
 
 // Create array of license choices
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
-const licenseChoices = spdxCodes.map(obj =>{
-   const licenses = {};
-   licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, { fallback: obj });
-   licenses['value'] = obj;
+const licenseChoices = spdxCodes.map(obj => {
+  const licenses = {};
+  licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, {
+    fallback() {
+      return obj;
+    }
+  });
+  licenses['value'] = obj;
 
-   return licenses;
+  return licenses;
 });
+
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -89,7 +94,11 @@ module.exports = class extends Generator {
         message: `Application version`,
         default: '0.0.0',
         store: true,
-        validate: version => (this.looseVersion === true || semver.valid(version) !== null) ? true : `Not a valid ${terminalLink('semantic version', 'https://semver.org', { fallback: 'semantic version' })}.`
+        validate: version => (this.looseVersion === true || semver.valid(version) !== null) ? true : `Not a valid ${terminalLink('semantic version', 'https://semver.org', {
+          fallback() {
+            return 'semantic version';
+          }
+        })}`
       },
       {
         name: 'unicode',
@@ -141,7 +150,11 @@ module.exports = class extends Generator {
       },
       {
         name: 'spdxQuestion',
-        message: `Choose license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/', { fallback: 'SPDX License List' })}?`,
+        message: `Choose license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/', {
+          fallback() {
+            return 'SPDX License List'
+          }
+        })}`,
         type: 'confirm',
         default: true,
         store: true,
@@ -170,43 +183,83 @@ module.exports = class extends Generator {
         store: true,
         choices: [
           {
-            name: terminalLink('.onInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInit.md', { fallback: '.onInit' }),
+            name: terminalLink('.onInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInit.md', {
+              fallback() {
+                return '.onInit';
+              }
+            }),
             value: '.onInit'
           },
           {
-            name: terminalLink('.onGUIInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIInit.md', { fallback: '.onGUIInit' }),
+            name: terminalLink('.onGUIInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIInit.md', {
+              fallback() {
+                return '.onGUIInit';
+              }
+            }),
             value: '.onGUIInit'
           },
           {
-            name: terminalLink('.onGUIEnd', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIEnd.md', { fallback: '.onGUIEnd' }),
+            name: terminalLink('.onGUIEnd', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIEnd.md', {
+              fallback() {
+                return '.onGUIEnd';
+              }
+            }),
             value: '.onGUIEnd'
           },
           {
-            name: terminalLink('.onInstSuccess', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstSuccess.md', { fallback: '.onInstSuccess' }),
+            name: terminalLink('.onInstSuccess', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstSuccess.md', {
+              fallback() {
+                return '.onInstSuccess';
+              }
+            }),
             value: '.onInstSuccess'
           },
           {
-            name: terminalLink('.onInstFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstFailed.md', { fallback: '.onInstFailed' }),
+            name: terminalLink('.onInstFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstFailed.md', {
+              fallback() {
+                return '.onInstFailed';
+              }
+            }),
             value: '.onInstFailed'
           },
           {
-            name: terminalLink('.onUserAbort', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onUserAbort.md', { fallback: '.onUserAbort' }),
+            name: terminalLink('.onUserAbort', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onUserAbort.md', {
+              fallback() {
+                return '.onUserAbort';
+              }
+            }),
             value: '.onUserAbort'
           },
           {
-            name: terminalLink('.onVerifyInstDir', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onVerifyInstDir.md', { fallback: '.onVerifyInstDir' }),
+            name: terminalLink('.onVerifyInstDir', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onVerifyInstDir.md', {
+              fallback() {
+                return '.onVerifyInstDir';
+              }
+            }),
             value: '.onVerifyInstDir'
           },
           {
-            name: terminalLink('.onRebootFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onRebootFailed.md', { fallback: '.onRebootFailed' }),
+            name: terminalLink('.onRebootFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onRebootFailed.md', {
+              fallback() {
+                return '.onRebootFailed';
+              }
+            }),
             value: '.onRebootFailed'
           },
           {
-            name: terminalLink('.onSelChange', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onSelChange.md', { fallback: '.onSelChange' }),
+            name: terminalLink('.onSelChange', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onSelChange.md', {
+              fallback() {
+                return '.onSelChange';
+              }
+            }),
             value: '.onSelChange'
           },
           {
-            name: terminalLink('.onMouseOverSection', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onMouseOverSection.md', { fallback: '.onMouseOverSection' }),
+            name: terminalLink('.onMouseOverSection', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onMouseOverSection.md', {
+              fallback() {
+                return '.onMouseOverSection';
+              }
+            }),
             value: '.onMouseOverSection'
           },
         ] },
@@ -222,7 +275,11 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: terminalLink('FileFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/FileFunc', { fallback: 'FileFunc.nsh' }),
+            name: terminalLink('FileFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/FileFunc', {
+              fallback() {
+                return 'FileFunc.nsh';
+              }
+            }),
             value: 'FileFunc',
             checked: false
           },
@@ -242,12 +299,20 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: terminalLink('LogicLib.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/LogicLib', { fallback: 'LogicLib.nsh' }),
+            name: terminalLink('LogicLib.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/LogicLib', {
+              fallback() {
+                return 'LogicLib.nsh';
+              }
+            }),
             value: 'LogicLib',
             checked: false
           },
           {
-            name: terminalLink('Memento.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/Memento', { fallback: 'Memento.nsh' }),
+            name: terminalLink('Memento.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/Memento', {
+              fallback() {
+                return 'Memento.nsh';
+              }
+            }),
             value: 'Memento',
             checked: false
           },
@@ -272,12 +337,20 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: terminalLink('StrFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/StrFunc', { fallback: 'StrFunc.nsh' }),
+            name: terminalLink('StrFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/StrFunc', {
+              fallback() {
+                return 'StrFunc.nsh';
+              }
+            }),
             value: 'StrFunc',
             checked: false
           },
           {
-            name: terminalLink('TextFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/TextFunc', { fallback: 'TextFunc.nsh' }),
+            name: terminalLink('TextFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/TextFunc', {
+              fallback() {
+                return 'TextFunc.nsh';
+              }
+            }),
             value: 'TextFunc',
             checked: false
           },
@@ -312,17 +385,29 @@ module.exports = class extends Generator {
             checked: false
           },
           {
-            name: terminalLink('WinVer.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WinVer', { fallback: 'WinVer.nsh' }),
+            name: terminalLink('WinVer.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WinVer', {
+              fallback() {
+                return 'WinVer.nsh';
+              }
+            }),
             value: 'WinVer',
             checked: false
           },
           {
-            name: terminalLink('WordFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WordFunc', { fallback: 'WordFunc.nsh' }),
+            name: terminalLink('WordFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WordFunc', {
+              fallback() {
+                return 'WordFunc.nsh';
+              }
+            }),
             value: 'WordFunc',
             checked: false
           },
           {
-            name: terminalLink('x64.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/x64', { fallback: 'x64.nsh' }),
+            name: terminalLink('x64.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/x64', {
+              fallback() {
+                return 'x64.nsh';
+              }
+            }),
             value: 'x64',
             checked: false
           }
