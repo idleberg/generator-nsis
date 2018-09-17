@@ -25,7 +25,6 @@ const licenseChoices = spdxCodes.map(obj => {
   return licenses;
 });
 
-
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
