@@ -1,7 +1,7 @@
 const Generator = require('yeoman-generator');
 const pkg = require('../../package.json');
 
-const languageData = require('@nsis/language-data');
+const languageData = require('@nsis/language-data').meta;
 const semver = require('semver');
 const slugify = require('@sindresorhus/slugify');
 const spdxLicenseList = require('spdx-license-list/full');
@@ -475,13 +475,13 @@ module.exports = class extends Generator {
         }
       );
 
-      if (typeof props.licenseChoices !== 'undefined') {
+      if (typeof props.spdxLicense !== 'undefined') {
         this.fs.copyTpl(
           this.templatePath('license.txt.ejs'),
           this.destinationPath('license.txt'),
           {
-          licenseText: props.licenseText
-        }
+            licenseText: props.licenseText
+          }
         );
       }
     });
