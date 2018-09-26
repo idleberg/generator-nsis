@@ -149,7 +149,7 @@ module.exports = class extends Generator {
       },
       {
         name: 'spdxQuestion',
-        message: `Choose license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/', {
+        message: `Choose a license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/', {
           fallback() {
             return 'SPDX License List'
           }
@@ -161,7 +161,7 @@ module.exports = class extends Generator {
       },
       {
         name: 'spdxLicense',
-        message: 'Choose license',
+        message: 'Choose a license',
         type: 'list',
         default: 'MIT',
         choices: licenseChoices,
@@ -173,7 +173,7 @@ module.exports = class extends Generator {
         message: 'Number of sections',
         default: 1,
         store: true,
-        validate: number => (Number.isInteger(parseInt(number)) && parseInt(number) > 0) ? true : 'Not a valid number of sections'
+        validate: number => (Number.isInteger(parseInt(number)) && parseInt(number) > 0) ? true : 'Not a valid integer'
       },
       {
         name: 'callbacks',
