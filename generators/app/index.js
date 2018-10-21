@@ -434,7 +434,17 @@ module.exports = class extends Generator {
               return false;
           }
         }
-      }
+      },
+      {
+        name: 'editInstallerScript',
+        message: 'Edit installer script',
+        type: 'confirm',
+        default: 'true',
+        store: true,
+        when: () => {
+          return (process.env.EDITOR) ? true : false;
+        }
+      },
     ]).then(props => {
 
       if (typeof props.spdxLicense !== 'undefined') {
@@ -482,6 +492,10 @@ module.exports = class extends Generator {
             licenseText: props.licenseText
           }
         );
+      }
+
+      if (props.editInstallerScript === true) {
+        this.spawnCommand(process.env.EDITOR, [ 'installer.nsi' ]);
       }
     });
   }
