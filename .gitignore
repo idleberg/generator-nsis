@@ -10,4 +10,6 @@ yarn-error.log
 .yo-rc.json
 
 # Project specific
+*.nsi
 todo.md
+license.txt
