@@ -202,13 +202,13 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    this.option('first-party-only', { desc: 'Limits library inclusion to first-party', default: false });
+    this.option('first-party', { desc: 'Limits library inclusion to first-party', default: false });
     this.option('loose-version', { desc: `Doesn't enforce semantic versioning`, default: false });
     this.option('unlock-all', { desc: 'Unlocks all disabled features', default: false });
 
     this.looseVersion = (this.options.looseVersion ? true : false);
     this.disabled = (this.options.unlockAll ? false : true);
-    this.firstPartyOnly = (this.options.firstPartyOnly ? true : false);
+    this.firstParty = (this.options.firstParty ? true : false);
   }
 
   languageChoices() {
@@ -442,7 +442,7 @@ module.exports = class extends Generator {
         message: 'Add libraries',
         type: 'checkbox',
         store: true,
-        choices: (this.firstPartyOnly) ? bundledLibraries : getAllLibraries()
+        choices: (this.firstParty) ? bundledLibraries : getAllLibraries()
       },
       {
         name: 'languages',
