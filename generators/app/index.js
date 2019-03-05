@@ -1,12 +1,15 @@
 const Generator = require('yeoman-generator');
 const pkg = require('../../package.json');
 
+const globby = require('globby');
 const languageData = require('@nsis/language-data').meta;
 const semver = require('semver');
 const slugify = require('@sindresorhus/slugify');
 const spdxLicenseList = require('spdx-license-list/full');
 const terminalLink = require('terminal-link');
 const updateNotifier = require('update-notifier');
+const { nsisDirSync } = require('makensis');
+const { basename, extname, resolve } = require('path');
 
 // Is there a newer version of this generator?
 updateNotifier({ pkg: pkg }).notify();
@@ -25,15 +28,187 @@ const licenseChoices = spdxCodes.map(obj => {
   return licenses;
 });
 
+const docsURL = 'https://github.com/NSIS-Dev/Documentation/tree/master';
+
+const bundledLibraries = [
+  {
+    name: 'Colors.nsh',
+    value: 'Colors',
+    checked: false
+  },
+  {
+    name: terminalLink('FileFunc.nsh', `${docsURL}/Includes/FileFunc`, {
+      fallback() {
+        return 'FileFunc.nsh';
+      }
+    }),
+    value: 'FileFunc',
+    checked: false
+  },
+  {
+    name: 'InstallOptions.nsh',
+    value: 'InstallOptions',
+    checked: false
+  },
+  {
+    name: 'LangFile.nsh',
+    value: 'LangFile',
+    checked: false
+  },
+  {
+    name: 'Library.nsh',
+    value: 'Library',
+    checked: false
+  },
+  {
+    name: terminalLink('LogicLib.nsh', `${docsURL}/Includes/LogicLib`, {
+      fallback() {
+        return 'LogicLib.nsh';
+      }
+    }),
+    value: 'LogicLib',
+    checked: false
+  },
+  {
+    name: terminalLink('Memento.nsh', `${docsURL}/Includes/Memento`, {
+      fallback() {
+        return 'Memento.nsh';
+      }
+    }),
+    value: 'Memento',
+    checked: false
+  },
+  {
+    name: 'MUI2.nsh',
+    value: 'MUI2',
+    checked: false
+  },
+  {
+    name: 'MultiUser.nsh',
+    value: 'MultiUser',
+    checked: false
+  },
+  {
+    name: 'nsDialogs.nsh',
+    value: 'nsDialogs',
+    checked: false
+  },
+  {
+    name: 'Sections.nsh',
+    value: 'Sections',
+    checked: false
+  },
+  {
+    name: terminalLink('StrFunc.nsh', `${docsURL}/Includes/StrFunc`, {
+      fallback() {
+        return 'StrFunc.nsh';
+      }
+    }),
+    value: 'StrFunc',
+    checked: false
+  },
+  {
+    name: terminalLink('TextFunc.nsh', `${docsURL}/Includes/TextFunc`, {
+      fallback() {
+        return 'TextFunc.nsh';
+      }
+    }),
+    value: 'TextFunc',
+    checked: false
+  },
+  {
+    name: 'UpgradeDLL.nsh',
+    value: 'UpgradeDLL',
+    checked: false
+  },
+  {
+    name: 'Util.nsh',
+    value: 'Util',
+    checked: false
+  },
+  {
+    name: 'VB6RunTime.nsh',
+    value: 'VB6RunTime',
+    checked: false
+  },
+  {
+    name: 'VPatchLib.nsh',
+    value: 'VPatchLib',
+    checked: false
+  },
+  {
+    name: 'WinCore.nsh',
+    value: 'WinCore',
+    checked: false
+  },
+  {
+    name: 'WinMessages.nsh',
+    value: 'WinMessages',
+    checked: false
+  },
+  {
+    name: terminalLink('WinVer.nsh', `${docsURL}/Includes/WinVer`, {
+      fallback() {
+        return 'WinVer.nsh';
+      }
+    }),
+    value: 'WinVer',
+    checked: false
+  },
+  {
+    name: terminalLink('WordFunc.nsh', `${docsURL}/Includes/WordFunc`, {
+      fallback() {
+        return 'WordFunc.nsh';
+      }
+    }),
+    value: 'WordFunc',
+    checked: false
+  },
+  {
+    name: terminalLink('x64.nsh', `${docsURL}/Includes/x64`, {
+      fallback() {
+        return 'x64.nsh';
+      }
+    }),
+    value: 'x64',
+    checked: false
+  }
+];
+
+const getAllLibraries = () => {
+  const nsisPath = nsisDirSync();
+  const includeDir = resolve(nsisPath, 'Include')
+
+  const excludedFiles = bundledLibraries.map(excludedFiles => {
+    return `!${includeDir}/${excludedFiles.value}.nsh`;
+  });
+
+  const headerFiles = globby.sync([`${includeDir}/*.nsh`,`!${includeDir}/MUI.nsh`, ...excludedFiles]);
+
+  const customHeaders = headerFiles.map(headerFile => {
+    return {
+      name: `${basename(headerFile)} [3rd party]`,
+      value: basename(headerFile, extname(headerFile)),
+      checked: false
+    }
+  });
+
+  const allLibraries = [...bundledLibraries, ...customHeaders];
+
+  return allLibraries.sort((a,b) => a.value.localeCompare(b.value));
+};
+
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
+    this.option('first-party-only', { desc: 'Limits library inclusion to first-party', default: false });
     this.option('loose-version', { desc: `Doesn't enforce semantic versioning`, default: false });
     this.option('unlock-all', { desc: 'Unlocks all disabled features', default: false });
 
     this.looseVersion = (this.options.looseVersion ? true : false);
     this.disabled = (this.options.unlockAll ? false : true);
+    this.firstPartyOnly = (this.options.firstPartyOnly ? true : false);
   }
 
   languageChoices() {
@@ -267,150 +442,7 @@ module.exports = class extends Generator {
         message: 'Add libraries',
         type: 'checkbox',
         store: true,
-        choices: [
-          {
-            name: 'Colors.nsh',
-            value: 'Colors',
-            checked: false
-          },
-          {
-            name: terminalLink('FileFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/FileFunc', {
-              fallback() {
-                return 'FileFunc.nsh';
-              }
-            }),
-            value: 'FileFunc',
-            checked: false
-          },
-          {
-            name: 'InstallOptions.nsh',
-            value: 'InstallOptions',
-            checked: false
-          },
-          {
-            name: 'LangFile.nsh',
-            value: 'LangFile',
-            checked: false
-          },
-          {
-            name: 'Library.nsh',
-            value: 'Library',
-            checked: false
-          },
-          {
-            name: terminalLink('LogicLib.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/LogicLib', {
-              fallback() {
-                return 'LogicLib.nsh';
-              }
-            }),
-            value: 'LogicLib',
-            checked: false
-          },
-          {
-            name: terminalLink('Memento.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/Memento', {
-              fallback() {
-                return 'Memento.nsh';
-              }
-            }),
-            value: 'Memento',
-            checked: false
-          },
-          {
-            name: 'MUI2.nsh',
-            value: 'MUI2',
-            checked: false
-          },
-          {
-            name: 'MultiUser.nsh',
-            value: 'MultiUser',
-            checked: false
-          },
-          {
-            name: 'nsDialogs.nsh',
-            value: 'nsDialogs',
-            checked: false
-          },
-          {
-            name: 'Sections.nsh',
-            value: 'Sections',
-            checked: false
-          },
-          {
-            name: terminalLink('StrFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/StrFunc', {
-              fallback() {
-                return 'StrFunc.nsh';
-              }
-            }),
-            value: 'StrFunc',
-            checked: false
-          },
-          {
-            name: terminalLink('TextFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/TextFunc', {
-              fallback() {
-                return 'TextFunc.nsh';
-              }
-            }),
-            value: 'TextFunc',
-            checked: false
-          },
-          {
-            name: 'UpgradeDLL.nsh',
-            value: 'UpgradeDLL',
-            checked: false
-          },
-          {
-            name: 'Util.nsh',
-            value: 'Util',
-            checked: false
-          },
-          {
-            name: 'VB6RunTime.nsh',
-            value: 'VB6RunTime',
-            checked: false
-          },
-          {
-            name: 'VPatchLib.nsh',
-            value: 'VPatchLib',
-            checked: false
-          },
-          {
-            name: 'WinCore.nsh',
-            value: 'WinCore',
-            checked: false
-          },
-          {
-            name: 'WinMessages.nsh',
-            value: 'WinMessages',
-            checked: false
-          },
-          {
-            name: terminalLink('WinVer.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WinVer', {
-              fallback() {
-                return 'WinVer.nsh';
-              }
-            }),
-            value: 'WinVer',
-            checked: false
-          },
-          {
-            name: terminalLink('WordFunc.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/WordFunc', {
-              fallback() {
-                return 'WordFunc.nsh';
-              }
-            }),
-            value: 'WordFunc',
-            checked: false
-          },
-          {
-            name: terminalLink('x64.nsh', 'https://github.com/NSIS-Dev/Documentation/tree/master/Includes/x64', {
-              fallback() {
-                return 'x64.nsh';
-              }
-            }),
-            value: 'x64',
-            checked: false
-          }
-        ]
+        choices: (this.firstPartyOnly) ? bundledLibraries : getAllLibraries()
       },
       {
         name: 'languages',
