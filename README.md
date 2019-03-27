@@ -25,7 +25,7 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS
 You need [Node.js](https://nodejs.org/en/) installed and available in your `PATH` [environmental variable](http://superuser.com/a/284351/195953). Use your preferred Node package manager to install the Yeoman CLI tool.
 
 ```sh
-yarn global add yo || npm install -g yo
+npm install -g yo
 ```
 
 ## Installation
@@ -33,7 +33,7 @@ yarn global add yo || npm install -g yo
  Use your preferred package manager to install this generator
 
 ```sh
-yarn global add generator-nsis || npm i generator-nsis -g
+npm i generator-nsis -g
 ```
 
 ## Usage
