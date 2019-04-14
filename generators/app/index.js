@@ -219,7 +219,7 @@ module.exports = class extends Generator {
 
       // Use long names
       languageChoices.push({
-        name: value.long || key,
+        name: value.english || key,
         value: key,
         disabled: isDisabled
       });
