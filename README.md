@@ -3,7 +3,7 @@
 [![npm](https://flat.badgen.net/npm/license/generator-nsis)](https://www.npmjs.org/package/generator-nsis)
 [![npm](https://flat.badgen.net/npm/v/generator-nsis)](https://www.npmjs.org/package/generator-nsis)
 [![CircleCI](https://flat.badgen.net/circleci/github/idleberg/generator-nsis)](https://circleci.com/gh/idleberg/generator-nsis/)
-[![David](https://flat.badgen.net/david/dev/idleberg/generator-nsis)](https://david-dm.org/idleberg/generator-nsis)
+[![David](https://flat.badgen.net/david/dep/idleberg/generator-nsis)](https://david-dm.org/idleberg/generator-nsis)
 
 ## Description
 
