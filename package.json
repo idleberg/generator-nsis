@@ -25,7 +25,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@nsis/language-data": "^0.7.0",
+    "@nsis/language-data": "^0.7.1",
     "@sindresorhus/slugify": "^0.9.1",
     "globby": "^9.2.0",
     "makensis": "^0.17.0",
