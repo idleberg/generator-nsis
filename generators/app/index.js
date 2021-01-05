@@ -8,7 +8,7 @@ const slugify = require('@sindresorhus/slugify');
 const spdxLicenseList = require('spdx-license-list/full');
 const terminalLink = require('terminal-link');
 const updateNotifier = require('update-notifier');
-const { nsisDirSync } = require('makensis');
+const { nsisDir } = require('makensis');
 const { basename, extname, resolve } = require('path');
 
 // Is there a newer version of this generator?
@@ -175,8 +175,8 @@ const bundledLibraries = [
   }
 ];
 
-const getAllLibraries = () => {
-  const nsisPath = nsisDirSync();
+const getAllLibraries = async () => {
+  const nsisPath = await nsisDir();
   const includeDir = resolve(nsisPath, 'Include')
 
   const excludedFiles = bundledLibraries.map(excludedFiles => {
@@ -442,7 +442,7 @@ module.exports = class extends Generator {
         message: 'Add libraries',
         type: 'checkbox',
         store: true,
-        choices: (this.firstParty) ? bundledLibraries : getAllLibraries()
+        choices: async () => this.firstParty ? bundledLibraries : await getAllLibraries()
       },
       {
         name: 'languages',
