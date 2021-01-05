@@ -51,6 +51,11 @@ const bundledLibraries = [
     checked: false
   },
   {
+    name: 'Integration.nsh',
+    value: 'Integration',
+    checked: false
+  },
+  {
     name: 'LangFile.nsh',
     value: 'LangFile',
     checked: false
