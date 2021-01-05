@@ -7,9 +7,11 @@
     "generators"
   ],
   "scripts": {
-    "ejslint": "ejslint generators/**/*.ejs",
-    "eslint": "eslint generators/**/*.js",
-    "test": "npm run eslint && npm run ejslint"
+    "lint:ejs": "ejslint generators/**/*.ejs",
+    "lint:js": "eslint generators/**/*.js",
+    "lint:json": "jsonlint --quiet ./*.json",
+    "lint": "npm-run-all --parallel lint:*",
+    "test": "npm run lint"
   },
   "keywords": [
     "yeoman-generator",
@@ -39,11 +41,19 @@
     "babel-eslint": "^10.1.0",
     "ejs-lint": "^1.1.0",
     "eslint": "^7.6.0",
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "jsonlint": "^1.6.3",
+    "lint-staged": "^10.5.3",
+    "npm-run-all": "^4.1.5"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.ejs": "ejslint",
+    "*.js": "eslint --cache --fix",
+    "*.json": "jsonlint --quiet"
   }
 }
