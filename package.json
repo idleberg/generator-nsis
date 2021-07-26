@@ -31,7 +31,7 @@
     "@nsis/language-data": "^0.7.4",
     "@sindresorhus/slugify": "^1.1.0",
     "globby": "^11.0.0",
-    "makensis": "^0.23.3",
+    "makensis": "^0.25.0",
     "semver": "^7.3.4",
     "spdx-license-list": "^6.3.0",
     "terminal-link": "^2.1.1",
