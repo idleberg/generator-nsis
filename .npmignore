@@ -10,6 +10,7 @@ yarn.lock
 .yo-rc.json
 
 # Project specific
+.github/
 *.nsi
 todo.md
 license.txt
