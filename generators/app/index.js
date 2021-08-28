@@ -217,17 +217,15 @@ module.exports = class extends Generator {
   }
 
   languageChoices() {
-    const languageChoices = [];
-
-    Object.entries(languageData).forEach(([key, value]) => {
+    const languageChoices = Object.entries(languageData).map(([key, value]) => {
       const isDisabled = (key === 'English') ? this.disabled : false;
 
       // Use long names
-      languageChoices.push({
+      return {
         name: value.english || key,
         value: key,
         disabled: isDisabled
-      });
+      };
     });
 
     // Sort names
@@ -246,15 +244,13 @@ module.exports = class extends Generator {
   }
 
   languageDialog(isUnicode) {
-    const languageDialog = [];
-
-    Object.entries(languageData).forEach(([key, value]) => {
+    const languageDialog = Object.entries(languageData).map(([key, value]) => {
       if (key === 'English') return;
 
-      languageDialog.push({
+      return {
         constant: `$\{LANG_${key.toUpperCase()}}`,
         string: (isUnicode) ? value.native : (value.long || key)
-      });
+      };
     });
 
     return languageDialog;
