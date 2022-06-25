@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "esprima",
   "extends": [
     "eslint:recommended",
     "plugin:json/recommended"
