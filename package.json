@@ -8,8 +8,8 @@
   ],
   "scripts": {
     "lint:ejs": "ejslint generators/**/*.ejs",
-    "lint:js": "eslint generators/**/*.js",
-    "lint:json": "jsonlint --quiet ./*.json",
+    "lint:js": "eslint generators/**/*.js --ignore-path .gitignore",
+    "lint:json": "eslint ./*.json --ignore-path .gitignore",
     "lint": "npm-run-all --parallel lint:*",
     "publish": "np --no-yarn",
     "test": "npm run lint"
@@ -30,6 +30,7 @@
   "dependencies": {
     "@nsis/language-data": "^0.9.0",
     "@sindresorhus/slugify": "^1.1.2",
+    "eslint-plugin-json": "^3.1.0",
     "globby": "^11.0.0",
     "makensis": "^1.1.1",
     "semver": "^7.3.4",
@@ -42,20 +43,13 @@
     "babel-eslint": "^10.1.0",
     "ejs-lint": "^1.1.0",
     "eslint": "^7.32.0",
-    "husky": "^7.0.4",
-    "jsonlint": "^1.6.3",
-    "lint-staged": "^11.2.6",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0",
     "np": "^7.2.0",
     "npm-run-all": "^4.1.5"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.ejs": "ejslint",
-    "*.js": "eslint --cache --fix",
-    "*.json": "jsonlint --quiet"
+    "*.(js|json)": "eslint --cache --fix"
   }
 }
