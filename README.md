@@ -8,7 +8,7 @@
 
 A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS scripts.
 
-![Screenshot](https://raw.github.com/idleberg/generator-nsis/master/screenshot.png)
+![Screenshot](https://raw.github.com/idleberg/generator-nsis/main/screenshot.png)
 
 **Features**
 
