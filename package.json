@@ -2,6 +2,15 @@
   "name": "generator-nsis",
   "version": "0.8.10",
   "description": "Yeoman generator for NSIS scripts",
+  "author": "Jan T. Sott",
+  "license": "MIT",
+  "keywords": [
+    "yeoman-generator",
+    "nsis",
+    "nullsoft",
+    "installer",
+    "setup"
+  ],
   "main": "generators/app",
   "files": [
     "generators"
@@ -14,33 +23,27 @@
     "publish": "np --no-yarn",
     "test": "npm run lint"
   },
-  "keywords": [
-    "yeoman-generator",
-    "nsis",
-    "nullsoft",
-    "installer",
-    "setup"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/idleberg/generator-nsis"
   },
-  "author": "",
-  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@nsis/language-data": "^0.9.0",
     "@sindresorhus/slugify": "^1.1.2",
     "globby": "^11.1.0",
-    "makensis": "^1.1.3",
-    "semver": "^7.3.7",
+    "makensis": "^1.1.4",
+    "semver": "^7.3.8",
     "spdx-license-list": "^6.6.0",
     "terminal-link": "^2.1.1",
     "update-notifier": "^5.1.0",
-    "yeoman-generator": "^4.13.0"
+    "yeoman-generator": "^5.7.0"
   },
   "devDependencies": {
     "ejs-lint": "^1.2.2",
-    "eslint": "^8.18.0",
+    "eslint": "^8.26.0",
     "eslint-plugin-json": "^3.1.0",
     "esprima": "^4.0.1",
     "husky": "^8.0.1",
