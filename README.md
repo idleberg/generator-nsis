@@ -14,7 +14,7 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS
 
 - Modern UI-aware
 - adds sections
-- adds core libaries
+- adds core libraries (”Useful Headers”)
 - adds callback functions
 - adds translations
 - adds language dialog
