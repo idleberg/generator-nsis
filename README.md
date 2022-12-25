@@ -2,7 +2,7 @@
 
 [![npm](https://flat.badgen.net/npm/license/generator-nsis)](https://www.npmjs.org/package/generator-nsis)
 [![npm](https://flat.badgen.net/npm/v/generator-nsis)](https://www.npmjs.org/package/generator-nsis)
-[![CI](https://img.shields.io/github/workflow/status/idleberg/generator-nsis/CI?style=flat-square)](https://github.com/idleberg/generator-nsis/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/idleberg/generator-nsis/default.yml?style=flat-square)](https://github.com/idleberg/generator-nsis/actions)
 
 ## Description
 
