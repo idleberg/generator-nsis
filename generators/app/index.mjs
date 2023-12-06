@@ -1,18 +1,12 @@
-const Generator = require('yeoman-generator');
-const pkg = require('../../package.json');
-
-const globby = require('globby');
-const languageData = require('@nsis/language-data').meta;
-const semver = require('semver');
-const slugify = require('@sindresorhus/slugify');
-const spdxLicenseList = require('spdx-license-list/full');
-const terminalLink = require('terminal-link');
-const updateNotifier = require('update-notifier');
-const { nsisDir } = require('makensis');
-const { basename, extname, resolve } = require('path');
-
-// Is there a newer version of this generator?
-updateNotifier({ pkg: pkg }).notify();
+import { basename, extname, resolve } from 'node:path';
+import { glob } from 'glob';
+import { meta as languageData } from '@nsis/language-data';
+import { nsisDir } from 'makensis';
+import Generator from 'yeoman-generator';
+import semver from 'semver';
+import slugify from '@sindresorhus/slugify';
+import spdxLicenseList from 'spdx-license-list/full.js';
+import terminalLink from 'terminal-link';
 
 // Create array of license choices
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
@@ -188,7 +182,7 @@ const getAllLibraries = async () => {
     return `!${includeDir}/${excludedFiles.value}.nsh`;
   });
 
-  const headerFiles = globby.sync([`${includeDir}/*.nsh`,`!${includeDir}/MUI.nsh`, ...excludedFiles]);
+	const headerFiles = await glob([`${includeDir}/*.nsh`,`!${includeDir}/MUI.nsh`, ...excludedFiles]);
 
   const customHeaders = headerFiles.map(headerFile => {
     return {
@@ -203,7 +197,7 @@ const getAllLibraries = async () => {
   return allLibraries.sort((a,b) => a.value.localeCompare(b.value));
 };
 
-module.exports = class extends Generator {
+export default class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
