@@ -526,4 +526,4 @@ export default class extends Generator {
 			}
 		});
 	}
-};
+}
