@@ -13,7 +13,8 @@
   ],
   "main": "generators/app",
   "files": [
-    "generators"
+    "generators",
+		"README.md"
   ],
   "scripts": {
     "lint:ejs": "ejslint generators/**/*.ejs",
