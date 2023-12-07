@@ -21,8 +21,7 @@
     "lint:js": "eslint generators/**/*.mjs --ignore-path .gitignore",
     "lint:json": "eslint ./*.json --ignore-path .gitignore",
     "lint": "npm-run-all --parallel lint:*",
-    "publish": "np --no-yarn",
-    "test": "npm run lint"
+    "publish": "np --no-yarn"
   },
   "repository": {
     "type": "git",
