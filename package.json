@@ -28,7 +28,7 @@
     "url": "https://github.com/idleberg/generator-nsis"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18"
   },
   "dependencies": {
     "@nsis/language-data": "^0.9.2",
