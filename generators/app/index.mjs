@@ -1,201 +1,12 @@
-import { basename, extname, resolve } from 'node:path';
-import { glob } from 'glob';
+
 import { meta as languageData } from '@nsis/language-data';
-import { nsisDir } from 'makensis';
+
 import Generator from 'yeoman-generator';
 import semver from 'semver';
 import slugify from '@sindresorhus/slugify';
 import spdxLicenseList from 'spdx-license-list/full.js';
 import terminalLink from 'terminal-link';
-
-// Create array of license choices
-const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
-const licenseChoices = spdxCodes.map(obj => {
-	const licenses = {};
-	licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, {
-		fallback() {
-			return obj;
-		}
-	});
-	licenses['value'] = obj;
-
-	return licenses;
-});
-
-const docsURL = 'https://github.com/NSIS-Dev/Documentation/tree/master';
-
-const bundledLibraries = [
-	{
-		name: 'Colors.nsh',
-		value: 'Colors',
-		checked: false
-	},
-	{
-		name: terminalLink('FileFunc.nsh', `${docsURL}/Includes/FileFunc`, {
-			fallback() {
-				return 'FileFunc.nsh';
-			}
-		}),
-		value: 'FileFunc',
-		checked: false
-	},
-	{
-		name: 'InstallOptions.nsh',
-		value: 'InstallOptions',
-		checked: false
-	},
-	{
-		name: 'Integration.nsh',
-		value: 'Integration',
-		checked: false
-	},
-	{
-		name: 'LangFile.nsh',
-		value: 'LangFile',
-		checked: false
-	},
-	{
-		name: 'Library.nsh',
-		value: 'Library',
-		checked: false
-	},
-	{
-		name: terminalLink('LogicLib.nsh', `${docsURL}/Includes/LogicLib`, {
-			fallback() {
-				return 'LogicLib.nsh';
-			}
-		}),
-		value: 'LogicLib',
-		checked: false
-	},
-	{
-		name: terminalLink('Memento.nsh', `${docsURL}/Includes/Memento`, {
-			fallback() {
-				return 'Memento.nsh';
-			}
-		}),
-		value: 'Memento',
-		checked: false
-	},
-	{
-		name: 'MUI2.nsh',
-		value: 'MUI2',
-		checked: false
-	},
-	{
-		name: 'MultiUser.nsh',
-		value: 'MultiUser',
-		checked: false
-	},
-	{
-		name: 'nsDialogs.nsh',
-		value: 'nsDialogs',
-		checked: false
-	},
-	{
-		name: 'Sections.nsh',
-		value: 'Sections',
-		checked: false
-	},
-	{
-		name: terminalLink('StrFunc.nsh', `${docsURL}/Includes/StrFunc`, {
-			fallback() {
-				return 'StrFunc.nsh';
-			}
-		}),
-		value: 'StrFunc',
-		checked: false
-	},
-	{
-		name: terminalLink('TextFunc.nsh', `${docsURL}/Includes/TextFunc`, {
-			fallback() {
-				return 'TextFunc.nsh';
-			}
-		}),
-		value: 'TextFunc',
-		checked: false
-	},
-	{
-		name: 'UpgradeDLL.nsh',
-		value: 'UpgradeDLL',
-		checked: false
-	},
-	{
-		name: 'Util.nsh',
-		value: 'Util',
-		checked: false
-	},
-	{
-		name: 'VB6RunTime.nsh',
-		value: 'VB6RunTime',
-		checked: false
-	},
-	{
-		name: 'VPatchLib.nsh',
-		value: 'VPatchLib',
-		checked: false
-	},
-	{
-		name: 'WinCore.nsh',
-		value: 'WinCore',
-		checked: false
-	},
-	{
-		name: 'WinMessages.nsh',
-		value: 'WinMessages',
-		checked: false
-	},
-	{
-		name: terminalLink('WinVer.nsh', `${docsURL}/Includes/WinVer`, {
-			fallback() {
-				return 'WinVer.nsh';
-			}
-		}),
-		value: 'WinVer',
-		checked: false
-	},
-	{
-		name: terminalLink('WordFunc.nsh', `${docsURL}/Includes/WordFunc`, {
-			fallback() {
-				return 'WordFunc.nsh';
-			}
-		}),
-		value: 'WordFunc',
-		checked: false
-	},
-	{
-		name: terminalLink('x64.nsh', `${docsURL}/Includes/x64`, {
-			fallback() {
-				return 'x64.nsh';
-			}
-		}),
-		value: 'x64',
-		checked: false
-	}
-];
-
-const getAllLibraries = async () => {
-	const nsisPath = await nsisDir();
-	const includeDir = resolve(nsisPath, 'Include')
-
-	const excludedFiles = bundledLibraries.map(excludedFiles => {
-		return `!${includeDir}/${excludedFiles.value}.nsh`;
-	});
-
-	const headerFiles = await glob([`${includeDir}/*.nsh`,`!${includeDir}/MUI.nsh`, ...excludedFiles]);
-
-	const customHeaders = headerFiles.map(headerFile => {
-		return {
-			name: `${basename(headerFile)} [3rd party]`,
-			value: basename(headerFile, extname(headerFile)),
-			checked: false
-		}
-	});
-
-	const allLibraries = [...bundledLibraries, ...customHeaders];
-
-	return allLibraries.sort((a,b) => a.value.localeCompare(b.value));
-};
+import { bundledLibraries, getAllLibraries, licenseChoices } from '../lib/helpers.mjs';
 
 export default class extends Generator {
 	constructor(args, opts) {
@@ -223,11 +34,12 @@ export default class extends Generator {
 		});
 
 		// Sort names
-		languageChoices.sort((a, b) => {
-			if (a.name < b.name) {
+		languageChoices.sort((a, z) => {
+			if (a.name < z.name) {
 				return -1;
 			}
-			if (a.name > b.name) {
+
+			if (a.name > z.name) {
 				return 1;
 			}
 
@@ -457,6 +269,7 @@ export default class extends Generator {
 						case (this.options['unlock-all'] === true && answers.languages.length > 1):
 						case (this.options['unlock-all'] === false && answers.languages.length > 0):
 							return true;
+
 						default:
 							return false;
 					}
@@ -491,13 +304,16 @@ export default class extends Generator {
 			}
 
 			if (props.includes.includes('MUI2')) {
-				const indexOfonGUIInit = props.callbacks.indexOf('.onGUIInit');
-				const indexOfonUserAbort = props.callbacks.indexOf('.onUserAbort');
-				if (indexOfonGUIInit !== -1) {
-					props.callbacks.splice(indexOfonGUIInit, 1, '"custom.onGUIInit"');
+				const includesOnGUIInit = props.callbacks.includes('.onGUIInit');
+
+				if (includesOnGUIInit !== -1) {
+					props.callbacks.splice(includesOnGUIInit, 1, '"custom.onGUIInit"');
 				}
-				if (indexOfonUserAbort !== -1) {
-					props.callbacks.splice(indexOfonUserAbort, 1, '"custom.onUserAbort"');
+
+				const includesOnUserAbort = props.callbacks.includes('.onUserAbort');
+
+				if (includesOnUserAbort !== -1) {
+					props.callbacks.splice(includesOnUserAbort, 1, '"custom.onUserAbort"');
 				}
 			}
 
