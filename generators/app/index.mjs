@@ -6,7 +6,7 @@ import semver from 'semver';
 import slugify from '@sindresorhus/slugify';
 import spdxLicenseList from 'spdx-license-list/full.js';
 import terminalLink from 'terminal-link';
-import { bundledLibraries, getAllLibraries, licenseChoices } from '../lib/helpers.mjs';
+import { bundledLibraries, getAllLibraries, getLanguageChoices, licenseChoices } from '../lib/helpers.mjs';
 
 export default class extends Generator {
 	constructor(args, opts) {
@@ -21,46 +21,18 @@ export default class extends Generator {
 		this.firstParty = (this.options.firstParty ? true : false);
 	}
 
-	languageChoices() {
-		const languageChoices = Object.entries(languageData).map(([key, value]) => {
-			const isDisabled = (key === 'English') ? this.disabled : false;
+	// languageDialog(isUnicode) {
+	// 	const languageDialog = Object.entries(languageData).map(([key, value]) => {
+	// 		if (key === 'English') return;
 
-			// Use long names
-			return {
-				name: value.english || key,
-				value: key,
-				disabled: isDisabled
-			};
-		});
+	// 		return {
+	// 			constant: `$\{LANG_${key.toUpperCase()}}`,
+	// 			string: (isUnicode) ? value.native : (value.long || key)
+	// 		};
+	// 	});
 
-		// Sort names
-		languageChoices.sort((a, z) => {
-			if (a.name < z.name) {
-				return -1;
-			}
-
-			if (a.name > z.name) {
-				return 1;
-			}
-
-			return 0;
-		});
-
-		return languageChoices;
-	}
-
-	languageDialog(isUnicode) {
-		const languageDialog = Object.entries(languageData).map(([key, value]) => {
-			if (key === 'English') return;
-
-			return {
-				constant: `$\{LANG_${key.toUpperCase()}}`,
-				string: (isUnicode) ? value.native : (value.long || key)
-			};
-		});
-
-		return languageDialog;
-	}
+	// 	return languageDialog;
+	// }
 
 	inquirer() {
 		return this.prompt([
@@ -256,7 +228,7 @@ export default class extends Generator {
 				message: (this.disabled === true) ? 'Add languages other than English' : 'Add languages',
 				type: 'checkbox',
 				store: true,
-				choices: this.languageChoices()
+				choices: getLanguageChoices(this.disabled)
 			},
 			{
 				name: 'languageDialog',
