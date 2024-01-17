@@ -123,6 +123,11 @@ export const bundledLibraries = [
 		checked: false
 	},
 	{
+		name: 'MUI.nsh',
+		value: 'MUI',
+		checked: false
+	},
+	{
 		name: 'MUI2.nsh',
 		value: 'MUI2',
 		checked: false
