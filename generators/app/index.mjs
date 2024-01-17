@@ -134,6 +134,7 @@ export default class extends Generator {
 				message: 'Add callback functions',
 				type: 'checkbox',
 				store: true,
+				default: [],
 				choices: [
 					{
 						name: terminalLink('.onInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInit.md', {
@@ -221,6 +222,7 @@ export default class extends Generator {
 				message: 'Add libraries',
 				type: 'checkbox',
 				store: true,
+				default: [],
 				choices: async () => this.firstParty ? bundledLibraries : await getAllLibraries()
 			},
 			{
@@ -228,6 +230,7 @@ export default class extends Generator {
 				message: (this.disabled === true) ? 'Add languages other than English' : 'Add languages',
 				type: 'checkbox',
 				store: true,
+				default: [],
 				choices: getLanguageChoices(this.disabled)
 			},
 			{
