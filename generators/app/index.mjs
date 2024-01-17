@@ -111,7 +111,7 @@ export default class extends Generator {
 				type: 'confirm',
 				default: true,
 				store: true,
-				when: answers => answers.pages.includes('license') ? true : false
+				when: answers => answers.pages?.includes('license') ? true : false
 			},
 			{
 				name: 'spdxLicense',
@@ -120,7 +120,7 @@ export default class extends Generator {
 				default: 'MIT',
 				choices: licenseChoices,
 				store: true,
-				when: answers => (answers.pages.includes('license') && answers.spdxQuestion) ? true : false
+				when: answers => answers.pages?.includes('license') && answers.spdxQuestion ? true : false
 			},
 			{
 				name: 'sections',
@@ -238,8 +238,8 @@ export default class extends Generator {
 				store: true,
 				when: answers => {
 					switch (true) {
-						case (this.options['unlock-all'] === true && answers.languages.length > 1):
-						case (this.options['unlock-all'] === false && answers.languages.length > 0):
+						case (this.options['unlock-all'] === true && answers.languages?.length > 1):
+						case (this.options['unlock-all'] === false && answers.languages?.length > 0):
 							return true;
 
 						default:
@@ -275,7 +275,7 @@ export default class extends Generator {
 				}
 			}
 
-			if (props.includes.includes('MUI2')) {
+			if (props.includes?.includes('MUI2')) {
 				const includesOnGUIInit = props.callbacks.includes('.onGUIInit');
 
 				if (includesOnGUIInit !== -1) {
