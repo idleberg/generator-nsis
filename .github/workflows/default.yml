@@ -3,14 +3,17 @@ name: CI
 on:
   push:
     paths:
+    - '.github/**'
     - 'generators/**'
     - 'package.json'
     - 'pnpm-lock.yaml'
   pull_request:
       paths:
+      - '.github/**'
       - 'generators/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
+  workflow_dispatch:
 
 jobs:
   default:
