@@ -25,6 +25,11 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Install NSIS
+        run:   |
+          sudo apt-get -y update
+          sudo apt-get -y install nsis
+
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
