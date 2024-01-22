@@ -81,6 +81,7 @@ export default class extends Generator {
 				message: 'Installer pages',
 				type: 'checkbox',
 				store: true,
+				default: [ 'instfiles' ],
 				choices: [
 					{
 						name: 'license',
