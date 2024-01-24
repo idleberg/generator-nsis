@@ -1,4 +1,3 @@
-// import path from 'path';
 import assert from 'yeoman-assert';
 import { helper } from './__helper.mjs';
 import { v4 as uuid } from '@lukeed/uuid';
