@@ -51,3 +51,15 @@ describe('with ampersand name', () => {
 		});
 	});
 });
+
+['zlib', 'bzip2', 'lzma'].map(compression => {
+	describe(`with compression set to ${compression}`, () => {
+		before(() => helper({
+			compression,
+		}));
+
+		it(`has SetCompressor set to ${compression}`, () => {
+			assert.fileContent('installer.nsi', new RegExp(`SetCompressor ${compression}`));
+		});
+	});
+});
