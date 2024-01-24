@@ -5,7 +5,7 @@ import { bundledLibraries } from '../generators/lib/helpers.mjs';
 const libraries = bundledLibraries.map(({ name }) => name);
 
 libraries.map(library => {
-	describe(`includes ${library}`, () => {
+	describe(`includes built-in ${library}`, () => {
 		before(() => helper({
 			includes: [library],
 		}));
