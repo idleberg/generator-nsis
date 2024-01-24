@@ -2,7 +2,7 @@
 # https://github.com/idleberg/generator-nsis
 
 # Includes ---------------------------------<% pkg.includes?.forEach( include => { %>
-!include "<%= include %>.nsh"<% }); %>
+!include "<%= include %>"<% }); %>
 
 # Settings ---------------------------------
 Name "<%- pkg.name %>"<% if (typeof pkg.ampersand_name !== 'undefined') { %> "<%- pkg.ampersand_name %>"<% } %>
