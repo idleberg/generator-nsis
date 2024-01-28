@@ -266,13 +266,13 @@ export default class extends Generator {
 				const includesOnGUIInit = props.callbacks.includes('.onGUIInit');
 
 				if (includesOnGUIInit !== -1) {
-					props.callbacks.splice(includesOnGUIInit, 1, '"custom.onGUIInit"');
+					props.callbacks.splice(includesOnGUIInit, 1, '"MUI.onGUIInit"');
 				}
 
 				const includesOnUserAbort = props.callbacks.includes('.onUserAbort');
 
 				if (includesOnUserAbort !== -1) {
-					props.callbacks.splice(includesOnUserAbort, 1, '"custom.onUserAbort"');
+					props.callbacks.splice(includesOnUserAbort, 1, '"MUI.onUserAbort"');
 				}
 			}
 
