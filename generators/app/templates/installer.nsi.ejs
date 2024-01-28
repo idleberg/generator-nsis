@@ -18,7 +18,7 @@ LicenseData "<% if (typeof pkg.spdxLicense !== 'undefined') { %>license.txt<% } 
 !define MUI_CUSTOMFUNCTION_ABORT "custom.onUserAbort"<% } %>
 <% } %>
 # Pages ------------------------------------
-<% pkg.pages?.forEach( page => { %><% if (pkg.includes?.includes('MUI2')) { %>!insertmacro MUI_PAGE_<%= page.toUpperCase() %><% if (page === 'license' && typeof pkg.spdxLicense !== 'undefined') { %> "license.txt"<% } %><% } else { %>Page <%= page %><% } %>
+<% pkg.pages?.forEach( page => { %><% if (page?.length) { %><% if (pkg.includes?.includes('MUI2')) { %>!insertmacro MUI_PAGE_<%= page.toUpperCase() %><% if (page === 'license' && typeof pkg.spdxLicense !== 'undefined') { %> "license.txt"<% } %><% } else { %>Page <%= page %><% } %><% } %>
 <% }); %>
 # Languages --------------------------------<% if (unlockAll === false) { %>
 <% if (pkg.includes?.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "English"<% } else { %>LoadLanguageFile "${NSISDIR}\Contrib\Language files\English.nlf"<% } %><% } %><% pkg.languages?.forEach( language => { %>
