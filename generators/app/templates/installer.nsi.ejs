@@ -25,15 +25,15 @@ LicenseData "<% if (typeof pkg.spdxLicense !== 'undefined') { %>license.txt<% } 
 <% if (pkg.includes?.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "<%= language %>"<% } else { %>LoadLanguageFile "${NSISDIR}\Contrib\Language files\<%= language %>.nlf"<% } %><% }); %>
 
 # Sections ---------------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
-Section "section" SECTION_<%= step %>
+Section "section" SECTION_<%= step + 1 %>
 SectionEnd
 <% } %><% if (pkg.includes?.includes('MUI2')) { %>
 # Descriptions -----------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %><% if (unlockAll === false) { %>
-LangString DESC_SECTION_<%= step %> ${LANG_ENGLISH} "English description for section <%= step %>"<% } %><% pkg.languages?.forEach( language => { %>
-LangString DESC_SECTION_<%= step %> ${LANG_<%= language.toUpperCase() %>} "<%= language %> description for section <%= step %>"<% }); %>
+LangString DESC_SECTION_<%= step + 1 %> ${LANG_ENGLISH} "English description for section <%= step + 1%>"<% } %><% pkg.languages?.forEach( language => { %>
+LangString DESC_SECTION_<%= step + 1 %> ${LANG_<%= language.toUpperCase() %>} "<%= language %> description for section <%= step + 1 %>"<% }); %>
 <% } %>
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
-    !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_<%= step %>} $(DESC_SECTION_<%= step %>)<% } %>
+    !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_<%= step + 1 %>} $(DESC_SECTION_<%= step + 1 %>)<% } %>
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 <% } %>
 # Functions --------------------------------<% pkg.callbacks?.forEach( callback => { %>
