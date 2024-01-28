@@ -11,7 +11,7 @@ includesNames.map(include => {
 		}));
 
 		it(`has !include set to ${include}`, () => {
-			assert.fileContent('installer.nsi', new RegExp(`!include "${include}"`));
+			assert.fileContent('installer.nsi', `!include "${include}"`);
 		});
 	});
 });

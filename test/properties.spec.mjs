@@ -11,7 +11,7 @@ describe('with name', () => {
 	}));
 
 	it('uses correct name', () => {
-		assert.fileContent('installer.nsi', new RegExp(`Name "${randomName}"`));
+		assert.fileContent('installer.nsi', `Name "${randomName}"`);
 	});
 });
 
@@ -24,7 +24,7 @@ describe('with ampersand name', () => {
 	}));
 
 	it('uses correct name', () => {
-		assert.fileContent('installer.nsi', new RegExp(`Name "${randomName1} & ${randomName2}" "${randomName1} && ${randomName2}"`));
+		assert.fileContent('installer.nsi', `Name "${randomName1} & ${randomName2}" "${randomName1} && ${randomName2}"`);
 	});
 });
 
@@ -35,7 +35,7 @@ choices.binary.map(unicode => {
 		}));
 
 		it(`has Unicode set to ${unicode}`, () => {
-			assert.fileContent('installer.nsi', new RegExp(`Unicode ${unicode}`));
+			assert.fileContent('installer.nsi', `Unicode ${unicode}`);
 		});
 	});
 });
@@ -47,7 +47,7 @@ choices.elevation.map(elevation => {
 		}));
 
 		it(`has RequestExecutionLevel set to ${elevation}`, () => {
-			assert.fileContent('installer.nsi', new RegExp(`RequestExecutionLevel ${elevation}`));
+			assert.fileContent('installer.nsi', `RequestExecutionLevel ${elevation}`);
 		});
 	});
 });
@@ -59,7 +59,7 @@ choices.compression.map(compression => {
 		}));
 
 		it(`has SetCompressor set to ${compression}`, () => {
-			assert.fileContent('installer.nsi', new RegExp(`SetCompressor ${compression}`));
+			assert.fileContent('installer.nsi', `SetCompressor ${compression}`);
 		});
 	});
 });
@@ -71,7 +71,7 @@ Object.keys(choices.includes).filter(include => include.value).map(page => {
 		}));
 
 		it(`has Page set to ${page}`, () => {
-			assert.fileContent('installer.nsi', new RegExp(`Page ${page}`));
+			assert.fileContent('installer.nsi', `Page ${page}`);
 		});
 	});
 });
@@ -84,7 +84,7 @@ Object.keys(choices.includes).filter(include => include.value).map(page => {
 		}));
 
 		it(`has Page set to ${page}`, () => {
-			assert.fileContent('installer.nsi', new RegExp(`!insertmacro MUI_PAGE_${page.toUpperCase()}`));
+			assert.fileContent('installer.nsi', `!insertmacro MUI_PAGE_${page.toUpperCase()}`);
 		});
 	});
 });
