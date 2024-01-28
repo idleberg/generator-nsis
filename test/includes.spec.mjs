@@ -1,17 +1,17 @@
 import assert from 'yeoman-assert';
 import { helper } from './__helper.mjs';
-import { bundledLibraries } from '../generators/lib/helpers.mjs';
+import { includes } from '../generators/lib/choices.mjs';
 
-const libraries = bundledLibraries.map(({ name }) => name);
+const includesNames = includes.map(({ name }) => name);
 
-libraries.map(library => {
-	describe(`includes built-in ${library}`, () => {
+includesNames.map(include => {
+	describe(`includes built-in ${include}`, () => {
 		before(() => helper({
-			includes: [library],
+			includes: [include],
 		}));
 
-		it(`has !include set to ${library}`, () => {
-			assert.fileContent('installer.nsi', new RegExp(`!include "${library}"`));
+		it(`has !include set to ${include}`, () => {
+			assert.fileContent('installer.nsi', new RegExp(`!include "${include}"`));
 		});
 	});
 });

@@ -1,6 +1,7 @@
-import assert from 'yeoman-assert';
 import { helper } from './__helper.mjs';
 import { v4 as uuid } from '@lukeed/uuid';
+import * as choices from '../generators/lib/choices.mjs';
+import assert from 'yeoman-assert';
 
 describe('with name', () => {
 	const randomName = uuid();
@@ -27,7 +28,7 @@ describe('with ampersand name', () => {
 	});
 });
 
-[false, true].map(unicode => {
+choices.binary.map(unicode => {
 	describe(`without ${unicode}`, () => {
 		before(() => helper({
 			unicode,
@@ -39,7 +40,7 @@ describe('with ampersand name', () => {
 	});
 });
 
-['user', 'highest', 'admin', 'none'].map(elevation => {
+choices.elevation.map(elevation => {
 	describe(`with elevation set to ${elevation}`, () => {
 		before(() => helper({
 			elevation,
@@ -51,7 +52,7 @@ describe('with ampersand name', () => {
 	});
 });
 
-['zlib', 'bzip2', 'lzma'].map(compression => {
+choices.compression.map(compression => {
 	describe(`with compression set to ${compression}`, () => {
 		before(() => helper({
 			compression,
@@ -63,14 +64,7 @@ describe('with ampersand name', () => {
 	});
 });
 
-const pages = [
-	'license',
-	'components',
-	'directory',
-	'instfiles',
-];
-
-pages.map(page => {
+Object.keys(choices.includes).filter(include => include.value).map(page => {
 	describe(`with pages including ${page}`, () => {
 		before(() => helper({
 			pages: [page],
@@ -82,7 +76,7 @@ pages.map(page => {
 	});
 });
 
-pages.map(page => {
+Object.keys(choices.includes).filter(include => include.value).map(page => {
 	describe(`with pages including ${page} (MUI2)`, () => {
 		before(() => helper({
 			includes: ['MUI2'],

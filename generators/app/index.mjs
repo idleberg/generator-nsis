@@ -1,12 +1,13 @@
 
 import { meta as languageData } from '@nsis/language-data';
 
+import { getAllLibraries, getLanguageChoices, licenseChoices } from '../lib/helpers.mjs';
+import * as choices from '../lib/choices.mjs';
 import Generator from 'yeoman-generator';
 import semver from 'semver';
 import slugify from '@sindresorhus/slugify';
 import spdxLicenseList from 'spdx-license-list/full.js';
 import terminalLink from 'terminal-link';
-import { bundledLibraries, getAllLibraries, getLanguageChoices, licenseChoices } from '../lib/helpers.mjs';
 
 export default class extends Generator {
 	constructor(args, opts) {
@@ -66,15 +67,15 @@ export default class extends Generator {
 				type: 'list',
 				default: 'user',
 				store: true,
-				choices: [ 'user', 'highest', 'admin', 'none' ]
+				choices: choices.elevation
 			},
-			{
+		{
 				name: 'compression',
 				message: 'Set compression',
 				type: 'list',
 				default: 'lzma',
 				store: true,
-				choices: [ 'zlib', 'bzip2', 'lzma' ]
+				choices: choices.compression
 			},
 			{
 				name: 'pages',
@@ -82,25 +83,7 @@ export default class extends Generator {
 				type: 'checkbox',
 				store: true,
 				default: [ 'instfiles' ],
-				choices: [
-					{
-						name: 'license',
-						value: 'license',
-					},
-					{
-						name: 'components',
-						value: 'components',
-					},
-					{
-						name: 'directory',
-						value: 'directory',
-					},
-					{
-						name: 'instfiles',
-						value: 'instfiles',
-						checked: true
-					}
-				]
+				choices: choices.pages
 			},
 			{
 				name: 'spdxQuestion',
@@ -224,7 +207,7 @@ export default class extends Generator {
 				type: 'checkbox',
 				store: true,
 				default: [],
-				choices: async () => this.firstParty ? bundledLibraries : await getAllLibraries()
+				choices: async () => this.firstParty ? choices.includes : await getAllLibraries()
 			},
 			{
 				name: 'languages',
