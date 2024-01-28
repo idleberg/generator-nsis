@@ -62,3 +62,35 @@ describe('with ampersand name', () => {
 		});
 	});
 });
+
+const pages = [
+	'license',
+	'components',
+	'directory',
+	'instfiles',
+];
+
+pages.map(page => {
+	describe(`with pages including ${page}`, () => {
+		before(() => helper({
+			pages: [page],
+		}));
+
+		it(`has Page set to ${page}`, () => {
+			assert.fileContent('installer.nsi', new RegExp(`Page ${page}`));
+		});
+	});
+});
+
+pages.map(page => {
+	describe(`with pages including ${page} (MUI2)`, () => {
+		before(() => helper({
+			includes: ['MUI2'],
+			pages: [page],
+		}));
+
+		it(`has Page set to ${page}`, () => {
+			assert.fileContent('installer.nsi', new RegExp(`!insertmacro MUI_PAGE_${page.toUpperCase()}`));
+		});
+	});
+});
