@@ -1,90 +1,103 @@
+import { suite } from 'uvu';
+import assert from 'yeoman-assert';
 import { helper } from './__helper.mjs';
 import { v4 as uuid } from '@lukeed/uuid';
 import * as choices from '../generators/lib/choices.mjs';
-import assert from 'yeoman-assert';
 
-describe('with name', () => {
-	const randomName = uuid();
+const NameTest = suite('with name');
+const randomName = uuid();
 
-	before(() => helper({
-		name: randomName,
+NameTest.before.each(() => helper({
+	name: randomName,
+}));
+
+NameTest('uses correct name', () => {
+	assert.fileContent('installer.nsi', `Name "${randomName}"`);
+});
+
+NameTest.run();
+
+const AmpersandNameTest = suite('with ampersand name');
+const randomName1 = uuid();
+const randomName2 = uuid();
+
+AmpersandNameTest.before.each(() => helper({
+	name: `${randomName1} & ${randomName2}`,
+}));
+
+AmpersandNameTest('uses correct name', () => {
+	assert.fileContent('installer.nsi', `Name "${randomName1} & ${randomName2}" "${randomName1} && ${randomName2}"`);
+});
+
+AmpersandNameTest.run();
+
+choices.binary.forEach(unicode => {
+	const UnicodeTest = suite(`without ${unicode}`);
+
+	UnicodeTest.before.each(() => helper({
+		unicode,
 	}));
 
-	it('uses correct name', () => {
-		assert.fileContent('installer.nsi', `Name "${randomName}"`);
+	UnicodeTest(`has Unicode set to ${unicode}`, () => {
+		assert.fileContent('installer.nsi', `Unicode ${unicode}`);
 	});
+
+	UnicodeTest.run();
 });
 
-describe('with ampersand name', () => {
-	const randomName1 = uuid();
-	const randomName2 = uuid();
+choices.elevation.forEach(elevation => {
+	const ElevationTest = suite(`with elevation set to ${elevation}`);
 
-	before(() => helper({
-		name: `${randomName1} & ${randomName2}`,
+	ElevationTest.before.each(() => helper({
+		elevation,
 	}));
 
-	it('uses correct name', () => {
-		assert.fileContent('installer.nsi', `Name "${randomName1} & ${randomName2}" "${randomName1} && ${randomName2}"`);
+	ElevationTest(`has RequestExecutionLevel set to ${elevation}`, () => {
+		assert.fileContent('installer.nsi', `RequestExecutionLevel ${elevation}`);
 	});
+
+	ElevationTest.run();
 });
 
-choices.binary.map(unicode => {
-	describe(`without ${unicode}`, () => {
-		before(() => helper({
-			unicode,
-		}));
+choices.compression.forEach(compression => {
+	const CompressionTest = suite(`with compression set to ${compression}`);
 
-		it(`has Unicode set to ${unicode}`, () => {
-			assert.fileContent('installer.nsi', `Unicode ${unicode}`);
-		});
+	CompressionTest.before.each(() => helper({
+		compression,
+	}));
+
+	CompressionTest(`has SetCompressor set to ${compression}`, () => {
+		assert.fileContent('installer.nsi', `SetCompressor ${compression}`);
 	});
+
+	CompressionTest.run();
 });
 
-choices.elevation.map(elevation => {
-	describe(`with elevation set to ${elevation}`, () => {
-		before(() => helper({
-			elevation,
-		}));
+Object.keys(choices.includes).filter(include => include.value).forEach(page => {
+	const PageTest = suite(`with pages including ${page}`);
 
-		it(`has RequestExecutionLevel set to ${elevation}`, () => {
-			assert.fileContent('installer.nsi', `RequestExecutionLevel ${elevation}`);
-		});
+	PageTest.before.each(() => helper({
+		pages: [page],
+	}));
+
+	PageTest(`has Page set to ${page}`, () => {
+		assert.fileContent('installer.nsi', `Page ${page}`);
 	});
+
+	PageTest.run();
 });
 
-choices.compression.map(compression => {
-	describe(`with compression set to ${compression}`, () => {
-		before(() => helper({
-			compression,
-		}));
+Object.keys(choices.includes).filter(include => include.value).forEach(page => {
+	const PageMUI2Test = suite(`with pages including ${page} (MUI2)`);
 
-		it(`has SetCompressor set to ${compression}`, () => {
-			assert.fileContent('installer.nsi', `SetCompressor ${compression}`);
-		});
+	PageMUI2Test.before.each(() => helper({
+		includes: ['MUI2'],
+		pages: [page],
+	}));
+
+	PageMUI2Test(`has Page set to ${page}`, () => {
+		assert.fileContent('installer.nsi', `!insertmacro MUI_PAGE_${page.toUpperCase()}`);
 	});
-});
 
-Object.keys(choices.includes).filter(include => include.value).map(page => {
-	describe(`with pages including ${page}`, () => {
-		before(() => helper({
-			pages: [page],
-		}));
-
-		it(`has Page set to ${page}`, () => {
-			assert.fileContent('installer.nsi', `Page ${page}`);
-		});
-	});
-});
-
-Object.keys(choices.includes).filter(include => include.value).map(page => {
-	describe(`with pages including ${page} (MUI2)`, () => {
-		before(() => helper({
-			includes: ['MUI2'],
-			pages: [page],
-		}));
-
-		it(`has Page set to ${page}`, () => {
-			assert.fileContent('installer.nsi', `!insertmacro MUI_PAGE_${page.toUpperCase()}`);
-		});
-	});
+	PageMUI2Test.run();
 });
