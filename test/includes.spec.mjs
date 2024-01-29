@@ -3,7 +3,7 @@ import { includes } from '../generators/lib/choices.mjs';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
 
-const includesNames = includes.map(({ name }) => name);
+const includesNames = includes.map(({ value }) => `${value}.nsh`);
 
 /**
  * alls built-ins
