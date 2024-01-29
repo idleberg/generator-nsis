@@ -45,7 +45,7 @@ languagesNames.forEach((language) => {
 SectionMUI2Test.run();
 
 /**
- * all single languages
+ * single languages
  */
 languagesNames.forEach((language) => {
 	const SectionTest = suite(`with ${language} language`);
@@ -62,7 +62,7 @@ languagesNames.forEach((language) => {
 });
 
 /**
- * all single languages (MUI2)
+ * single languages (MUI2)
  */
 languagesNames.forEach((language) => {
 	const SectionMUI2Test = suite(`with ${language} language (MUI2)`);
