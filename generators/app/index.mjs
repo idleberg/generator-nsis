@@ -16,10 +16,12 @@ export default class extends Generator {
 		this.option('first-party', { desc: 'Limits library inclusion to first-party', default: false });
 		this.option('loose-version', { desc: `Doesn't enforce semantic versioning`, default: false });
 		this.option('unlock-all', { desc: 'Unlocks all disabled features', default: false });
+		this.option('debug', { desc: 'Prints debug messages', default: false });
 
 		this.looseVersion = (this.options.looseVersion ? true : false);
 		this.disabled = (this.options.unlockAll ? false : true);
 		this.firstParty = (this.options.firstParty ? true : false);
+		this.debug = (this.options.debug ? true : false);
 	}
 
 	// languageDialog(isUnicode) {
@@ -119,88 +121,8 @@ export default class extends Generator {
 				type: 'checkbox',
 				store: true,
 				default: [],
-				choices: [
-					{
-						name: terminalLink('.onInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInit.md', {
-							fallback() {
-								return '.onInit';
-							}
-						}),
-						value: '.onInit'
-					},
-					{
-						name: terminalLink('.onGUIInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIInit.md', {
-							fallback() {
-								return '.onGUIInit';
-							}
-						}),
-						value: '.onGUIInit'
-					},
-					{
-						name: terminalLink('.onGUIEnd', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIEnd.md', {
-							fallback() {
-								return '.onGUIEnd';
-							}
-						}),
-						value: '.onGUIEnd'
-					},
-					{
-						name: terminalLink('.onInstSuccess', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstSuccess.md', {
-							fallback() {
-								return '.onInstSuccess';
-							}
-						}),
-						value: '.onInstSuccess'
-					},
-					{
-						name: terminalLink('.onInstFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstFailed.md', {
-							fallback() {
-								return '.onInstFailed';
-							}
-						}),
-						value: '.onInstFailed'
-					},
-					{
-						name: terminalLink('.onUserAbort', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onUserAbort.md', {
-							fallback() {
-								return '.onUserAbort';
-							}
-						}),
-						value: '.onUserAbort'
-					},
-					{
-						name: terminalLink('.onVerifyInstDir', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onVerifyInstDir.md', {
-							fallback() {
-								return '.onVerifyInstDir';
-							}
-						}),
-						value: '.onVerifyInstDir'
-					},
-					{
-						name: terminalLink('.onRebootFailed', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onRebootFailed.md', {
-							fallback() {
-								return '.onRebootFailed';
-							}
-						}),
-						value: '.onRebootFailed'
-					},
-					{
-						name: terminalLink('.onSelChange', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onSelChange.md', {
-							fallback() {
-								return '.onSelChange';
-							}
-						}),
-						value: '.onSelChange'
-					},
-					{
-						name: terminalLink('.onMouseOverSection', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onMouseOverSection.md', {
-							fallback() {
-								return '.onMouseOverSection';
-							}
-						}),
-						value: '.onMouseOverSection'
-					},
-				] },
+				choices: choices.callbacks
+			},
 			{
 				name: 'includes',
 				message: 'Add libraries',
@@ -245,6 +167,10 @@ export default class extends Generator {
 				}
 			},
 		]).then(props => {
+
+			if (this.options.debug) {
+				console.log(props);
+			}
 
 			if (typeof props.spdxLicense !== 'undefined') {
 				props.licenseText = spdxLicenseList[props.spdxLicense].licenseText.replace(/\n{3,}/g, '\n\n');
