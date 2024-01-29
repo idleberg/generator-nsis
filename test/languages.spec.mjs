@@ -48,7 +48,7 @@ SectionMUI2Test.run();
  * single languages
  */
 languagesNames.forEach((language) => {
-	const SectionTest = suite(`with ${language} language`);
+	const SectionTest = suite(`with ${language}`);
 
 	SectionTest.before.each(() => helper({
 		languages: [language],
@@ -65,7 +65,7 @@ languagesNames.forEach((language) => {
  * single languages (MUI2)
  */
 languagesNames.forEach((language) => {
-	const SectionMUI2Test = suite(`with ${language} language (MUI2)`);
+	const SectionMUI2Test = suite(`with ${language} (MUI2)`);
 
 	SectionMUI2Test.before.each(() => helper({
 		includes: ['MUI2'],

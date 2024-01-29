@@ -30,7 +30,7 @@ SectionTest.run();
  * single languages (language dialog)
  */
 languagesNames.forEach((language) => {
-	const SectionTest = suite(`with ${language} language`);
+	const SectionTest = suite(`with ${language}`);
 
 	SectionTest.before.each(() => helper({
 		languageDialog: true,

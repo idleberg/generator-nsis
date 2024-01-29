@@ -8,7 +8,7 @@ const callbackNames = callbacks.map(({ value }) => `${value}`);
 /**
  * alls callbacks
  */
-const CallbackTest = suite(`has all callbacks`);
+const CallbackTest = suite(`with all callbacks`);
 
 CallbackTest.before.each(() => helper({
 	callbacks: callbackNames,
@@ -26,7 +26,7 @@ CallbackTest.run();
  * single callbacks
  */
 callbackNames.forEach(callback => {
-	const CallbackTest = suite(`has ${callback} callback`);
+	const CallbackTest = suite(`with ${callback}`);
 
 	CallbackTest.before.each(() => helper({
 		callbacks: [callback],
