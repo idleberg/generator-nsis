@@ -1,7 +1,7 @@
-import { suite } from 'uvu';
-import assert from 'yeoman-assert';
 import { helper } from './__helper.mjs';
 import { includes } from '../generators/lib/choices.mjs';
+import { suite } from 'uvu';
+import assert from 'yeoman-assert';
 
 const includesNames = includes.map(({ name }) => name);
 

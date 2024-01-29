@@ -1,8 +1,8 @@
-import { suite } from 'uvu';
-import assert from 'yeoman-assert';
 import { helper } from './__helper.mjs';
+import { suite } from 'uvu';
 import { v4 as uuid } from '@lukeed/uuid';
 import * as choices from '../generators/lib/choices.mjs';
+import assert from 'yeoman-assert';
 
 const NameTest = suite('with name');
 const randomName = uuid();

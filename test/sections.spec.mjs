@@ -1,6 +1,6 @@
+import { helper } from './__helper.mjs';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
-import { helper } from './__helper.mjs';
 
 const sections = new Array(10).fill(null).map((_, index) => index + 1);
 
