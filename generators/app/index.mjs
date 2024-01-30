@@ -190,16 +190,16 @@ export default class extends Generator {
 			}
 
 			if (props.includes?.includes('MUI2')) {
-				const includesOnGUIInit = props.callbacks.includes('.onGUIInit');
+				const includesOnGUIInit = props.callbacks.indexOf('.onGUIInit');
 
 				if (includesOnGUIInit !== -1) {
-					props.callbacks.splice(includesOnGUIInit, 1, '"MUI.onGUIInit"');
+					props.callbacks.splice(includesOnGUIInit, 1, 'MUI.onGUIInit');
 				}
 
-				const includesOnUserAbort = props.callbacks.includes('.onUserAbort');
+				const includesOnUserAbort = props.callbacks.indexOf('.onUserAbort');
 
 				if (includesOnUserAbort !== -1) {
-					props.callbacks.splice(includesOnUserAbort, 1, '"MUI.onUserAbort"');
+					props.callbacks.splice(includesOnUserAbort, 1, 'MUI.onUserAbort');
 				}
 			}
 

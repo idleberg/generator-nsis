@@ -12,10 +12,10 @@ SetCompressor <%= pkg.compression %>
 RequestExecutionLevel <%= pkg.elevation %>
 InstallDir "$PROGRAMFILES\<%- pkg.name %>"<% if (!pkg.includes?.includes('MUI2') && pkg.pages?.includes('license')) { %>
 LicenseData "<% if (typeof pkg.spdxLicense !== 'undefined') { %>license.txt<% } %>"<% } %>
-<% if (pkg.includes?.includes('MUI2') && (pkg.callbacks?.includes('"MUI.onGUIInit"') || pkg.callbacks?.includes('"MUI.onUserAbort"'))) { %>
+<% if (pkg.includes?.includes('MUI2') && (pkg.callbacks?.includes('MUI.onGUIInit') || pkg.callbacks?.includes('MUI.onUserAbort'))) { %>
 # Modern UI --------------------------------
-<% if (pkg.callbacks?.includes('"MUI.onGUIInit"')) { %>!define MUI_CUSTOMFUNCTION_GUIINIT "MUI.onGUIInit"<% } %><% if (pkg.callbacks.includes('"MUI.onUserAbort"')) { %>
-!define MUI_CUSTOMFUNCTION_ABORT "MUI.onUserAbort"<% } %>
+<% if (pkg.callbacks?.includes('MUI.onGUIInit')) { %>!define MUI_CUSTOMFUNCTION_GUIINIT "MUI.onGUIInit"<% } %>
+<% if (pkg.callbacks?.includes('MUI.onUserAbort')) { %> !define MUI_CUSTOMFUNCTION_ABORT "MUI.onUserAbort"<% } %>
 <% } %>
 # Pages ------------------------------------
 <% pkg.pages?.forEach( page => { %><% if (page?.length) { %><% if (pkg.includes?.includes('MUI2')) { %>!insertmacro MUI_PAGE_<%= page.toUpperCase() %><% if (page === 'license' && typeof pkg.spdxLicense !== 'undefined') { %> "license.txt"<% } %><% } else { %>Page <%= page %><% } %><% } %>
