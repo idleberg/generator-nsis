@@ -43,7 +43,8 @@ export default class extends Generator {
 				name: 'name',
 				message: `Application name`,
 				default: slugify(this.appname),
-				store: true
+				store: true,
+				validate: name => (name.trim().length > 0) ? true : 'Not a valid name'
 			},
 			{
 				name: 'version',
