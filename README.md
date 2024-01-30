@@ -1,8 +1,8 @@
 # generator-nsis
 
-[![npm](https://flat.badgen.net/npm/license/generator-nsis)](https://www.npmjs.org/package/generator-nsis)
-[![npm](https://flat.badgen.net/npm/v/generator-nsis)](https://www.npmjs.org/package/generator-nsis)
-[![CI](https://img.shields.io/github/actions/workflow/status/idleberg/generator-nsis/default.yml?style=flat-square)](https://github.com/idleberg/generator-nsis/actions)
+[![License](https://img.shields.io/github/license/idleberg/generator-nsis?color=blue&style=for-the-badge)](https://github.com/idleberg/generator-nsis/blob/main/LICENSE)
+[![Version](https://img.shields.io/npm/v/generator-nsis?style=for-the-badge)](https://www.npmjs.org/package/generator-nsis)
+[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/generator-nsis/default.yml?style=for-the-badge)](https://github.com/idleberg/generator-nsis/actions)
 
 ## Description
 
@@ -24,7 +24,7 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS
 You need [Node.js](https://nodejs.org/en/) installed and available in your `PATH` [environment variable](http://superuser.com/a/284351/195953). Use your preferred Node package manager to install the Yeoman CLI tool.
 
 ```sh
-npm install -g yo
+$ npm install -g yo
 ```
 
 ## Installation
@@ -32,7 +32,7 @@ npm install -g yo
  Use your preferred package manager to install this generator
 
 ```sh
-npm i generator-nsis -g
+$ npm i generator-nsis -g
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ npm i generator-nsis -g
 Run the generator and follow its instructions. Use `--help` for available flags.
 
 ```sh
-yo nsis
+$ yo nsis
 ```
 
 *“That's all Folks!”*
