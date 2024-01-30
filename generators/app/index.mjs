@@ -122,7 +122,8 @@ export default class extends Generator {
 				type: 'checkbox',
 				store: true,
 				default: [],
-				choices: choices.callbacks
+				choices: choices.callbacks,
+				validate: callbacks => (callbacks.includes('MUI') && callbacks.includes('MUI2')) ? 'Don\'t mix MUI versions' : true
 			},
 			{
 				name: 'includes',
@@ -209,7 +210,8 @@ export default class extends Generator {
 				{
 					languageData: languageData,
 					pkg: props,
-					unlockAll: this.options['unlock-all']
+					unlockAll: this.options['unlock-all'],
+					debug: this.options.debug
 				}
 			);
 
