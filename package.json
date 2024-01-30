@@ -11,7 +11,8 @@
     "installer",
     "setup"
   ],
-  "main": "generators/app",
+  "type": "module",
+  "exports": "./generators/app",
   "files": [
     "generators",
     "LICENSE",
