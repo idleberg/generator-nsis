@@ -122,8 +122,7 @@ export default class extends Generator {
 				type: 'checkbox',
 				store: true,
 				default: [],
-				choices: choices.callbacks,
-				validate: callbacks => (callbacks.includes('MUI') && callbacks.includes('MUI2')) ? 'Don\'t mix MUI versions' : true
+				choices: choices.callbacks
 			},
 			{
 				name: 'includes',
@@ -131,7 +130,8 @@ export default class extends Generator {
 				type: 'checkbox',
 				store: true,
 				default: [],
-				choices: async () => this.firstParty ? choices.includes : await getAllLibraries()
+				choices: async () => this.firstParty ? choices.includes : await getAllLibraries(),
+				validate: callbacks => (callbacks.includes('MUI') && callbacks.includes('MUI2')) ? 'Don\'t mix MUI versions' : true
 			},
 			{
 				name: 'languages',
