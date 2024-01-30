@@ -7,9 +7,11 @@ import assert from 'yeoman-assert';
 const NameTest = suite('with name');
 const randomName = uuid();
 
-NameTest.before.each(() => helper({
-	name: randomName,
-}));
+NameTest.before.each(() =>
+	helper({
+		name: randomName,
+	})
+);
 
 NameTest('uses correct name', () => {
 	assert.fileContent('installer.nsi', `Name "${randomName}"`);
@@ -21,9 +23,11 @@ const AmpersandNameTest = suite('with ampersand name');
 const randomName1 = uuid();
 const randomName2 = uuid();
 
-AmpersandNameTest.before.each(() => helper({
-	name: `${randomName1} & ${randomName2}`,
-}));
+AmpersandNameTest.before.each(() =>
+	helper({
+		name: `${randomName1} & ${randomName2}`,
+	})
+);
 
 AmpersandNameTest('uses correct name', () => {
 	assert.fileContent('installer.nsi', `Name "${randomName1} & ${randomName2}" "${randomName1} && ${randomName2}"`);
@@ -34,9 +38,11 @@ AmpersandNameTest.run();
 choices.binary.forEach(unicode => {
 	const UnicodeTest = suite(`without ${unicode}`);
 
-	UnicodeTest.before.each(() => helper({
-		unicode,
-	}));
+	UnicodeTest.before.each(() =>
+		helper({
+			unicode,
+		})
+	);
 
 	UnicodeTest(`has Unicode set to ${unicode}`, () => {
 		assert.fileContent('installer.nsi', `Unicode ${unicode}`);
@@ -48,9 +54,11 @@ choices.binary.forEach(unicode => {
 choices.elevation.forEach(elevation => {
 	const ElevationTest = suite(`with elevation set to ${elevation}`);
 
-	ElevationTest.before.each(() => helper({
-		elevation,
-	}));
+	ElevationTest.before.each(() =>
+		helper({
+			elevation,
+		})
+	);
 
 	ElevationTest(`has RequestExecutionLevel set to ${elevation}`, () => {
 		assert.fileContent('installer.nsi', `RequestExecutionLevel ${elevation}`);
@@ -62,9 +70,11 @@ choices.elevation.forEach(elevation => {
 choices.compression.forEach(compression => {
 	const CompressionTest = suite(`with compression set to ${compression}`);
 
-	CompressionTest.before.each(() => helper({
-		compression,
-	}));
+	CompressionTest.before.each(() =>
+		helper({
+			compression,
+		})
+	);
 
 	CompressionTest(`has SetCompressor set to ${compression}`, () => {
 		assert.fileContent('installer.nsi', `SetCompressor ${compression}`);
@@ -73,31 +83,39 @@ choices.compression.forEach(compression => {
 	CompressionTest.run();
 });
 
-Object.keys(choices.includes).filter(include => include.value).forEach(page => {
-	const PageTest = suite(`with pages including ${page}`);
+Object.keys(choices.includes)
+	.filter(include => include.value)
+	.forEach(page => {
+		const PageTest = suite(`with pages including ${page}`);
 
-	PageTest.before.each(() => helper({
-		pages: [page],
-	}));
+		PageTest.before.each(() =>
+			helper({
+				pages: [page],
+			})
+		);
 
-	PageTest(`has Page set to ${page}`, () => {
-		assert.fileContent('installer.nsi', `Page ${page}`);
+		PageTest(`has Page set to ${page}`, () => {
+			assert.fileContent('installer.nsi', `Page ${page}`);
+		});
+
+		PageTest.run();
 	});
 
-	PageTest.run();
-});
+Object.keys(choices.includes)
+	.filter(include => include.value)
+	.forEach(page => {
+		const PageMUI2Test = suite(`with pages including ${page} (MUI2)`);
 
-Object.keys(choices.includes).filter(include => include.value).forEach(page => {
-	const PageMUI2Test = suite(`with pages including ${page} (MUI2)`);
+		PageMUI2Test.before.each(() =>
+			helper({
+				includes: ['MUI2'],
+				pages: [page],
+			})
+		);
 
-	PageMUI2Test.before.each(() => helper({
-		includes: ['MUI2'],
-		pages: [page],
-	}));
+		PageMUI2Test(`has Page set to ${page}`, () => {
+			assert.fileContent('installer.nsi', `!insertmacro MUI_PAGE_${page.toUpperCase()}`);
+		});
 
-	PageMUI2Test(`has Page set to ${page}`, () => {
-		assert.fileContent('installer.nsi', `!insertmacro MUI_PAGE_${page.toUpperCase()}`);
+		PageMUI2Test.run();
 	});
-
-	PageMUI2Test.run();
-});

@@ -10,11 +10,13 @@ const languagesNames = Object.keys(languages);
  */
 const SectionTest = suite(`with all languages`);
 
-SectionTest.before.each(() => helper({
-	languages: languagesNames,
-}));
+SectionTest.before.each(() =>
+	helper({
+		languages: languagesNames,
+	})
+);
 
-languagesNames.forEach((language) => {
+languagesNames.forEach(language => {
 	SectionTest(`has Push (constant)`, () => {
 		assert.fileContent('installer.nsi', `Push \${LANG_${language.toUpperCase()}}`);
 	});
@@ -29,13 +31,15 @@ SectionTest.run();
 /**
  * single languages (language dialog)
  */
-languagesNames.forEach((language) => {
+languagesNames.forEach(language => {
 	const SectionTest = suite(`with ${language}`);
 
-	SectionTest.before.each(() => helper({
-		languageDialog: true,
-		languages: [language],
-	}));
+	SectionTest.before.each(() =>
+		helper({
+			languageDialog: true,
+			languages: [language],
+		})
+	);
 
 	SectionTest(`has Push (constant)`, () => {
 		assert.fileContent('installer.nsi', `Push \${LANG_${language.toUpperCase()}}`);

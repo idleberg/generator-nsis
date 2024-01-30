@@ -10,9 +10,11 @@ const includesNames = includes.map(({ value }) => `${value}.nsh`);
  */
 const IncludeTest = suite(`with all built-ins`);
 
-IncludeTest.before.each(() => helper({
-	includes: includesNames,
-}));
+IncludeTest.before.each(() =>
+	helper({
+		includes: includesNames,
+	})
+);
 
 includesNames.forEach(include => {
 	IncludeTest(`has !include set to ${include}`, () => {
@@ -28,9 +30,11 @@ IncludeTest.run();
 includesNames.forEach(include => {
 	const IncludeTest = suite(`with ${include}`);
 
-	IncludeTest.before.each(() => helper({
-		includes: [include],
-	}));
+	IncludeTest.before.each(() =>
+		helper({
+			includes: [include],
+		})
+	);
 
 	IncludeTest(`has !include set to ${include}`, () => {
 		assert.fileContent('installer.nsi', `!include "${include}"`);

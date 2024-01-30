@@ -10,9 +10,11 @@ const callbackNames = callbacks.map(({ value }) => `${value}`);
  */
 const CallbackTest = suite(`with all callbacks`);
 
-CallbackTest.before.each(() => helper({
-	callbacks: callbackNames,
-}));
+CallbackTest.before.each(() =>
+	helper({
+		callbacks: callbackNames,
+	})
+);
 
 callbackNames.forEach(callback => {
 	CallbackTest(`has Function ${callback}`, () => {
@@ -28,9 +30,11 @@ CallbackTest.run();
 callbackNames.forEach(callback => {
 	const CallbackTest = suite(`with ${callback}`);
 
-	CallbackTest.before.each(() => helper({
-		callbacks: [callback],
-	}));
+	CallbackTest.before.each(() =>
+		helper({
+			callbacks: [callback],
+		})
+	);
 
 	CallbackTest(`has Function ${callback}`, () => {
 		assert.fileContent('installer.nsi', `Function ${callback}`);
@@ -44,10 +48,12 @@ callbackNames.forEach(callback => {
  */
 const CallbackMUI2Test = suite(`with all callbacks (MUI2)`);
 
-CallbackMUI2Test.before.each(() => helper({
-	callbacks: callbackNames,
-	includes: ['MUI2'],
-}));
+CallbackMUI2Test.before.each(() =>
+	helper({
+		callbacks: callbackNames,
+		includes: ['MUI2'],
+	})
+);
 
 callbackNames.forEach(callback => {
 	if (callback === '.onGUIInit') {
@@ -73,10 +79,12 @@ CallbackMUI2Test.run();
 callbackNames.forEach(callback => {
 	const CallbackMUI2Test = suite(`with ${callback}`);
 
-	CallbackMUI2Test.before.each(() => helper({
-		callbacks: [callback],
-		includes: ['MUI2'],
-	}));
+	CallbackMUI2Test.before.each(() =>
+		helper({
+			callbacks: [callback],
+			includes: ['MUI2'],
+		})
+	);
 
 	if (callback === '.onGUIInit') {
 		CallbackMUI2Test(`has Function MUI.onGUIInit`, () => {

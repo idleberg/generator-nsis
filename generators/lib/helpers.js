@@ -13,7 +13,7 @@ export const licenseChoices = spdxCodes.map(obj => {
 	licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, {
 		fallback() {
 			return obj;
-		}
+		},
 	});
 	licenses['value'] = obj;
 
@@ -22,18 +22,18 @@ export const licenseChoices = spdxCodes.map(obj => {
 
 export const getAllLibraries = async () => {
 	const nsisPath = await nsisDir();
-	const includeDir = resolve(nsisPath, 'Include')
+	const includeDir = resolve(nsisPath, 'Include');
 
 	const headerFiles = await glob([`${includeDir}/*.nsh`, `!${includeDir}/MUI.nsh`], {
-		ignore: bundledLibraries.map(excludedFile => `${includeDir}/${excludedFile.value}.nsh`)
+		ignore: bundledLibraries.map(excludedFile => `${includeDir}/${excludedFile.value}.nsh`),
 	});
 
 	const customHeaders = headerFiles.map(headerFile => {
 		return {
 			name: `${basename(headerFile)} [3rd party]`,
 			value: basename(headerFile, extname(headerFile)),
-			checked: false
-		}
+			checked: false,
+		};
 	});
 
 	const allLibraries = [...bundledLibraries, ...customHeaders];
@@ -43,13 +43,13 @@ export const getAllLibraries = async () => {
 
 export function getLanguageChoices(disabled) {
 	const languageChoices = Object.entries(languageData).map(([key, value]) => {
-		const isDisabled = (key === 'English') ? disabled : false;
+		const isDisabled = key === 'English' ? disabled : false;
 
 		// Use long names
 		return {
 			name: value.english || key,
 			value: key,
-			disabled: isDisabled
+			disabled: isDisabled,
 		};
 	});
 
