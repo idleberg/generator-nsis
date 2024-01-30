@@ -1,4 +1,4 @@
-import { helper } from './__helper.mjs';
+import { helper } from './__helper.js';
 import { meta, languages } from '@nsis/language-data';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';

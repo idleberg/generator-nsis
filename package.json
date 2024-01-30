@@ -20,11 +20,11 @@
   ],
   "scripts": {
     "lint:ejs": "ejslint generators/**/*.ejs",
-    "lint:js": "eslint generators/**/*.mjs --ignore-path .gitignore",
+    "lint:js": "eslint generators/**/*.js --ignore-path .gitignore",
     "lint:json": "eslint ./*.json --ignore-path .gitignore",
     "lint": "npm-run-all --parallel lint:*",
     "publish": "np --no-yarn",
-    "test": "uvu --ignore test/__helper.mjs"
+    "test": "uvu --ignore test/__helper.js"
   },
   "repository": {
     "type": "git",

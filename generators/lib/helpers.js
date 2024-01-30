@@ -1,5 +1,5 @@
 import { basename, extname, resolve } from 'node:path';
-import { includes as bundledLibraries } from './choices.mjs';
+import { includes as bundledLibraries } from './choices.js';
 import { glob } from 'glob';
 import { meta as languageData } from '@nsis/language-data';
 import { nsisDir } from 'makensis';

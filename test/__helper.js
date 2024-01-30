@@ -5,6 +5,6 @@ export function helper(buildArgs) {
 	helpers.prepareTemporaryDir();
 
 	return helpers
-		.run(join(process.cwd(), '/generators/app/index.mjs'))
+		.run(join(process.cwd(), '/generators/app/index.js'))
 		.withAnswers(buildArgs);
 }

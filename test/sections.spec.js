@@ -1,4 +1,4 @@
-import { helper } from './__helper.mjs';
+import { helper } from './__helper.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
 
@@ -35,7 +35,7 @@ sections.forEach((section) => {
 	});
 
 	SectionMUI2Test(`has !insertmacro`, () => {
-		assert.fileContent('installer.nsi', `!insertmacro MUI_DESCRIPTION_TEXT \${SECTION_${section}} \$\(DESC_SECTION_${section}\)`);
+		assert.fileContent('installer.nsi', `!insertmacro MUI_DESCRIPTION_TEXT \${SECTION_${section}} $(DESC_SECTION_${section})`);
 	});
 
 	SectionMUI2Test.run();

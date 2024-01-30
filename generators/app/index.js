@@ -1,8 +1,8 @@
 
 import { meta as languageData } from '@nsis/language-data';
 
-import { getAllLibraries, getLanguageChoices, licenseChoices } from '../lib/helpers.mjs';
-import * as choices from '../lib/choices.mjs';
+import { getAllLibraries, getLanguageChoices, licenseChoices } from '../lib/helpers.js';
+import * as choices from '../lib/choices.js';
 import Generator from 'yeoman-generator';
 import semver from 'semver';
 import slugify from '@sindresorhus/slugify';

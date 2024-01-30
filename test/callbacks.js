@@ -1,5 +1,5 @@
-import { helper } from './__helper.mjs';
-import { callbacks } from '../generators/lib/choices.mjs';
+import { helper } from './__helper.js';
+import { callbacks } from '../generators/lib/choices.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
 
