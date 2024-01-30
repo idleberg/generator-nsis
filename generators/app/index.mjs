@@ -166,7 +166,7 @@ export default class extends Generator {
 					return (process.env.EDITOR) ? true : false;
 				}
 			},
-		]).then(props => {
+		]).then(async props => {
 
 			if (this.options.debug) {
 				console.log(props);
@@ -202,7 +202,7 @@ export default class extends Generator {
 				}
 			}
 
-			this.fs.copyTpl(
+			await this.fs.copyTplAsync(
 				this.templatePath('installer.nsi.ejs'),
 				this.destinationPath('installer.nsi'),
 				{
@@ -213,7 +213,7 @@ export default class extends Generator {
 			);
 
 			if (typeof props.spdxLicense !== 'undefined') {
-				this.fs.copyTpl(
+				await this.fs.copyTplAsync(
 					this.templatePath('license.txt.ejs'),
 					this.destinationPath('license.txt'),
 					{
