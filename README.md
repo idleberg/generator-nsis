@@ -1,12 +1,10 @@
 # generator-nsis
 
+> A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS scripts.
+
 [![License](https://img.shields.io/github/license/idleberg/generator-nsis?color=blue&style=for-the-badge)](https://github.com/idleberg/generator-nsis/blob/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/generator-nsis?style=for-the-badge)](https://www.npmjs.org/package/generator-nsis)
 [![Build](https://img.shields.io/github/actions/workflow/status/idleberg/generator-nsis/default.yml?style=for-the-badge)](https://github.com/idleberg/generator-nsis/actions)
-
-## Description
-
-A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for NSIS scripts.
 
 ![Screenshot](https://raw.github.com/idleberg/generator-nsis/main/screenshot.png)
 
@@ -44,10 +42,6 @@ $ yo nsis
 ```
 
 *“That's all Folks!”*
-
-## Related
-
-- [Yeoman for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=samverschueren.yo)
 
 ## License
 
