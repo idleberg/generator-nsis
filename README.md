@@ -15,7 +15,7 @@
 - adds core libraries (”Useful Headers”)
 - adds callback functions
 - adds translations
-- adds language dialog
+- adds languages (with optional dialog)
 
 ## Prerequisites
 
