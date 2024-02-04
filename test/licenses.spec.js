@@ -14,7 +14,7 @@ Object.keys(spdxLicenseList)
 Object.entries(sortedLicenseList).forEach(([licenseName, licenseData]) => {
 	const LicenseTest = suite(`with ${licenseName} (Uncode)`);
 
-	LicenseTest.before.each(() =>
+	LicenseTest.before(() =>
 		helper({
 			spdxLicense: licenseName,
 			pages: ['license'],
@@ -24,14 +24,13 @@ Object.entries(sortedLicenseList).forEach(([licenseName, licenseData]) => {
 	LicenseTest(`has ${licenseName} (Unicode)`, () => {
 		assert.fileContent('license.txt', licenseData.licenseText);
 	});
-
 	LicenseTest.run();
 });
 
 Object.entries(sortedLicenseList).forEach(([licenseName, licenseData]) => {
 	const LicenseTest = suite(`with ${licenseName} (ANSI)`);
 
-	LicenseTest.before.each(() =>
+	LicenseTest.before(() =>
 		helper({
 			unicode: false,
 			spdxLicense: licenseName,
