@@ -10,7 +10,7 @@ const languagesNames = Object.keys(languages);
  */
 const SectionTest = suite(`with all languages`);
 
-SectionTest.before.each(() =>
+SectionTest.before(() =>
 	helper({
 		languages: languagesNames,
 	})
@@ -29,7 +29,7 @@ SectionTest.run();
  */
 const SectionMUI2Test = suite(`with all languages (MUI2)`);
 
-SectionMUI2Test.before.each(() =>
+SectionMUI2Test.before(() =>
 	helper({
 		includes: ['MUI2'],
 		languages: languagesNames,
@@ -57,7 +57,7 @@ SectionMUI2Test.run();
 languagesNames.forEach(language => {
 	const SectionTest = suite(`with ${language}`);
 
-	SectionTest.before.each(() =>
+	SectionTest.before(() =>
 		helper({
 			languages: [language],
 		})
@@ -76,7 +76,7 @@ languagesNames.forEach(language => {
 languagesNames.forEach(language => {
 	const SectionMUI2Test = suite(`with ${language} (MUI2)`);
 
-	SectionMUI2Test.before.each(() =>
+	SectionMUI2Test.before(() =>
 		helper({
 			includes: ['MUI2'],
 			languages: [language],

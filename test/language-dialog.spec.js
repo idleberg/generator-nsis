@@ -10,7 +10,7 @@ const languagesNames = Object.keys(languages);
  */
 const SectionTest = suite(`with all languages`);
 
-SectionTest.before.each(() =>
+SectionTest.before(() =>
 	helper({
 		languages: languagesNames,
 	})
@@ -34,7 +34,7 @@ SectionTest.run();
 languagesNames.forEach(language => {
 	const SectionTest = suite(`with ${language}`);
 
-	SectionTest.before.each(() =>
+	SectionTest.before(() =>
 		helper({
 			languageDialog: true,
 			languages: [language],

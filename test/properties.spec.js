@@ -7,7 +7,7 @@ import assert from 'yeoman-assert';
 const NameTest = suite('with name');
 const randomName = uuid();
 
-NameTest.before.each(() =>
+NameTest.before(() =>
 	helper({
 		name: randomName,
 	})
@@ -23,7 +23,7 @@ const AmpersandNameTest = suite('with ampersand name');
 const randomName1 = uuid();
 const randomName2 = uuid();
 
-AmpersandNameTest.before.each(() =>
+AmpersandNameTest.before(() =>
 	helper({
 		name: `${randomName1} & ${randomName2}`,
 	})
@@ -38,7 +38,7 @@ AmpersandNameTest.run();
 choices.binary.forEach(unicode => {
 	const UnicodeTest = suite(`without ${unicode}`);
 
-	UnicodeTest.before.each(() =>
+	UnicodeTest.before(() =>
 		helper({
 			unicode,
 		})
@@ -54,7 +54,7 @@ choices.binary.forEach(unicode => {
 choices.elevation.forEach(elevation => {
 	const ElevationTest = suite(`with elevation set to ${elevation}`);
 
-	ElevationTest.before.each(() =>
+	ElevationTest.before(() =>
 		helper({
 			elevation,
 		})
@@ -70,7 +70,7 @@ choices.elevation.forEach(elevation => {
 choices.compression.forEach(compression => {
 	const CompressionTest = suite(`with compression set to ${compression}`);
 
-	CompressionTest.before.each(() =>
+	CompressionTest.before(() =>
 		helper({
 			compression,
 		})
@@ -88,7 +88,7 @@ Object.keys(choices.includes)
 	.forEach(page => {
 		const PageTest = suite(`with pages including ${page}`);
 
-		PageTest.before.each(() =>
+		PageTest.before(() =>
 			helper({
 				pages: [page],
 			})
@@ -106,7 +106,7 @@ Object.keys(choices.includes)
 	.forEach(page => {
 		const PageMUI2Test = suite(`with pages including ${page} (MUI2)`);
 
-		PageMUI2Test.before.each(() =>
+		PageMUI2Test.before(() =>
 			helper({
 				includes: ['MUI2'],
 				pages: [page],

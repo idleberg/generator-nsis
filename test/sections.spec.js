@@ -7,7 +7,7 @@ const sections = new Array(10).fill(null).map((_, index) => index + 1);
 sections.forEach(section => {
 	const SectionTest = suite(`with ${section} sections`);
 
-	SectionTest.before.each(() =>
+	SectionTest.before(() =>
 		helper({
 			sections: section,
 		})
@@ -23,7 +23,7 @@ sections.forEach(section => {
 sections.forEach(section => {
 	const SectionMUI2Test = suite(`with ${section} sections (MUI2)`);
 
-	SectionMUI2Test.before.each(() =>
+	SectionMUI2Test.before(() =>
 		helper({
 			includes: ['MUI2'],
 			sections: section,

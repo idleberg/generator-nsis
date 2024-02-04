@@ -10,7 +10,7 @@ const callbackNames = callbacks.map(({ value }) => `${value}`);
  */
 const CallbackTest = suite(`with all callbacks`);
 
-CallbackTest.before.each(() =>
+CallbackTest.before(() =>
 	helper({
 		callbacks: callbackNames,
 	})
@@ -30,7 +30,7 @@ CallbackTest.run();
 callbackNames.forEach(callback => {
 	const CallbackTest = suite(`with ${callback}`);
 
-	CallbackTest.before.each(() =>
+	CallbackTest.before(() =>
 		helper({
 			callbacks: [callback],
 		})
@@ -48,7 +48,7 @@ callbackNames.forEach(callback => {
  */
 const CallbackMUI2Test = suite(`with all callbacks (MUI2)`);
 
-CallbackMUI2Test.before.each(() =>
+CallbackMUI2Test.before(() =>
 	helper({
 		callbacks: callbackNames,
 		includes: ['MUI2'],
@@ -79,7 +79,7 @@ CallbackMUI2Test.run();
 callbackNames.forEach(callback => {
 	const CallbackMUI2Test = suite(`with ${callback}`);
 
-	CallbackMUI2Test.before.each(() =>
+	CallbackMUI2Test.before(() =>
 		helper({
 			callbacks: [callback],
 			includes: ['MUI2'],

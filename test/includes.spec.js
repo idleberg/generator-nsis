@@ -10,7 +10,7 @@ const includesNames = includes.map(({ value }) => `${value}.nsh`);
  */
 const IncludeTest = suite(`with all built-ins`);
 
-IncludeTest.before.each(() =>
+IncludeTest.before(() =>
 	helper({
 		includes: includesNames,
 	})
@@ -30,7 +30,7 @@ IncludeTest.run();
 includesNames.forEach(include => {
 	const IncludeTest = suite(`with ${include}`);
 
-	IncludeTest.before.each(() =>
+	IncludeTest.before(() =>
 		helper({
 			includes: [include],
 		})
