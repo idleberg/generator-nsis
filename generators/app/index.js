@@ -177,7 +177,12 @@ export default class extends Generator {
 			}
 
 			if (typeof props.spdxLicense !== 'undefined') {
-				props.licenseText = spdxLicenseList[props.spdxLicense].licenseText.replace(/\n{3,}/g, '\n\n');
+				props.licenseText = spdxLicenseList[props.spdxLicense].licenseText
+					// normalize line endings
+					.split('\n')
+
+					// .map(line => line.trim())
+					.join(props.unicode ? '\n' : '\r\n');
 			}
 
 			if (props.name.includes('&')) {
