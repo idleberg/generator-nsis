@@ -49,13 +49,17 @@ jobs:
       - uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4.0.1
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
-      - uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
+      - name: Enable Corepack
+        run: corepack enable
+
+      # - uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
+      #   name: Install pnpm
+      #   id: pnpm-install
+      #   with:
+      #     version: 8
+      #     run_install: false
 
       - name: Get pnpm store directory
         shell: bash
