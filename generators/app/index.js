@@ -23,19 +23,6 @@ export default class extends Generator {
 		this.debug = this.options.debug ? true : false;
 	}
 
-	// languageDialog(isUnicode) {
-	// 	const languageDialog = Object.entries(languageData).map(([key, value]) => {
-	// 		if (key === 'English') return;
-
-	// 		return {
-	// 			constant: `$\{LANG_${key.toUpperCase()}}`,
-	// 			string: (isUnicode) ? value.native : (value.long || key)
-	// 		};
-	// 	});
-
-	// 	return languageDialog;
-	// }
-
 	inquirer() {
 		return this.prompt([
 			{
