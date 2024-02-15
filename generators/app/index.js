@@ -144,16 +144,6 @@ export default class extends Generator {
 					}
 				},
 			},
-			{
-				name: 'editInstallerScript',
-				message: 'Edit installer script',
-				type: 'confirm',
-				default: 'true',
-				store: true,
-				when: () => {
-					return process.env.EDITOR ? true : false;
-				},
-			},
 		]).then(async props => {
 			if (this.options.debug) {
 				console.log(props);
@@ -205,10 +195,6 @@ export default class extends Generator {
 				await this.fs.copyTplAsync(this.templatePath('license.txt.ejs'), this.destinationPath('license.txt'), {
 					licenseText: props.licenseText,
 				});
-			}
-
-			if (props.editInstallerScript === true) {
-				this.spawnCommand(process.env.EDITOR, ['installer.nsi']);
 			}
 		});
 	}
