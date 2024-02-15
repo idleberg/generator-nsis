@@ -1,6 +1,6 @@
 import terminalLink from 'terminal-link';
 
-const docsURL = 'https://github.com/NSIS-Dev/Documentation/tree/master';
+const docsURL = 'https://github.com/NSIS-Dev/Documentation/tree/main/docs/';
 
 export const binary = [false, true];
 export const elevation = ['user', 'highest', 'admin', 'none'];
@@ -8,111 +8,63 @@ export const compression = ['zlib', 'bzip2', 'lzma'];
 
 export const callbacks = [
 	{
-		name: terminalLink('.onInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInit.md', {
-			fallback() {
-				return '.onInit';
-			},
+		name: terminalLink('.onInit', `${docsURL}/Callbacks/onInit.md`, {
+			fallback: false,
 		}),
 		value: '.onInit',
 	},
 	{
-		name: terminalLink('.onGUIInit', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIInit.md', {
-			fallback() {
-				return '.onGUIInit';
-			},
+		name: terminalLink('.onGUIInit', `${docsURL}/Callbacks/onGUIInit.md`, {
+			fallback: false,
 		}),
 		value: '.onGUIInit',
 	},
 	{
-		name: terminalLink('.onGUIEnd', 'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onGUIEnd.md', {
-			fallback() {
-				return '.onGUIEnd';
-			},
+		name: terminalLink('.onGUIEnd', `${docsURL}/Callbacks/onGUIEnd.md`, {
+			fallback: false,
 		}),
 		value: '.onGUIEnd',
 	},
 	{
-		name: terminalLink(
-			'.onInstSuccess',
-			'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstSuccess.md',
-			{
-				fallback() {
-					return '.onInstSuccess';
-				},
-			}
-		),
+		name: terminalLink('.onInstSuccess', `${docsURL}/Callbacks/onInstSuccess.md`, {
+			fallback: false,
+		}),
 		value: '.onInstSuccess',
 	},
 	{
-		name: terminalLink(
-			'.onInstFailed',
-			'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onInstFailed.md',
-			{
-				fallback() {
-					return '.onInstFailed';
-				},
-			}
-		),
+		name: terminalLink('.onInstFailed', `${docsURL}/Callbacks/onInstFailed.md`, {
+			fallback: false,
+		}),
 		value: '.onInstFailed',
 	},
 	{
-		name: terminalLink(
-			'.onUserAbort',
-			'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onUserAbort.md',
-			{
-				fallback() {
-					return '.onUserAbort';
-				},
-			}
-		),
+		name: terminalLink('.onUserAbort', `${docsURL}/Callbacks/onUserAbort.md`, {
+			fallback: false,
+		}),
 		value: '.onUserAbort',
 	},
 	{
-		name: terminalLink(
-			'.onVerifyInstDir',
-			'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onVerifyInstDir.md',
-			{
-				fallback() {
-					return '.onVerifyInstDir';
-				},
-			}
-		),
+		name: terminalLink('.onVerifyInstDir', `${docsURL}/Callbacks/onVerifyInstDir.md`, {
+			fallback: false,
+		}),
 		value: '.onVerifyInstDir',
 	},
 	{
-		name: terminalLink(
-			'.onRebootFailed',
-			'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onRebootFailed.md',
-			{
-				fallback() {
-					return '.onRebootFailed';
-				},
-			}
-		),
+		name: terminalLink('.onRebootFailed', `${docsURL}/Callbacks/onRebootFailed.md`, {
+			fallback: false,
+		}),
 		value: '.onRebootFailed',
 	},
 	{
-		name: terminalLink(
-			'.onSelChange',
-			'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onSelChange.md',
-			{
-				fallback() {
-					return '.onSelChange';
-				},
-			}
-		),
+		name: terminalLink('.onSelChange', `${docsURL}/Callbacks/onSelChange.md`, {
+			fallback: false,
+		}),
 		value: '.onSelChange',
 	},
 	{
-		name: terminalLink(
-			'.onMouseOverSection',
-			'https://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/onMouseOverSection.md',
-			{
-				fallback() {
-					return '.onMouseOverSection';
-				},
-			}
-		),
+		name: terminalLink('.onMouseOverSection', `${docsURL}/Callbacks/onMouseOverSection.md`, {
+			fallback: false,
+		}),
 		value: '.onMouseOverSection',
 	},
 ];
@@ -125,9 +77,7 @@ export const includes = [
 	},
 	{
 		name: terminalLink('FileFunc.nsh', `${docsURL}/Includes/FileFunc`, {
-			fallback() {
-				return 'FileFunc.nsh';
-			},
+			fallback: false,
 		}),
 		value: 'FileFunc',
 		checked: false,
@@ -154,18 +104,14 @@ export const includes = [
 	},
 	{
 		name: terminalLink('LogicLib.nsh', `${docsURL}/Includes/LogicLib`, {
-			fallback() {
-				return 'LogicLib.nsh';
-			},
+			fallback: false,
 		}),
 		value: 'LogicLib',
 		checked: false,
 	},
 	{
 		name: terminalLink('Memento.nsh', `${docsURL}/Includes/Memento`, {
-			fallback() {
-				return 'Memento.nsh';
-			},
+			fallback: false,
 		}),
 		value: 'Memento',
 		checked: false,
@@ -197,18 +143,14 @@ export const includes = [
 	},
 	{
 		name: terminalLink('StrFunc.nsh', `${docsURL}/Includes/StrFunc`, {
-			fallback() {
-				return 'StrFunc.nsh';
-			},
+			fallback: false,
 		}),
 		value: 'StrFunc',
 		checked: false,
 	},
 	{
 		name: terminalLink('TextFunc.nsh', `${docsURL}/Includes/TextFunc`, {
-			fallback() {
-				return 'TextFunc.nsh';
-			},
+			fallback: false,
 		}),
 		value: 'TextFunc',
 		checked: false,
@@ -245,27 +187,21 @@ export const includes = [
 	},
 	{
 		name: terminalLink('WinVer.nsh', `${docsURL}/Includes/WinVer`, {
-			fallback() {
-				return 'WinVer.nsh';
-			},
+			fallback: false,
 		}),
 		value: 'WinVer',
 		checked: false,
 	},
 	{
 		name: terminalLink('WordFunc.nsh', `${docsURL}/Includes/WordFunc`, {
-			fallback() {
-				return 'WordFunc.nsh';
-			},
+			fallback: false,
 		}),
 		value: 'WordFunc',
 		checked: false,
 	},
 	{
 		name: terminalLink('x64.nsh', `${docsURL}/Includes/x64`, {
-			fallback() {
-				return 'x64.nsh';
-			},
+			fallback: false,
 		}),
 		value: 'x64',
 		checked: false,

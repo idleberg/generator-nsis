@@ -11,9 +11,7 @@ const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
 export const licenseChoices = spdxCodes.map(obj => {
 	const licenses = {};
 	licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, {
-		fallback() {
-			return obj;
-		},
+		fallback: true,
 	});
 	licenses['value'] = obj;
 

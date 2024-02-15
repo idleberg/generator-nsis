@@ -41,9 +41,7 @@ export default class extends Generator {
 					this.looseVersion === true || semver.valid(version) !== null
 						? true
 						: `Not a valid ${terminalLink('semantic version', 'https://semver.org', {
-								fallback() {
-									return 'semantic version';
-								},
+								fallback: false,
 							})}`,
 			},
 			{
@@ -80,9 +78,7 @@ export default class extends Generator {
 			{
 				name: 'spdxQuestion',
 				message: `Choose a license from ${terminalLink('SPDX License List', 'https://spdx.org/licenses/', {
-					fallback() {
-						return 'SPDX License List';
-					},
+					fallback: false,
 				})}`,
 				type: 'confirm',
 				default: true,
