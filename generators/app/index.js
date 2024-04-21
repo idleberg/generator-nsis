@@ -21,6 +21,8 @@ export default class extends Generator {
 		this.disabled = this.options.unlockAll ? false : true;
 		this.firstParty = this.options.firstParty ? true : false;
 		this.debug = this.options.debug ? true : false;
+
+		console.log(/* let it breathe */);
 	}
 
 	inquirer() {
