@@ -3,7 +3,7 @@ import { callbacks } from '../generators/lib/choices.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
 
-const callbackNames = callbacks.map(({ value }) => `${value}`);
+const callbackNames = callbacks.map(({ value }) => value);
 
 /**
  * all callbacks
