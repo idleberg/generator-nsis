@@ -1,5 +1,5 @@
 import { helper } from './__helper.js';
-import { includes } from '../generators/lib/choices.js';
+import { includes } from '../lib/choices.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
 

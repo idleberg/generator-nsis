@@ -1,7 +1,7 @@
 import { helper } from './__helper.js';
 import { suite } from 'uvu';
 import { v4 as uuid } from '@lukeed/uuid';
-import * as choices from '../generators/lib/choices.js';
+import * as choices from '../lib/choices.js';
 import assert from 'yeoman-assert';
 
 const NameTest = suite('with name');
