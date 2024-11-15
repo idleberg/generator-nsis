@@ -13,8 +13,8 @@ RequestExecutionLevel <%= pkg.elevation %>
 InstallDir "$PROGRAMFILES\<%- pkg.name %>"<% if (!pkg.includes?.includes('MUI2') && pkg.pages?.includes('license')) { %>
 LicenseData "<% if (typeof pkg.spdxLicense !== 'undefined') { %>license.txt<% } %>"<% } %>
 <% if (pkg.includes?.includes('MUI2')) { %>
-# Modern UI --------------------------------<% if (pkg.callbacks?.includes('MUI.onGUIInit')) { %>
-!define MUI_CUSTOMFUNCTION_GUIINIT "MUI.onGUIInit"<% } %><% if (pkg.callbacks?.includes('MUI.onUserAbort')) { %>
+# Modern UI --------------------------------<% if (pkg.lifecycles?.includes('MUI.onGUIInit')) { %>
+!define MUI_CUSTOMFUNCTION_GUIINIT "MUI.onGUIInit"<% } %><% if (pkg.lifecycles?.includes('MUI.onUserAbort')) { %>
 !define MUI_CUSTOMFUNCTION_ABORT "MUI.onUserAbort"<% } %>
 <% } %>
 # Pages ------------------------------------
@@ -36,9 +36,9 @@ LangString DESC_SECTION_<%= step + 1 %> ${LANG_<%= language.toUpperCase() %>} "<
     !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_<%= step + 1 %>} $(DESC_SECTION_<%= step + 1 %>)<% } %>
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 <% } %>
-# Functions --------------------------------<% pkg.callbacks?.forEach( callback => { %>
-Function <%- callback %>
-<% if (callback === '.onInit' && pkg.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
+# Functions --------------------------------<% pkg.lifecycles?.forEach( lifecycle => { %>
+Function <%- lifecycle %>
+<% if (lifecycle === '.onInit' && pkg.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
 <% }); %><% if (pkg.languageDialog) { %>
 Function LanguageDialog
     Push ""
@@ -54,4 +54,4 @@ Function LanguageDialog
     Abort
 FunctionEnd
 <% } %>
-<% JSON.stringify(pkg.callbacks) %>
+<% JSON.stringify(pkg.lifecycles) %>

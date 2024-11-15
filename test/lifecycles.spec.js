@@ -1,18 +1,18 @@
 import { helper } from './__helper.js';
-import { callbacks } from '../lib/choices.js';
+import { lifecycles } from '../lib/choices.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
 
-const callbackNames = callbacks.map(({ value }) => value);
+const callbackNames = lifecycles.map(({ value }) => value);
 
 /**
- * all callbacks
+ * all lifecycles
  */
-const CallbackTest = suite(`with all callbacks`);
+const CallbackTest = suite(`with all lifecycles`);
 
 CallbackTest.before(() =>
 	helper({
-		callbacks: callbackNames,
+		lifecycles: callbackNames,
 	})
 );
 
@@ -25,14 +25,14 @@ callbackNames.forEach(callback => {
 CallbackTest.run();
 
 /**
- * single callbacks
+ * single lifecycles
  */
 callbackNames.forEach(callback => {
 	const CallbackTest = suite(`with ${callback}`);
 
 	CallbackTest.before(() =>
 		helper({
-			callbacks: [callback],
+			lifecycles: [callback],
 		})
 	);
 
@@ -44,13 +44,13 @@ callbackNames.forEach(callback => {
 });
 
 /**
- * all callbacks (MUI2)
+ * all lifecycles (MUI2)
  */
-const CallbackMUI2Test = suite(`with all callbacks (MUI2)`);
+const CallbackMUI2Test = suite(`with all lifecycles (MUI2)`);
 
 CallbackMUI2Test.before(() =>
 	helper({
-		callbacks: callbackNames,
+		lifecycles: callbackNames,
 		includes: ['MUI2'],
 	})
 );
@@ -74,14 +74,14 @@ callbackNames.forEach(callback => {
 CallbackMUI2Test.run();
 
 /**
- * single callbacks (MUI2)
+ * single lifecycles (MUI2)
  */
 callbackNames.forEach(callback => {
 	const CallbackMUI2Test = suite(`with ${callback}`);
 
 	CallbackMUI2Test.before(() =>
 		helper({
-			callbacks: [callback],
+			lifecycles: [callback],
 			includes: ['MUI2'],
 		})
 	);

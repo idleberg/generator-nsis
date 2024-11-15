@@ -104,12 +104,12 @@ export default class extends Generator {
 				validate: number => (Number.isInteger(parseInt(number)) && parseInt(number) > 0 ? true : 'Not a valid integer'),
 			},
 			{
-				name: 'callbacks',
-				message: 'Add callback functions',
+				name: 'lifecycles',
+				message: 'Add lifecycle functions',
 				type: 'checkbox',
 				store: true,
 				default: [],
-				choices: choices.callbacks,
+				choices: choices.lifecycles,
 			},
 			{
 				name: 'includes',
@@ -118,8 +118,8 @@ export default class extends Generator {
 				store: true,
 				default: [],
 				choices: async () => (this.firstParty ? choices.includes : await getAllLibraries()),
-				validate: callbacks =>
-					callbacks.includes('MUI') && callbacks.includes('MUI2') ? "Don't mix MUI versions" : true,
+				validate: lifecycles =>
+					lifecycles.includes('MUI') && lifecycles.includes('MUI2') ? "Don't mix MUI versions" : true,
 			},
 			{
 				name: 'languages',
@@ -167,22 +167,22 @@ export default class extends Generator {
 			props.outfile = props.version ? `${slugify(props.name)}-${props.version}-setup` : `${slugify(props.name)}-setup`;
 
 			if (props.languageDialog) {
-				if (!props.callbacks.includes('.onInit')) {
-					props.callbacks.unshift('.onInit');
+				if (!props.lifecycles.includes('.onInit')) {
+					props.lifecycles.unshift('.onInit');
 				}
 			}
 
 			if (props.includes?.includes('MUI2')) {
-				const includesOnGUIInit = props.callbacks.indexOf('.onGUIInit');
+				const includesOnGUIInit = props.lifecycles.indexOf('.onGUIInit');
 
 				if (includesOnGUIInit !== -1) {
-					props.callbacks.splice(includesOnGUIInit, 1, 'MUI.onGUIInit');
+					props.lifecycles.splice(includesOnGUIInit, 1, 'MUI.onGUIInit');
 				}
 
-				const includesOnUserAbort = props.callbacks.indexOf('.onUserAbort');
+				const includesOnUserAbort = props.lifecycles.indexOf('.onUserAbort');
 
 				if (includesOnUserAbort !== -1) {
-					props.callbacks.splice(includesOnUserAbort, 1, 'MUI.onUserAbort');
+					props.lifecycles.splice(includesOnUserAbort, 1, 'MUI.onUserAbort');
 				}
 			}
 

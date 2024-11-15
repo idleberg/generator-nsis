@@ -13,7 +13,7 @@
 - Modern UI-aware
 - adds sections
 - adds core libraries (”Useful Headers”)
-- adds callback functions
+- adds lifecycle functions
 - adds translations
 - adds languages (with optional dialog)
 - defaults to SemVer
