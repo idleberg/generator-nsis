@@ -22,7 +22,7 @@ export default class extends Generator {
 		this.firstParty = this.options.firstParty ? true : false;
 		this.debug = this.options.debug ? true : false;
 
-		console.log(/* let it breathe */);
+		globalThis.console.log(/* let it breathe */);
 	}
 
 	inquirer() {
@@ -148,7 +148,7 @@ export default class extends Generator {
 			},
 		]).then(async props => {
 			if (this.options.debug) {
-				console.log(props);
+				globalThis.console.log(props);
 			}
 
 			if (typeof props.spdxLicense !== 'undefined') {
