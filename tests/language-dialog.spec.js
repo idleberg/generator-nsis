@@ -13,10 +13,10 @@ const SectionTest = suite(`with all languages`);
 SectionTest.before(() =>
 	helper({
 		languages: languagesNames,
-	})
+	}),
 );
 
-languagesNames.forEach(language => {
+languagesNames.forEach((language) => {
 	SectionTest(`has Push (constant)`, () => {
 		assert.fileContent('installer.nsi', `Push \${LANG_${language.toUpperCase()}}`);
 	});
@@ -31,14 +31,14 @@ SectionTest.run();
 /**
  * single languages (language dialog)
  */
-languagesNames.forEach(language => {
+languagesNames.forEach((language) => {
 	const SectionTest = suite(`with ${language}`);
 
 	SectionTest.before(() =>
 		helper({
 			languageDialog: true,
 			languages: [language],
-		})
+		}),
 	);
 
 	SectionTest(`has Push (constant)`, () => {

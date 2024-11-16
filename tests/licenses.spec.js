@@ -7,7 +7,7 @@ let sortedLicenseList = {};
 
 Object.keys(spdxLicenseList)
 	.sort()
-	.forEach(key => {
+	.forEach((key) => {
 		sortedLicenseList[key] = spdxLicenseList[key];
 	});
 
@@ -18,7 +18,7 @@ Object.entries(sortedLicenseList).forEach(([licenseName, licenseData]) => {
 		helper({
 			spdxLicense: licenseName,
 			pages: ['license'],
-		})
+		}),
 	);
 
 	LicenseTest(`has ${licenseName}`, () => {
@@ -36,7 +36,7 @@ Object.entries(sortedLicenseList).forEach(([licenseName, licenseData]) => {
 			unicode: false,
 			spdxLicense: licenseName,
 			pages: ['license'],
-		})
+		}),
 	);
 
 	LicenseTest(`has ${licenseName}`, () => {

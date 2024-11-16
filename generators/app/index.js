@@ -32,14 +32,14 @@ export default class extends Generator {
 				message: `Application name`,
 				default: slugify(this.appname),
 				store: true,
-				validate: name => (name.trim().length > 0 ? true : 'Not a valid name'),
+				validate: (name) => (name.trim().length > 0 ? true : 'Not a valid name'),
 			},
 			{
 				name: 'version',
 				message: `Application version`,
 				default: '0.0.0',
 				store: true,
-				validate: version =>
+				validate: (version) =>
 					this.looseVersion === true || semver.valid(version) !== null
 						? true
 						: `Not a valid ${terminalLink('semantic version', 'https://semver.org', {
@@ -85,7 +85,7 @@ export default class extends Generator {
 				type: 'confirm',
 				default: true,
 				store: true,
-				when: answers => (answers.pages?.includes('license') ? true : false),
+				when: (answers) => (answers.pages?.includes('license') ? true : false),
 			},
 			{
 				name: 'spdxLicense',
@@ -94,14 +94,15 @@ export default class extends Generator {
 				default: 'MIT',
 				choices: licenseChoices,
 				store: true,
-				when: answers => (answers.pages?.includes('license') && answers.spdxQuestion ? true : false),
+				when: (answers) => (answers.pages?.includes('license') && answers.spdxQuestion ? true : false),
 			},
 			{
 				name: 'sections',
 				message: 'Number of sections',
 				default: 1,
 				store: true,
-				validate: number => (Number.isInteger(parseInt(number)) && parseInt(number) > 0 ? true : 'Not a valid integer'),
+				validate: (number) =>
+					Number.isInteger(parseInt(number)) && parseInt(number) > 0 ? true : 'Not a valid integer',
 			},
 			{
 				name: 'lifecycles',
@@ -118,7 +119,7 @@ export default class extends Generator {
 				store: true,
 				default: [],
 				choices: async () => (this.firstParty ? choices.includes : await getAllLibraries()),
-				validate: lifecycles =>
+				validate: (lifecycles) =>
 					lifecycles.includes('MUI') && lifecycles.includes('MUI2') ? "Don't mix MUI versions" : true,
 			},
 			{
@@ -135,7 +136,7 @@ export default class extends Generator {
 				type: 'confirm',
 				default: 'true',
 				store: true,
-				when: answers => {
+				when: (answers) => {
 					switch (true) {
 						case this.options['unlock-all'] === true && answers.languages?.length > 1:
 						case this.options['unlock-all'] === false && answers.languages?.length > 0:
@@ -146,7 +147,7 @@ export default class extends Generator {
 					}
 				},
 			},
-		]).then(async props => {
+		]).then(async (props) => {
 			if (this.options.debug) {
 				globalThis.console.log(props);
 			}

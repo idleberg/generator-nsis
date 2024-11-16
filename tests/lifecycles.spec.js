@@ -13,10 +13,10 @@ const CallbackTest = suite(`with all lifecycles`);
 CallbackTest.before(() =>
 	helper({
 		lifecycles: callbackNames,
-	})
+	}),
 );
 
-callbackNames.forEach(callback => {
+callbackNames.forEach((callback) => {
 	CallbackTest(`has Function ${callback}`, () => {
 		assert.fileContent('installer.nsi', `Function ${callback}`);
 	});
@@ -27,13 +27,13 @@ CallbackTest.run();
 /**
  * single lifecycles
  */
-callbackNames.forEach(callback => {
+callbackNames.forEach((callback) => {
 	const CallbackTest = suite(`with ${callback}`);
 
 	CallbackTest.before(() =>
 		helper({
 			lifecycles: [callback],
-		})
+		}),
 	);
 
 	CallbackTest(`has Function ${callback}`, () => {
@@ -52,10 +52,10 @@ CallbackMUI2Test.before(() =>
 	helper({
 		lifecycles: callbackNames,
 		includes: ['MUI2'],
-	})
+	}),
 );
 
-callbackNames.forEach(callback => {
+callbackNames.forEach((callback) => {
 	if (callback === '.onGUIInit') {
 		CallbackMUI2Test(`has Function MUI.onGUIInit`, () => {
 			assert.fileContent('installer.nsi', `Function MUI.onGUIInit`);
@@ -76,14 +76,14 @@ CallbackMUI2Test.run();
 /**
  * single lifecycles (MUI2)
  */
-callbackNames.forEach(callback => {
+callbackNames.forEach((callback) => {
 	const CallbackMUI2Test = suite(`with ${callback}`);
 
 	CallbackMUI2Test.before(() =>
 		helper({
 			lifecycles: [callback],
 			includes: ['MUI2'],
-		})
+		}),
 	);
 
 	if (callback === '.onGUIInit') {

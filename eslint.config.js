@@ -25,5 +25,5 @@ export default tseslint.config(
 		rules: {
 			'jsonc/no-comments': 'off',
 		},
-	}
+	},
 );

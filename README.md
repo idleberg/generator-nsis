@@ -18,7 +18,7 @@
 - adds languages (with optional dialog)
 - defaults to SemVer
 - SPDX license support
-   
+
 ## Prerequisites
 
 You need [Node.js](https://nodejs.org/en/) installed and available in your `PATH` [environment variable](http://superuser.com/a/284351/195953). Use your preferred Node package manager to install the Yeoman CLI tool.
@@ -29,7 +29,7 @@ $ npm install -g yo
 
 ## Installation
 
- Use your preferred package manager to install this generator
+Use your preferred package manager to install this generator
 
 ```sh
 $ npm i generator-nsis -g
@@ -43,7 +43,7 @@ Run the generator and follow its instructions. Use `--help` for available flags.
 $ yo nsis
 ```
 
-*“That's all Folks!”*
+_“That's all Folks!”_
 
 ## License
 

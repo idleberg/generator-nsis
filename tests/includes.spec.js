@@ -13,10 +13,10 @@ const IncludeTest = suite(`with all built-ins`);
 IncludeTest.before(() =>
 	helper({
 		includes: includesNames,
-	})
+	}),
 );
 
-includesNames.forEach(include => {
+includesNames.forEach((include) => {
 	IncludeTest(`has !include set to ${include}`, () => {
 		assert.fileContent('installer.nsi', `!include "${include}"`);
 	});
@@ -27,13 +27,13 @@ IncludeTest.run();
 /**
  * single built-ins
  */
-includesNames.forEach(include => {
+includesNames.forEach((include) => {
 	const IncludeTest = suite(`with ${include}`);
 
 	IncludeTest.before(() =>
 		helper({
 			includes: [include],
-		})
+		}),
 	);
 
 	IncludeTest(`has !include set to ${include}`, () => {

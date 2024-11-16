@@ -3,13 +3,13 @@ name: 'Run tests on NodeJS'
 on:
   push:
     paths:
-    - '.github/**'
-    - 'generators/**'
-    - 'test/**'
-    - 'package.json'
-    - 'pnpm-lock.yaml'
+      - '.github/**'
+      - 'generators/**'
+      - 'test/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
   pull_request:
-      paths:
+    paths:
       - '.github/**'
       - 'generators/**'
       - 'test/**'
@@ -32,7 +32,7 @@ jobs:
 
       - name: Install NSIS on Ubuntu
         if: matrix.os == 'ubuntu-latest'
-        run:   |
+        run: |
           sudo apt-get -y update
           sudo apt-get -y install nsis
 

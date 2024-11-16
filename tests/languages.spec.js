@@ -13,10 +13,10 @@ const SectionTest = suite(`with all languages`);
 SectionTest.before(() =>
 	helper({
 		languages: languagesNames,
-	})
+	}),
 );
 
-languagesNames.forEach(language => {
+languagesNames.forEach((language) => {
 	SectionTest('has LoadLanguageFile', () => {
 		assert.fileContent('installer.nsi', `LoadLanguageFile "\${NSISDIR}\\Contrib\\Language files\\${language}.nlf"`);
 	});
@@ -33,10 +33,10 @@ SectionMUI2Test.before(() =>
 	helper({
 		includes: ['MUI2'],
 		languages: languagesNames,
-	})
+	}),
 );
 
-languagesNames.forEach(language => {
+languagesNames.forEach((language) => {
 	SectionMUI2Test(`has !insertmacro MUI_LANGUAGE`, () => {
 		assert.fileContent('installer.nsi', `!insertmacro MUI_LANGUAGE "${language}"`);
 	});
@@ -44,7 +44,7 @@ languagesNames.forEach(language => {
 	SectionMUI2Test(`has LangString`, () => {
 		assert.fileContent(
 			'installer.nsi',
-			`LangString DESC_SECTION_1 \${LANG_${language.toUpperCase()}} "${language} description for section 1"`
+			`LangString DESC_SECTION_1 \${LANG_${language.toUpperCase()}} "${language} description for section 1"`,
 		);
 	});
 });
@@ -54,13 +54,13 @@ SectionMUI2Test.run();
 /**
  * single languages
  */
-languagesNames.forEach(language => {
+languagesNames.forEach((language) => {
 	const SectionTest = suite(`with ${language}`);
 
 	SectionTest.before(() =>
 		helper({
 			languages: [language],
-		})
+		}),
 	);
 
 	SectionTest('has LoadLanguageFile', () => {
@@ -73,14 +73,14 @@ languagesNames.forEach(language => {
 /**
  * single languages (MUI2)
  */
-languagesNames.forEach(language => {
+languagesNames.forEach((language) => {
 	const SectionMUI2Test = suite(`with ${language} (MUI2)`);
 
 	SectionMUI2Test.before(() =>
 		helper({
 			includes: ['MUI2'],
 			languages: [language],
-		})
+		}),
 	);
 
 	SectionMUI2Test(`has !insertmacro MUI_LANGUAGE`, () => {
@@ -90,7 +90,7 @@ languagesNames.forEach(language => {
 	SectionMUI2Test(`has LangString`, () => {
 		assert.fileContent(
 			'installer.nsi',
-			`LangString DESC_SECTION_1 \${LANG_${language.toUpperCase()}} "${language} description for section 1"`
+			`LangString DESC_SECTION_1 \${LANG_${language.toUpperCase()}} "${language} description for section 1"`,
 		);
 	});
 

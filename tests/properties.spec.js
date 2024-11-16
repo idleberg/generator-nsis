@@ -10,7 +10,7 @@ const randomName = uuid();
 NameTest.before(() =>
 	helper({
 		name: randomName,
-	})
+	}),
 );
 
 NameTest('uses correct name', () => {
@@ -26,7 +26,7 @@ const randomName2 = uuid();
 AmpersandNameTest.before(() =>
 	helper({
 		name: `${randomName1} & ${randomName2}`,
-	})
+	}),
 );
 
 AmpersandNameTest('uses correct name', () => {
@@ -35,13 +35,13 @@ AmpersandNameTest('uses correct name', () => {
 
 AmpersandNameTest.run();
 
-choices.binary.forEach(unicode => {
+choices.binary.forEach((unicode) => {
 	const UnicodeTest = suite(`without ${unicode}`);
 
 	UnicodeTest.before(() =>
 		helper({
 			unicode,
-		})
+		}),
 	);
 
 	UnicodeTest(`has Unicode set to ${unicode}`, () => {
@@ -51,13 +51,13 @@ choices.binary.forEach(unicode => {
 	UnicodeTest.run();
 });
 
-choices.elevation.forEach(elevation => {
+choices.elevation.forEach((elevation) => {
 	const ElevationTest = suite(`with elevation set to ${elevation}`);
 
 	ElevationTest.before(() =>
 		helper({
 			elevation,
-		})
+		}),
 	);
 
 	ElevationTest(`has RequestExecutionLevel set to ${elevation}`, () => {
@@ -67,13 +67,13 @@ choices.elevation.forEach(elevation => {
 	ElevationTest.run();
 });
 
-choices.compression.forEach(compression => {
+choices.compression.forEach((compression) => {
 	const CompressionTest = suite(`with compression set to ${compression}`);
 
 	CompressionTest.before(() =>
 		helper({
 			compression,
-		})
+		}),
 	);
 
 	CompressionTest(`has SetCompressor set to ${compression}`, () => {
@@ -84,14 +84,14 @@ choices.compression.forEach(compression => {
 });
 
 Object.keys(choices.includes)
-	.filter(include => include.value)
-	.forEach(page => {
+	.filter((include) => include.value)
+	.forEach((page) => {
 		const PageTest = suite(`with pages including ${page}`);
 
 		PageTest.before(() =>
 			helper({
 				pages: [page],
-			})
+			}),
 		);
 
 		PageTest(`has Page set to ${page}`, () => {
@@ -102,15 +102,15 @@ Object.keys(choices.includes)
 	});
 
 Object.keys(choices.includes)
-	.filter(include => include.value)
-	.forEach(page => {
+	.filter((include) => include.value)
+	.forEach((page) => {
 		const PageMUI2Test = suite(`with pages including ${page} (MUI2)`);
 
 		PageMUI2Test.before(() =>
 			helper({
 				includes: ['MUI2'],
 				pages: [page],
-			})
+			}),
 		);
 
 		PageMUI2Test(`has Page set to ${page}`, () => {
