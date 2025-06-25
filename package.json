@@ -24,7 +24,7 @@
 		"lint": "concurrently --prefix '{name}' -c 'green,blue' 'npm:lint:*'",
 		"prepack": "rimraf installer.nsi license.txt",
 		"prepare": "husky",
-		"publish:npm": "np --no-yarn --any-branch",
+		"publish:npm": "np --any-branch",
 		"test": "uvu --ignore tests/__helper.js"
 	},
 	"repository": {
