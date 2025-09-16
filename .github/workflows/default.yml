@@ -23,7 +23,7 @@ jobs:
     strategy:
       matrix:
         node-version: ['lts/*', '*']
-        os: [ubuntu-latest, windows-2025]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
           sudo apt-get -y install nsis
 
       - name: Install NSIS on Windows
-        if: matrix.os == 'windows-2025'
+        if: matrix.os == 'windows-latest'
         run: |
           winget install `
             --id NSIS.NSIS `
