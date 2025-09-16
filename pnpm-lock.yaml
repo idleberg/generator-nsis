@@ -33,6 +33,9 @@ importers:
         specifier: ^7.5.1
         version: 7.5.1(@types/node@22.15.33)(@yeoman/types@1.5.0(@types/node@22.15.33)(@yeoman/adapter@1.6.0)(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)
     devDependencies:
+      '@biomejs/biome':
+        specifier: ^2.2.4
+        version: 2.2.4
       '@idleberg/configs':
         specifier: ^0.2.0
         version: 0.2.0
@@ -48,6 +51,9 @@ importers:
       ejs-lint:
         specifier: ^2.0.1
         version: 2.0.1
+      lefthook:
+        specifier: ^1.13.0
+        version: 1.13.0
       mem-fs:
         specifier: ^4.1.2
         version: 4.1.2
