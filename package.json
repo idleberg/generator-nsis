@@ -46,6 +46,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.4",
+		"@commitlint/cli": "^19.8.1",
+		"@commitlint/config-conventional": "^19.8.1",
 		"@idleberg/configs": "^0.2.0",
 		"@lukeed/uuid": "^2.0.1",
 		"@types/node": "^22.15.33",
