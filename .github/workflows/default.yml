@@ -41,6 +41,7 @@ jobs:
             --accept-package-agreements `
             --accept-source-agreements `
             --disable-interactivity `
+            --exact `
             --id NSIS.NSIS
 
       - uses: actions/setup-node@v5
