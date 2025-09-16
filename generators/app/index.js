@@ -36,7 +36,7 @@ export default class extends Generator {
 				default: '0.0.0',
 				store: true,
 				validate: (version) =>
-					this.options.looseVersion === true || semver.valid(version) !== null
+					this.options.looseVersion || semver.valid(version) !== null
 						? true
 						: `Not a valid ${terminalLink('semantic version', 'https://semver.org', {
 								fallback: false,
@@ -122,7 +122,7 @@ export default class extends Generator {
 			},
 			{
 				name: 'languages',
-				message: this.disabled ? 'Add languages other than English' : 'Add languages',
+				message: this.disabled === true ? 'Add languages other than English' : 'Add languages',
 				type: 'checkbox',
 				store: true,
 				default: [],
@@ -188,7 +188,7 @@ export default class extends Generator {
 			await this.fs.copyTplAsync(this.templatePath('installer.nsi.ejs'), this.destinationPath('installer.nsi'), {
 				languageData: languageData,
 				pkg: props,
-				unlockAll: this.options.unlockAll,
+				unlockAll: this.options['unlock-all'],
 				debug: this.options.debug,
 			});
 
