@@ -1,14 +1,14 @@
-import { helper } from './__helper.js';
-import { meta, languages } from '@nsis/language-data';
+import { languages, meta } from '@nsis/language-data';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
+import { helper } from './__helper.js';
 
 const languagesNames = Object.keys(languages);
 
 /**
  * all languages
  */
-const SectionTest = suite(`with all languages`);
+const SectionTest = suite('with all languages');
 
 SectionTest.before(() =>
 	helper({
@@ -17,12 +17,12 @@ SectionTest.before(() =>
 );
 
 languagesNames.forEach((language) => {
-	SectionTest(`has Push (constant)`, () => {
+	SectionTest('has Push (constant)', () => {
 		assert.fileContent('installer.nsi', `Push \${LANG_${language.toUpperCase()}}`);
 	});
 
-	SectionTest(`has Push (string)`, () => {
-		assert.fileContent('installer.nsi', `Push "${meta[language]['native']}"`);
+	SectionTest('has Push (string)', () => {
+		assert.fileContent('installer.nsi', `Push "${meta[language].native}"`);
 	});
 });
 
@@ -41,12 +41,12 @@ languagesNames.forEach((language) => {
 		}),
 	);
 
-	SectionTest(`has Push (constant)`, () => {
+	SectionTest('has Push (constant)', () => {
 		assert.fileContent('installer.nsi', `Push \${LANG_${language.toUpperCase()}}`);
 	});
 
-	SectionTest(`has Push (string)`, () => {
-		assert.fileContent('installer.nsi', `Push "${meta[language]['native']}"`);
+	SectionTest('has Push (string)', () => {
+		assert.fileContent('installer.nsi', `Push "${meta[language].native}"`);
 	});
 
 	SectionTest.run();

@@ -1,14 +1,14 @@
-import { helper } from './__helper.js';
 import { languages } from '@nsis/language-data';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
+import { helper } from './__helper.js';
 
 const languagesNames = Object.keys(languages);
 
 /**
  * all languages
  */
-const SectionTest = suite(`with all languages`);
+const SectionTest = suite('with all languages');
 
 SectionTest.before(() =>
 	helper({
@@ -27,7 +27,7 @@ SectionTest.run();
 /**
  * all languages (MUI2)
  */
-const SectionMUI2Test = suite(`with all languages (MUI2)`);
+const SectionMUI2Test = suite('with all languages (MUI2)');
 
 SectionMUI2Test.before(() =>
 	helper({
@@ -37,11 +37,11 @@ SectionMUI2Test.before(() =>
 );
 
 languagesNames.forEach((language) => {
-	SectionMUI2Test(`has !insertmacro MUI_LANGUAGE`, () => {
+	SectionMUI2Test('has !insertmacro MUI_LANGUAGE', () => {
 		assert.fileContent('installer.nsi', `!insertmacro MUI_LANGUAGE "${language}"`);
 	});
 
-	SectionMUI2Test(`has LangString`, () => {
+	SectionMUI2Test('has LangString', () => {
 		assert.fileContent(
 			'installer.nsi',
 			`LangString DESC_SECTION_1 \${LANG_${language.toUpperCase()}} "${language} description for section 1"`,
@@ -83,11 +83,11 @@ languagesNames.forEach((language) => {
 		}),
 	);
 
-	SectionMUI2Test(`has !insertmacro MUI_LANGUAGE`, () => {
+	SectionMUI2Test('has !insertmacro MUI_LANGUAGE', () => {
 		assert.fileContent('installer.nsi', `!insertmacro MUI_LANGUAGE "${language}"`);
 	});
 
-	SectionMUI2Test(`has LangString`, () => {
+	SectionMUI2Test('has LangString', () => {
 		assert.fileContent(
 			'installer.nsi',
 			`LangString DESC_SECTION_1 \${LANG_${language.toUpperCase()}} "${language} description for section 1"`,

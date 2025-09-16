@@ -1,6 +1,6 @@
-import { helper } from './__helper.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
+import { helper } from './__helper.js';
 
 const sections = new Array(10).fill(null).map((_, index) => index + 1);
 
@@ -13,7 +13,7 @@ sections.forEach((section) => {
 		}),
 	);
 
-	SectionTest(`has Section`, () => {
+	SectionTest('has Section', () => {
 		assert.fileContent('installer.nsi', `Section "section" SECTION_${section}`);
 	});
 
@@ -30,15 +30,15 @@ sections.forEach((section) => {
 		}),
 	);
 
-	SectionMUI2Test(`has Section`, () => {
+	SectionMUI2Test('has Section', () => {
 		assert.fileContent('installer.nsi', `Section "section" SECTION_${section}`);
 	});
 
-	SectionMUI2Test(`has LangString`, () => {
+	SectionMUI2Test('has LangString', () => {
 		assert.fileContent('installer.nsi', `LangString DESC_SECTION_${section}`);
 	});
 
-	SectionMUI2Test(`has !insertmacro`, () => {
+	SectionMUI2Test('has !insertmacro', () => {
 		assert.fileContent(
 			'installer.nsi',
 			`!insertmacro MUI_DESCRIPTION_TEXT \${SECTION_${section}} $(DESC_SECTION_${section})`,

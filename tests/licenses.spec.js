@@ -1,9 +1,9 @@
-import { helper } from './__helper.js';
+import spdxLicenseList from 'spdx-license-list/full.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
-import spdxLicenseList from 'spdx-license-list/full.js';
+import { helper } from './__helper.js';
 
-let sortedLicenseList = {};
+const sortedLicenseList = {};
 
 Object.keys(spdxLicenseList)
 	.sort()

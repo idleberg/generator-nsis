@@ -1,14 +1,14 @@
-import { helper } from './__helper.js';
-import { lifecycles } from '../lib/choices.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
+import { lifecycles } from '../lib/choices.js';
+import { helper } from './__helper.js';
 
 const callbackNames = lifecycles.map(({ value }) => value);
 
 /**
  * all lifecycles
  */
-const CallbackTest = suite(`with all lifecycles`);
+const CallbackTest = suite('with all lifecycles');
 
 CallbackTest.before(() =>
 	helper({
@@ -46,7 +46,7 @@ callbackNames.forEach((callback) => {
 /**
  * all lifecycles (MUI2)
  */
-const CallbackMUI2Test = suite(`with all lifecycles (MUI2)`);
+const CallbackMUI2Test = suite('with all lifecycles (MUI2)');
 
 CallbackMUI2Test.before(() =>
 	helper({
@@ -57,12 +57,12 @@ CallbackMUI2Test.before(() =>
 
 callbackNames.forEach((callback) => {
 	if (callback === '.onGUIInit') {
-		CallbackMUI2Test(`has Function MUI.onGUIInit`, () => {
-			assert.fileContent('installer.nsi', `Function MUI.onGUIInit`);
+		CallbackMUI2Test('has Function MUI.onGUIInit', () => {
+			assert.fileContent('installer.nsi', 'Function MUI.onGUIInit');
 		});
 	} else if (callback === '.onUserAbort') {
-		CallbackMUI2Test(`has Function MUI.onUserAbort`, () => {
-			assert.fileContent('installer.nsi', `Function MUI.onUserAbort`);
+		CallbackMUI2Test('has Function MUI.onUserAbort', () => {
+			assert.fileContent('installer.nsi', 'Function MUI.onUserAbort');
 		});
 	} else {
 		CallbackMUI2Test(`has Function ${callback}`, () => {
@@ -87,12 +87,12 @@ callbackNames.forEach((callback) => {
 	);
 
 	if (callback === '.onGUIInit') {
-		CallbackMUI2Test(`has Function MUI.onGUIInit`, () => {
-			assert.fileContent('installer.nsi', `Function MUI.onGUIInit`);
+		CallbackMUI2Test('has Function MUI.onGUIInit', () => {
+			assert.fileContent('installer.nsi', 'Function MUI.onGUIInit');
 		});
 	} else if (callback === '.onUserAbort') {
-		CallbackMUI2Test(`has Function MUI.onUserAbort`, () => {
-			assert.fileContent('installer.nsi', `Function MUI.onUserAbort`);
+		CallbackMUI2Test('has Function MUI.onUserAbort', () => {
+			assert.fileContent('installer.nsi', 'Function MUI.onUserAbort');
 		});
 	} else {
 		CallbackMUI2Test(`has Function ${callback}`, () => {

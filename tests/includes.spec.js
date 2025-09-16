@@ -1,14 +1,14 @@
-import { helper } from './__helper.js';
-import { includes } from '../lib/choices.js';
 import { suite } from 'uvu';
 import assert from 'yeoman-assert';
+import { includes } from '../lib/choices.js';
+import { helper } from './__helper.js';
 
 const includesNames = includes.map(({ value }) => `${value}.nsh`);
 
 /**
  * alls built-ins
  */
-const IncludeTest = suite(`with all built-ins`);
+const IncludeTest = suite('with all built-ins');
 
 IncludeTest.before(() =>
 	helper({

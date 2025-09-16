@@ -1,12 +1,11 @@
 import { meta as languageData } from '@nsis/language-data';
-
-import { getAllLibraries, getLanguageChoices, licenseChoices } from '../../lib/helpers.js';
-import * as choices from '../../lib/choices.js';
-import Generator from 'yeoman-generator';
-import semver from 'semver';
 import slugify from '@sindresorhus/slugify';
+import semver from 'semver';
 import spdxLicenseList from 'spdx-license-list/full.js';
 import terminalLink from 'terminal-link';
+import Generator from 'yeoman-generator';
+import * as choices from '../../lib/choices.js';
+import { getAllLibraries, getLanguageChoices, licenseChoices } from '../../lib/helpers.js';
 
 export default class extends Generator {
 	constructor(args, opts) {
@@ -17,10 +16,10 @@ export default class extends Generator {
 		this.option('unlock-all', { desc: 'Unlocks all disabled features', default: false });
 		this.option('debug', { desc: 'Prints debug messages', default: false });
 
-		this.looseVersion = this.options.looseVersion ? true : false;
-		this.disabled = this.options.unlockAll ? false : true;
-		this.firstParty = this.options.firstParty ? true : false;
-		this.debug = this.options.debug ? true : false;
+		this.looseVersion = this.options.looseVersion;
+		this.disabled = this.options.unlockAll;
+		this.firstParty = this.options.firstParty;
+		this.debug = this.options.debug;
 
 		globalThis.console.log(/* let it breathe */);
 	}
@@ -29,14 +28,14 @@ export default class extends Generator {
 		return this.prompt([
 			{
 				name: 'name',
-				message: `Application name`,
+				message: 'Application name',
 				default: slugify(this.appname),
 				store: true,
 				validate: (name) => (name.trim().length > 0 ? true : 'Not a valid name'),
 			},
 			{
 				name: 'version',
-				message: `Application version`,
+				message: 'Application version',
 				default: '0.0.0',
 				store: true,
 				validate: (version) =>
@@ -85,7 +84,7 @@ export default class extends Generator {
 				type: 'confirm',
 				default: true,
 				store: true,
-				when: (answers) => (answers.pages?.includes('license') ? true : false),
+				when: (answers) => !!answers.pages?.includes('license'),
 			},
 			{
 				name: 'spdxLicense',
@@ -94,7 +93,7 @@ export default class extends Generator {
 				default: 'MIT',
 				choices: licenseChoices,
 				store: true,
-				when: (answers) => (answers.pages?.includes('license') && answers.spdxQuestion ? true : false),
+				when: (answers) => !!(answers.pages?.includes('license') && answers.spdxQuestion),
 			},
 			{
 				name: 'sections',
@@ -102,7 +101,9 @@ export default class extends Generator {
 				default: 1,
 				store: true,
 				validate: (number) =>
-					Number.isInteger(parseInt(number)) && parseInt(number) > 0 ? true : 'Not a valid integer',
+					Number.isInteger(Number.parseInt(number, 10)) && Number.parseInt(number, 10) > 0
+						? true
+						: 'Not a valid integer',
 			},
 			{
 				name: 'lifecycles',
