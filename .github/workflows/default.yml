@@ -36,7 +36,6 @@ jobs:
 
       - name: Install NSIS on Windows
         if: matrix.os == 'windows-2025'
-        shell: pwsh
         run: |
           winget install \
             --accept-package-agreements \
