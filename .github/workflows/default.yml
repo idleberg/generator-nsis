@@ -37,10 +37,10 @@ jobs:
       - name: Install NSIS on Windows
         if: matrix.os == 'windows-2025'
         run: |
-          winget install \
-            --accept-package-agreements \
-            --accept-source-agreements \
-            --disable-interactivity \
+          winget install `
+            --accept-package-agreements `
+            --accept-source-agreements `
+            --disable-interactivity `
             --id NSIS.NSIS
 
       - uses: actions/setup-node@v5
