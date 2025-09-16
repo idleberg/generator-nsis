@@ -16,10 +16,7 @@ export default class extends Generator {
 		this.option('unlock-all', { desc: 'Unlocks all disabled features', default: false });
 		this.option('debug', { desc: 'Prints debug messages', default: false });
 
-		this.looseVersion = this.options.looseVersion;
-		this.disabled = this.options.unlockAll;
-		this.firstParty = this.options.firstParty;
-		this.debug = this.options.debug;
+		this.disabled = !this.options.unlockAll;
 
 		globalThis.console.log(/* let it breathe */);
 	}
@@ -39,7 +36,7 @@ export default class extends Generator {
 				default: '0.0.0',
 				store: true,
 				validate: (version) =>
-					this.looseVersion === true || semver.valid(version) !== null
+					this.options.looseVersion === true || semver.valid(version) !== null
 						? true
 						: `Not a valid ${terminalLink('semantic version', 'https://semver.org', {
 								fallback: false,
@@ -119,13 +116,13 @@ export default class extends Generator {
 				type: 'checkbox',
 				store: true,
 				default: [],
-				choices: async () => (this.firstParty ? choices.includes : await getAllLibraries()),
+				choices: async () => (this.options.firstParty ? choices.includes : await getAllLibraries()),
 				validate: (lifecycles) =>
 					lifecycles.includes('MUI') && lifecycles.includes('MUI2') ? "Don't mix MUI versions" : true,
 			},
 			{
 				name: 'languages',
-				message: this.disabled === true ? 'Add languages other than English' : 'Add languages',
+				message: this.disabled ? 'Add languages other than English' : 'Add languages',
 				type: 'checkbox',
 				store: true,
 				default: [],
@@ -191,7 +188,7 @@ export default class extends Generator {
 			await this.fs.copyTplAsync(this.templatePath('installer.nsi.ejs'), this.destinationPath('installer.nsi'), {
 				languageData: languageData,
 				pkg: props,
-				unlockAll: this.options['unlock-all'],
+				unlockAll: this.options.unlockAll,
 				debug: this.options.debug,
 			});
 
