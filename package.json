@@ -45,15 +45,13 @@
 		"yeoman-generator": "^7.5.1"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.2.4",
 		"@commitlint/cli": "^19.8.1",
 		"@commitlint/config-conventional": "^19.8.1",
-		"@idleberg/configs": "^0.3.0",
+		"@idleberg/configs": "^0.3.1",
 		"@lukeed/uuid": "^2.0.1",
-		"@types/node": "^22.15.33",
+		"@types/node": "^24.5.2",
 		"concurrently": "^9.2.1",
 		"ejs-lint": "^2.0.1",
-		"lefthook": "^1.13.0",
 		"mem-fs": "^4.1.2",
 		"np": "^10.2.0",
 		"prettier": "^3.6.2",
