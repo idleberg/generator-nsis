@@ -21,7 +21,10 @@ export default class extends Generator {
 		globalThis.console.log(/* let it breathe */);
 	}
 
-	inquirer() {
+	async inquirer() {
+		// Pre-load async choices for proper storage support
+		const includeChoices = this.options.firstParty ? choices.includes : await getAllLibraries();
+
 		return this.prompt([
 			{
 				name: 'name',
@@ -116,7 +119,7 @@ export default class extends Generator {
 				type: 'checkbox',
 				store: true,
 				default: [],
-				choices: async () => (this.options.firstParty ? choices.includes : await getAllLibraries()),
+				choices: includeChoices,
 				validate: (lifecycles) =>
 					lifecycles.includes('MUI') && lifecycles.includes('MUI2') ? "Don't mix MUI versions" : true,
 			},
