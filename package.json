@@ -38,7 +38,7 @@
 	"dependencies": {
 		"@nsis/language-data": "^0.9.3",
 		"@sindresorhus/slugify": "^3.0.0",
-		"glob": "^11.0.3",
+		"glob": "^13.0.0",
 		"makensis": "3.0.3",
 		"semver": "^7.7.3",
 		"spdx-license-list": "^6.10.0",
@@ -61,8 +61,8 @@
 		"typescript": "^5.9.3",
 		"uvu": "^0.5.6",
 		"yeoman-assert": "^3.1.1",
-		"yeoman-environment": "^4.4.3",
-		"yeoman-test": "^10.1.1"
+		"yeoman-environment": "^5.1.1",
+		"yeoman-test": "^11.2.0"
 	},
 	"lint-staged": {
 		"*.ejs": "ejslint",
