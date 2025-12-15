@@ -21,11 +21,11 @@ export default class extends Generator {
 		globalThis.console.log(/* let it breathe */);
 	}
 
-	async inquirer() {
+	async prompting() {
 		// Pre-load async choices for proper storage support
 		const includeChoices = this.options.firstParty ? choices.includes : await getAllLibraries();
 
-		return this.prompt([
+		this.props = await this.prompt([
 			{
 				name: 'name',
 				message: 'Application name',
@@ -148,58 +148,62 @@ export default class extends Generator {
 					}
 				},
 			},
-		]).then(async (props) => {
-			if (this.options.debug) {
-				globalThis.console.log(props);
+		]);
+	}
+
+	async writing() {
+		if (this.options.debug) {
+			globalThis.console.log(this.props);
+		}
+
+		if (typeof this.props.spdxLicense !== 'undefined') {
+			this.props.licenseText = spdxLicenseList[this.props.spdxLicense].licenseText
+				// normalize line endings
+				.split('\n')
+
+				// .map(line => line.trim())
+				.join(this.props.unicode ? '\n' : '\r\n');
+		}
+
+		if (this.props.name.includes('&')) {
+			this.props.ampersand_name = this.props.name.replace('&', '&&');
+		}
+
+		this.props.outfile = this.props.version
+			? `${slugify(this.props.name)}-${this.props.version}-setup`
+			: `${slugify(this.props.name)}-setup`;
+
+		if (this.props.languageDialog) {
+			if (!this.props.lifecycles.includes('.onInit')) {
+				this.props.lifecycles.unshift('.onInit');
+			}
+		}
+
+		if (this.props.includes?.includes('MUI2')) {
+			const includesOnGUIInit = this.props.lifecycles.indexOf('.onGUIInit');
+
+			if (includesOnGUIInit !== -1) {
+				this.props.lifecycles.splice(includesOnGUIInit, 1, 'MUI.onGUIInit');
 			}
 
-			if (typeof props.spdxLicense !== 'undefined') {
-				props.licenseText = spdxLicenseList[props.spdxLicense].licenseText
-					// normalize line endings
-					.split('\n')
+			const includesOnUserAbort = this.props.lifecycles.indexOf('.onUserAbort');
 
-					// .map(line => line.trim())
-					.join(props.unicode ? '\n' : '\r\n');
+			if (includesOnUserAbort !== -1) {
+				this.props.lifecycles.splice(includesOnUserAbort, 1, 'MUI.onUserAbort');
 			}
+		}
 
-			if (props.name.includes('&')) {
-				props.ampersand_name = props.name.replace('&', '&&');
-			}
-
-			props.outfile = props.version ? `${slugify(props.name)}-${props.version}-setup` : `${slugify(props.name)}-setup`;
-
-			if (props.languageDialog) {
-				if (!props.lifecycles.includes('.onInit')) {
-					props.lifecycles.unshift('.onInit');
-				}
-			}
-
-			if (props.includes?.includes('MUI2')) {
-				const includesOnGUIInit = props.lifecycles.indexOf('.onGUIInit');
-
-				if (includesOnGUIInit !== -1) {
-					props.lifecycles.splice(includesOnGUIInit, 1, 'MUI.onGUIInit');
-				}
-
-				const includesOnUserAbort = props.lifecycles.indexOf('.onUserAbort');
-
-				if (includesOnUserAbort !== -1) {
-					props.lifecycles.splice(includesOnUserAbort, 1, 'MUI.onUserAbort');
-				}
-			}
-
-			await this.fs.copyTplAsync(this.templatePath('installer.nsi.ejs'), this.destinationPath('installer.nsi'), {
-				languageData: languageData,
-				pkg: props,
-				unlockAll: this.options['unlock-all'],
-				debug: this.options.debug,
-			});
-
-			if (typeof props.spdxLicense !== 'undefined') {
-				await this.fs.copyTplAsync(this.templatePath('license.txt.ejs'), this.destinationPath('license.txt'), {
-					licenseText: props.licenseText,
-				});
-			}
+		await this.fs.copyTplAsync(this.templatePath('installer.nsi.ejs'), this.destinationPath('installer.nsi'), {
+			languageData: languageData,
+			pkg: this.props,
+			unlockAll: this.options['unlock-all'],
+			debug: this.options.debug,
 		});
+
+		if (typeof this.props.spdxLicense !== 'undefined') {
+			await this.fs.copyTplAsync(this.templatePath('license.txt.ejs'), this.destinationPath('license.txt'), {
+				licenseText: this.props.licenseText,
+			});
+		}
 	}
 }
