@@ -3,7 +3,7 @@ import assert from 'yeoman-assert';
 import { includes } from '../lib/choices.js';
 import { helper } from './__helper.js';
 
-const includesNames = includes.map(({ value }) => `${value}.nsh`);
+const includesNames = includes.map(({ value }) => value);
 
 /**
  * alls built-ins
@@ -17,8 +17,8 @@ IncludeTest.before(() =>
 );
 
 includesNames.forEach((include) => {
-	IncludeTest(`has !include set to ${include}`, () => {
-		assert.fileContent('installer.nsi', `!include "${include}"`);
+	IncludeTest(`has !include set to ${include}.nsh`, () => {
+		assert.fileContent('installer.nsi', `!include "${include}.nsh"`);
 	});
 });
 
@@ -36,8 +36,8 @@ includesNames.forEach((include) => {
 		}),
 	);
 
-	IncludeTest(`has !include set to ${include}`, () => {
-		assert.fileContent('installer.nsi', `!include "${include}"`);
+	IncludeTest(`has !include set to ${include}.nsh`, () => {
+		assert.fileContent('installer.nsi', `!include "${include}.nsh"`);
 	});
 
 	IncludeTest.run();
