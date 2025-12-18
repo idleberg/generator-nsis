@@ -1,20 +1,20 @@
-name: 'Run tests on NodeJS'
+name: "Run tests on NodeJS"
 
 on:
   push:
     paths:
-      - '.github/**'
-      - 'generators/**'
-      - 'test/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
+      - ".github/**"
+      - "generators/**"
+      - "test/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
   pull_request:
     paths:
-      - '.github/**'
-      - 'generators/**'
-      - 'test/**'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
+      - ".github/**"
+      - "generators/**"
+      - "test/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: ['lts/*', '*']
+        node-version: ["lts/*", "*"]
         os: [ubuntu-latest, windows-latest]
 
     steps:
@@ -68,6 +68,7 @@ jobs:
         run: pnpm install --frozen-lockfile --strict-peer-dependencies
 
       - name: Lint Source
+        if: matrix.os != 'windows-latest'
         run: pnpm exec biome ci
 
       - name: Build Source
