@@ -68,6 +68,7 @@ jobs:
         run: pnpm install --frozen-lockfile --strict-peer-dependencies
 
       - name: Lint Source
+        # Biome still treats lineEndings differently per OS
         if: matrix.os != 'windows-latest'
         run: pnpm exec biome ci
 
