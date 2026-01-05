@@ -34,11 +34,11 @@ importers:
         version: 7.5.1(@types/node@24.5.2)(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)
     devDependencies:
       '@commitlint/cli':
-        specifier: ^20.2.0
-        version: 20.2.0(@types/node@24.5.2)(typescript@5.9.3)
+        specifier: ^20.3.0
+        version: 20.3.0(@types/node@24.5.2)(typescript@5.9.3)
       '@commitlint/config-conventional':
-        specifier: ^20.2.0
-        version: 20.2.0
+        specifier: ^20.3.0
+        version: 20.3.0
       '@idleberg/configs':
         specifier: ^0.4.1
         version: 0.4.1(picomatch@4.0.3)
@@ -79,11 +79,11 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1
       yeoman-environment:
-        specifier: ^5.1.1
-        version: 5.1.1(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)
+        specifier: ^5.1.2
+        version: 5.1.2(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)
       yeoman-test:
         specifier: ^11.2.0
-        version: 11.2.0(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)(yeoman-environment@5.1.1(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2))(yeoman-generator@7.5.1(@types/node@24.5.2)(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2))
+        version: 11.2.0(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)(yeoman-environment@5.1.2(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2))(yeoman-generator@7.5.1(@types/node@24.5.2)(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2))
 
 packages:
 
@@ -395,13 +395,13 @@ packages:
   '@clack/prompts@1.0.0-alpha.8':
     resolution: {integrity: sha512-YZGC4BmTKSF5OturNKEz/y4xNjYGmGk6NI785CQucJ7OEdX0qbMmL/zok+9bL6c7qE3WSYffyK5grh2RnkGNtQ==}
 
-  '@commitlint/cli@20.2.0':
-    resolution: {integrity: sha512-l37HkrPZ2DZy26rKiTUvdq/LZtlMcxz+PeLv9dzK9NzoFGuJdOQyYU7IEkEQj0pO++uYue89wzOpZ0hcTtoqUA==}
+  '@commitlint/cli@20.3.0':
+    resolution: {integrity: sha512-HXO8YVfqdBK+MnlX2zqNrv6waGYPs6Ysjm5W2Y0GMagWXwiIKx7C8dcIX9ca+QdHq4WA0lcMnZLQ0pzQh1piZg==}
     engines: {node: '>=v18'}
     hasBin: true
 
-  '@commitlint/config-conventional@20.2.0':
-    resolution: {integrity: sha512-MsRac+yNIbTB4Q/psstKK4/ciVzACHicSwz+04Sxve+4DW+PiJeTjU0JnS4m/oOnulrXYN+yBPlKaBSGemRfgQ==}
+  '@commitlint/config-conventional@20.3.0':
+    resolution: {integrity: sha512-g1OXVl6E2v0xF1Ru2RpxQ+Vfy7XUcUsCmLKzGUrhFLS4hSNykje0QSy6djBtzOiOBQCepBrmIlqx/gRlzrSh5A==}
     engines: {node: '>=v18'}
 
   '@commitlint/config-validator@20.2.0':
@@ -424,12 +424,12 @@ packages:
     resolution: {integrity: sha512-Lz0OGeZCo/QHUDLx5LmZc0EocwanneYJUM8z0bfWexArk62HKMLfLIodwXuKTO5y0s6ddXaTexrYHs7v96EOmw==}
     engines: {node: '>=v18'}
 
-  '@commitlint/lint@20.2.0':
-    resolution: {integrity: sha512-cQEEB+jlmyQbyiji/kmh8pUJSDeUmPiWq23kFV0EtW3eM+uAaMLMuoTMajbrtWYWQpPzOMDjYltQ8jxHeHgITg==}
+  '@commitlint/lint@20.3.0':
+    resolution: {integrity: sha512-X19HOGU5nRo6i9DIY0kG0mhgtvpn1UGO1D6aLX1ILLyeqSM5yJyMcrRqNj8SLgeSeUDODhLY9QYsBIG0LdNHkA==}
     engines: {node: '>=v18'}
 
-  '@commitlint/load@20.2.0':
-    resolution: {integrity: sha512-iAK2GaBM8sPFTSwtagI67HrLKHIUxQc2BgpgNc/UMNme6LfmtHpIxQoN1TbP+X1iz58jq32HL1GbrFTCzcMi6g==}
+  '@commitlint/load@20.3.0':
+    resolution: {integrity: sha512-amkdVZTXp5R65bsRXRSCwoNXbJHR2aAIY/RGFkoyd63t8UEwqEgT3f0MgeLqYw4hwXyq+TYXKdaW133E29pnGQ==}
     engines: {node: '>=v18'}
 
   '@commitlint/message@20.0.0':
@@ -448,8 +448,8 @@ packages:
     resolution: {integrity: sha512-KVoLDi9BEuqeq+G0wRABn4azLRiCC22/YHR2aCquwx6bzCHAIN8hMt3Nuf1VFxq/c8ai6s8qBxE8+ZD4HeFTlQ==}
     engines: {node: '>=v18'}
 
-  '@commitlint/rules@20.2.0':
-    resolution: {integrity: sha512-27rHGpeAjnYl/A+qUUiYDa7Yn1WIjof/dFJjYW4gA1Ug+LUGa1P0AexzGZ5NBxTbAlmDgaxSZkLLxtLVqtg8PQ==}
+  '@commitlint/rules@20.3.0':
+    resolution: {integrity: sha512-TGgXN/qBEhbzVD13crE1l7YSMJRrbPbUL0OBZALbUM5ER36RZmiZRu2ud2W/AA7HO9YLBRbyx6YVi2t/2Be0yQ==}
     engines: {node: '>=v18'}
 
   '@commitlint/to-lines@20.0.0':
@@ -831,24 +831,24 @@ packages:
     resolution: {integrity: sha512-NwCl5Y0V6Di0NexvkTqdoVfmjTaQwoLM236r89KEojGmq/jMls8S+zb7yOwAPdXvbwfKDlP+lmXgAL4vKSQT+A==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  '@sigstore/core@3.0.0':
-    resolution: {integrity: sha512-NgbJ+aW9gQl/25+GIEGYcCyi8M+ng2/5X04BMuIgoDfgvp18vDcoNHOQjQsG9418HGNYRxG3vfEXaR1ayD37gg==}
+  '@sigstore/core@3.1.0':
+    resolution: {integrity: sha512-o5cw1QYhNQ9IroioJxpzexmPjfCe7gzafd2RY3qnMpxr4ZEja+Jad/U8sgFpaue6bOaF+z7RVkyKVV44FN+N8A==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
   '@sigstore/protobuf-specs@0.5.0':
     resolution: {integrity: sha512-MM8XIwUjN2bwvCg1QvrMtbBmpcSHrkhFSCu1D11NyPvDQ25HEc4oG5/OcQfd/Tlf/OxmKWERDj0zGE23jQaMwA==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
-  '@sigstore/sign@4.0.1':
-    resolution: {integrity: sha512-KFNGy01gx9Y3IBPG/CergxR9RZpN43N+lt3EozEfeoyqm8vEiLxwRl3ZO5sPx3Obv1ix/p7FWOlPc2Jgwfp9PA==}
+  '@sigstore/sign@4.1.0':
+    resolution: {integrity: sha512-Vx1RmLxLGnSUqx/o5/VsCjkuN5L7y+vxEEwawvc7u+6WtX2W4GNa7b9HEjmcRWohw/d6BpATXmvOwc78m+Swdg==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  '@sigstore/tuf@4.0.0':
-    resolution: {integrity: sha512-0QFuWDHOQmz7t66gfpfNO6aEjoFrdhkJaej/AOqb4kqWZVbPWFZifXZzkxyQBB1OwTbkhdT3LNpMFxwkTvf+2w==}
+  '@sigstore/tuf@4.0.1':
+    resolution: {integrity: sha512-OPZBg8y5Vc9yZjmWCHrlWPMBqW5yd8+wFNl+thMdtcWz3vjVSoJQutF8YkrzI0SLGnkuFof4HSsWUhXrf219Lw==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  '@sigstore/verify@3.0.0':
-    resolution: {integrity: sha512-moXtHH33AobOhTZF8xcX1MpOFqdvfCk7v6+teJL8zymBiDXwEsQH6XG9HGx2VIxnJZNm4cNSzflTLDnQLmIdmw==}
+  '@sigstore/verify@3.1.0':
+    resolution: {integrity: sha512-mNe0Iigql08YupSOGv197YdHpPPr+EzDZmfCgMc7RPNaZTw5aLN01nBl6CHJOh3BGtnMIj83EeN4butBchc8Ag==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
   '@sindresorhus/merge-streams@2.3.0':
@@ -874,8 +874,8 @@ packages:
     resolution: {integrity: sha512-yVtV8zsdo8qFHe+/3kw81dSLyF7D576A5cCFCi4X7B39tWT7SekaEFUnvnWJHz+9qO7qJTah1JbrDjWKqFtdWA==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
-  '@tufjs/models@4.0.0':
-    resolution: {integrity: sha512-h5x5ga/hh82COe+GoD4+gKUeV4T3iaYOxqLt41GRKApinPI7DMidhCmNVTjKfhCWFJIGXaFJee07XczdT4jdZQ==}
+  '@tufjs/models@4.1.0':
+    resolution: {integrity: sha512-Y8cK9aggNRsqJVaKUlEYs4s7CvQ1b1ta2DVPyAimb0I2qhzjNk+A+mxvll/klL0RlfuIUei8BF7YWiua4kQqww==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
   '@types/conventional-commits-parser@5.0.2':
@@ -1805,8 +1805,8 @@ packages:
     resolution: {integrity: sha512-0Ia46fDOaT7k4og1PDW4YbodWWr3scS2vAr2lTbsplOt2WkKp0vQbkI9wKis/T5LV/dqPjO3bpS/z6GTJB82LA==}
     engines: {node: '>=18'}
 
-  globby@16.0.0:
-    resolution: {integrity: sha512-ejy4TJFga99yW6Q0uhM3pFawKWZmtZzZD/v/GwI5+9bCV5Ew+D2pSND6W7fUes5UykqSsJkUfxFVdRh7Q1+P3Q==}
+  globby@16.1.0:
+    resolution: {integrity: sha512-+A4Hq7m7Ze592k9gZRy4gJ27DrXRNnC1vPjxTt1qQxEY8RxagBkBxivkCwg7FxSTG0iLLEMaUx13oOr0R2/qcQ==}
     engines: {node: '>=20'}
 
   graceful-fs@4.2.10:
@@ -2304,6 +2304,9 @@ packages:
 
   lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+
+  lodash-es@4.17.22:
+    resolution: {integrity: sha512-XEawp1t0gxSi9x01glktRZ5HDy0HXqrM0x5pXQM98EaI0NxO6jVM7omDOxsuEo5UIASAnm2bRp1Jt/e0a2XU8Q==}
 
   lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
@@ -2821,10 +2824,6 @@ packages:
     resolution: {integrity: sha512-gjVS5hOP+M3wMm5nmNOucbIrqudzs9v/57bWRHQWLYklXqoXKrVfYW2W9+glfGsqtPgpiz5WwyEEB+ksXIx3gQ==}
     engines: {node: '>=18'}
 
-  proc-log@5.0.0:
-    resolution: {integrity: sha512-Azwzvl90HaF0aCz1JrDdXQykFakSSNPaPoiZ9fm5qJIMHioDZEi7OAdRwSm6rSoPtY3Qutnm3L7ogmg3dc+wbQ==}
-    engines: {node: ^18.17.0 || >=20.5.0}
-
   proc-log@6.1.0:
     resolution: {integrity: sha512-iG+GYldRf2BQ0UDUAd6JQ/RwzaQy6mXmsk/IzlYyal4A4SNFw54MeH4/tLkF4I5WoWG9SQwuqWzS99jaFQHBuQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
@@ -3026,8 +3025,8 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  sigstore@4.0.0:
-    resolution: {integrity: sha512-Gw/FgHtrLM9WP8P5lLcSGh9OQcrTruWCELAiS48ik1QbL0cH+dfjomiRTUE9zzz+D1N6rOLkwXUvVmXZAsNE0Q==}
+  sigstore@4.1.0:
+    resolution: {integrity: sha512-/fUgUhYghuLzVT/gaJoeVehLCgZiUxPCPMcyVNY0lIf/cTCz58K/WTI7PefDarXxp9nUKpEwg1yyz3eSBMTtgA==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
   simple-git@3.28.0:
@@ -3289,8 +3288,8 @@ packages:
     engines: {node: '>=12'}
     hasBin: true
 
-  tuf-js@4.0.0:
-    resolution: {integrity: sha512-Lq7ieeGvXDXwpoSmOSgLWVdsGGV9J4a77oDTAPe/Ltrqnnm/ETaRlBAQTH5JatEh8KXuE6sddf9qAv1Q2282Hg==}
+  tuf-js@4.1.0:
+    resolution: {integrity: sha512-50QV99kCKH5P/Vs4E2Gzp7BopNV+KzTXqWeaxrfu5IQJBOULRsTIS9seSsOVT8ZnGXzCyx55nYWAi4qJzpZKEQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
   type-fest@0.21.3:
@@ -3388,8 +3387,8 @@ packages:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  validate-npm-package-name@7.0.0:
-    resolution: {integrity: sha512-bwVk/OK+Qu108aJcMAEiU4yavHUI7aN20TgZNBj9MR2iU1zPUl1Z1Otr7771ExfYTPTvfN8ZJ1pbr5Iklgt4xg==}
+  validate-npm-package-name@7.0.1:
+    resolution: {integrity: sha512-BM0Upcemlce8/9+HE+/VpWqn3u3mYh6Om/FEC8yPMnEHwf710fW5Q6fhjT1SQyRlZD1G9CJbgfH+rWgAcIvjlQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
   version-range@4.14.0:
@@ -3493,8 +3492,8 @@ packages:
     resolution: {integrity: sha512-bCuLb/j/WzpvrJZCTdJJLFzm7KK8IYQJ3+dF9dYtNs2CUYyezFJDuULiZ2neM4eqjf45GN1KH/MzCTT3i90wUQ==}
     engines: {node: '>=4'}
 
-  yeoman-environment@5.1.1:
-    resolution: {integrity: sha512-g4ichW3SBdi0IZff7Fd8tWXwF0jHsNFfgYTi9/bqDaEr9OSL5OTKupFa9XikOcVhkeCMQysyRqXzgLK/VH/JgA==}
+  yeoman-environment@5.1.2:
+    resolution: {integrity: sha512-NFNm3T+Lk+57Lp+4SSnUdcHwSlyD5yq7KvDwx0xIUg5GngNPezWHLaejWRj3j26xgmlJXUw9371p1LZzv4s/6g==}
     engines: {node: ^20.17.0 || >=22.9.0}
     hasBin: true
     peerDependencies:
@@ -3532,8 +3531,8 @@ packages:
       yeoman-generator:
         optional: true
 
-  yocto-queue@1.2.1:
-    resolution: {integrity: sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==}
+  yocto-queue@1.2.2:
+    resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
     engines: {node: '>=12.20'}
 
   yoctocolors-cjs@2.1.2:
@@ -3898,11 +3897,11 @@ snapshots:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@commitlint/cli@20.2.0(@types/node@24.5.2)(typescript@5.9.3)':
+  '@commitlint/cli@20.3.0(@types/node@24.5.2)(typescript@5.9.3)':
     dependencies:
       '@commitlint/format': 20.2.0
-      '@commitlint/lint': 20.2.0
-      '@commitlint/load': 20.2.0(@types/node@24.5.2)(typescript@5.9.3)
+      '@commitlint/lint': 20.3.0
+      '@commitlint/load': 20.3.0(@types/node@24.5.2)(typescript@5.9.3)
       '@commitlint/read': 20.2.0
       '@commitlint/types': 20.2.0
       tinyexec: 1.0.2
@@ -3911,7 +3910,7 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@commitlint/config-conventional@20.2.0':
+  '@commitlint/config-conventional@20.3.0':
     dependencies:
       '@commitlint/types': 20.2.0
       conventional-changelog-conventionalcommits: 7.0.2
@@ -3942,14 +3941,14 @@ snapshots:
       '@commitlint/types': 20.2.0
       semver: 7.7.3
 
-  '@commitlint/lint@20.2.0':
+  '@commitlint/lint@20.3.0':
     dependencies:
       '@commitlint/is-ignored': 20.2.0
       '@commitlint/parse': 20.2.0
-      '@commitlint/rules': 20.2.0
+      '@commitlint/rules': 20.3.0
       '@commitlint/types': 20.2.0
 
-  '@commitlint/load@20.2.0(@types/node@24.5.2)(typescript@5.9.3)':
+  '@commitlint/load@20.3.0(@types/node@24.5.2)(typescript@5.9.3)':
     dependencies:
       '@commitlint/config-validator': 20.2.0
       '@commitlint/execute-rule': 20.0.0
@@ -3990,7 +3989,7 @@ snapshots:
       lodash.mergewith: 4.6.2
       resolve-from: 5.0.0
 
-  '@commitlint/rules@20.2.0':
+  '@commitlint/rules@20.3.0':
     dependencies:
       '@commitlint/ensure': 20.2.0
       '@commitlint/message': 20.0.0
@@ -4449,32 +4448,32 @@ snapshots:
     dependencies:
       '@sigstore/protobuf-specs': 0.5.0
 
-  '@sigstore/core@3.0.0': {}
+  '@sigstore/core@3.1.0': {}
 
   '@sigstore/protobuf-specs@0.5.0': {}
 
-  '@sigstore/sign@4.0.1':
+  '@sigstore/sign@4.1.0':
     dependencies:
       '@sigstore/bundle': 4.0.0
-      '@sigstore/core': 3.0.0
+      '@sigstore/core': 3.1.0
       '@sigstore/protobuf-specs': 0.5.0
       make-fetch-happen: 15.0.3
-      proc-log: 5.0.0
+      proc-log: 6.1.0
       promise-retry: 2.0.1
     transitivePeerDependencies:
       - supports-color
 
-  '@sigstore/tuf@4.0.0':
+  '@sigstore/tuf@4.0.1':
     dependencies:
       '@sigstore/protobuf-specs': 0.5.0
-      tuf-js: 4.0.0
+      tuf-js: 4.1.0
     transitivePeerDependencies:
       - supports-color
 
-  '@sigstore/verify@3.0.0':
+  '@sigstore/verify@3.1.0':
     dependencies:
       '@sigstore/bundle': 4.0.0
-      '@sigstore/core': 3.0.0
+      '@sigstore/core': 3.1.0
       '@sigstore/protobuf-specs': 0.5.0
 
   '@sindresorhus/merge-streams@2.3.0': {}
@@ -4492,10 +4491,10 @@ snapshots:
 
   '@tufjs/canonical-json@2.0.0': {}
 
-  '@tufjs/models@4.0.0':
+  '@tufjs/models@4.1.0':
     dependencies:
       '@tufjs/canonical-json': 2.0.0
-      minimatch: 9.0.5
+      minimatch: 10.1.1
 
   '@types/conventional-commits-parser@5.0.2':
     dependencies:
@@ -5360,7 +5359,7 @@ snapshots:
       slash: 5.1.0
       unicorn-magic: 0.3.0
 
-  globby@16.0.0:
+  globby@16.1.0:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       fast-glob: 3.3.3
@@ -5825,6 +5824,8 @@ snapshots:
 
   lodash-es@4.17.21: {}
 
+  lodash-es@4.17.22: {}
+
   lodash.camelcase@4.3.0: {}
 
   lodash.isplainobject@4.0.6: {}
@@ -6179,7 +6180,7 @@ snapshots:
       hosted-git-info: 9.0.2
       proc-log: 6.1.0
       semver: 7.7.3
-      validate-npm-package-name: 7.0.0
+      validate-npm-package-name: 7.0.1
 
   npm-packlist@10.0.3:
     dependencies:
@@ -6280,7 +6281,7 @@ snapshots:
 
   p-limit@4.0.0:
     dependencies:
-      yocto-queue: 1.2.1
+      yocto-queue: 1.2.2
 
   p-locate@3.0.0:
     dependencies:
@@ -6346,7 +6347,7 @@ snapshots:
       npm-registry-fetch: 19.1.1
       proc-log: 6.1.0
       promise-retry: 2.0.1
-      sigstore: 4.0.0
+      sigstore: 4.1.0
       ssri: 13.0.0
       tar: 7.5.2
     transitivePeerDependencies:
@@ -6432,8 +6433,6 @@ snapshots:
   pretty-ms@9.3.0:
     dependencies:
       parse-ms: 4.0.0
-
-  proc-log@5.0.0: {}
 
   proc-log@6.1.0: {}
 
@@ -6609,14 +6608,14 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  sigstore@4.0.0:
+  sigstore@4.1.0:
     dependencies:
       '@sigstore/bundle': 4.0.0
-      '@sigstore/core': 3.0.0
+      '@sigstore/core': 3.1.0
       '@sigstore/protobuf-specs': 0.5.0
-      '@sigstore/sign': 4.0.1
-      '@sigstore/tuf': 4.0.0
-      '@sigstore/verify': 3.0.0
+      '@sigstore/sign': 4.1.0
+      '@sigstore/tuf': 4.0.1
+      '@sigstore/verify': 3.1.0
     transitivePeerDependencies:
       - supports-color
 
@@ -6870,9 +6869,9 @@ snapshots:
     dependencies:
       esbuild: 0.15.18
 
-  tuf-js@4.0.0:
+  tuf-js@4.1.0:
     dependencies:
-      '@tufjs/models': 4.0.0
+      '@tufjs/models': 4.1.0
       debug: 4.4.3
       make-fetch-happen: 15.0.3
     transitivePeerDependencies:
@@ -6956,7 +6955,7 @@ snapshots:
 
   validate-npm-package-name@5.0.1: {}
 
-  validate-npm-package-name@7.0.0: {}
+  validate-npm-package-name@7.0.1: {}
 
   version-range@4.14.0: {}
 
@@ -7060,7 +7059,7 @@ snapshots:
 
   yeoman-assert@3.1.1: {}
 
-  yeoman-environment@5.1.1(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2):
+  yeoman-environment@5.1.2(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2):
     dependencies:
       '@yeoman/adapter': 1.6.0(@types/node@24.5.2)
       '@yeoman/conflicter': 4.0.0(@types/node@24.5.2)(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)
@@ -7073,10 +7072,10 @@ snapshots:
       debug: 4.4.3
       execa: 9.6.1
       fly-import: 1.0.0
-      globby: 16.0.0
+      globby: 16.1.0
       grouped-queue: 2.1.0
       locate-path: 8.0.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.22
       mem-fs: 4.1.2
       mem-fs-editor: 11.1.4(mem-fs@4.1.2)
       semver: 7.7.3
@@ -7112,7 +7111,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  yeoman-test@11.2.0(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)(yeoman-environment@5.1.1(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2))(yeoman-generator@7.5.1(@types/node@24.5.2)(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)):
+  yeoman-test@11.2.0(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)(yeoman-environment@5.1.2(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2))(yeoman-generator@7.5.1(@types/node@24.5.2)(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)):
     dependencies:
       '@yeoman/types': 1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2)
       lodash-es: 4.17.21
@@ -7122,10 +7121,10 @@ snapshots:
     optionalDependencies:
       '@yeoman/adapter': 1.6.0(@types/node@24.5.2)
       mem-fs: 4.1.2
-      yeoman-environment: 5.1.1(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)
+      yeoman-environment: 5.1.2(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)
       yeoman-generator: 7.5.1(@types/node@24.5.2)(@yeoman/types@1.5.0(@types/node@24.5.2)(@yeoman/adapter@1.6.0(@types/node@24.5.2))(mem-fs-editor@10.0.3)(mem-fs@4.1.2))(mem-fs@4.1.2)
 
-  yocto-queue@1.2.1: {}
+  yocto-queue@1.2.2: {}
 
   yoctocolors-cjs@2.1.2: {}
 
