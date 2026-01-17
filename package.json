@@ -36,6 +36,7 @@
 		"node": ">=18"
 	},
 	"dependencies": {
+		"@idleberg/yeoman-generator": "^0.1.0",
 		"@nsis/language-data": "^0.9.3",
 		"@sindresorhus/slugify": "^3.0.0",
 		"glob": "^13.0.0",
