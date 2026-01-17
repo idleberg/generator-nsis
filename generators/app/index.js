@@ -1,9 +1,9 @@
+import { GeneratorCompat as Generator } from '@idleberg/yeoman-generator';
 import { meta as languageData } from '@nsis/language-data';
 import slugify from '@sindresorhus/slugify';
 import semver from 'semver';
 import spdxLicenseList from 'spdx-license-list/full.js';
 import terminalLink from 'terminal-link';
-import Generator from 'yeoman-generator';
 import * as choices from '../../lib/choices.js';
 import { getAllLibraries, getLanguageChoices, licenseChoices } from '../../lib/helpers.js';
 
@@ -193,15 +193,15 @@ export default class extends Generator {
 			}
 		}
 
-		await this.fs.copyTplAsync(this.templatePath('installer.nsi.ejs'), this.destinationPath('installer.nsi'), {
+		await this.fs.copyTplAsync(this.templatePath('installer.nsi.eta'), this.destinationPath('installer.nsi'), {
+			...this.props,
 			languageData: languageData,
-			pkg: this.props,
 			unlockAll: this.options['unlock-all'],
 			debug: this.options.debug,
 		});
 
-		if (typeof this.props.spdxLicense !== 'undefined') {
-			await this.fs.copyTplAsync(this.templatePath('license.txt.ejs'), this.destinationPath('license.txt'), {
+		if (typeof this.props.spdxLicense === 'string') {
+			await this.fs.copyTplAsync(this.templatePath('license.txt.eta'), this.destinationPath('license.txt'), {
 				licenseText: this.props.licenseText,
 			});
 		}
