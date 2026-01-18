@@ -1,6 +1,6 @@
 {
 	"name": "generator-nsis",
-	"version": "0.11.4",
+	"version": "0.12.0",
 	"description": "Yeoman generator for NSIS scripts",
 	"author": "Jan T. Sott",
 	"license": "MIT",
