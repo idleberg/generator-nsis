@@ -54,4 +54,3 @@ Function LanguageDialog
     Abort
 FunctionEnd
 <% } %>
-<% JSON.stringify(it.lifecycles) %>
