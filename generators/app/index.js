@@ -1,6 +1,7 @@
 import { GeneratorCompat as Generator } from '@idleberg/yeoman-generator';
 import { meta as languageData } from '@nsis/language-data';
 import slugify from '@sindresorhus/slugify';
+import { inverse } from 'kleur/colors';
 import semver from 'semver';
 import spdxLicenseList from 'spdx-license-list/full.js';
 import terminalLink from 'terminal-link';
@@ -22,6 +23,7 @@ export default class extends Generator {
 	}
 
 	async prompting() {
+		this.clack.intro(inverse(` ${this.appname} `));
 		// Pre-load async choices for proper storage support
 		const includeChoices = this.options.firstParty ? choices.includes : await getAllLibraries();
 

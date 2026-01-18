@@ -20,6 +20,9 @@ importers:
       glob:
         specifier: ^13.0.0
         version: 13.0.0
+      kleur:
+        specifier: ^4.1.5
+        version: 4.1.5
       makensis:
         specifier: 3.0.3
         version: 3.0.3
