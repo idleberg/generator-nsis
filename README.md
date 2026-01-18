@@ -6,8 +6,6 @@
 [![Version](https://img.shields.io/npm/v/generator-nsis?style=for-the-badge)](https://www.npmjs.org/package/generator-nsis)
 [![Build](https://img.shields.io/github/actions/workflow/status/idleberg/generator-nsis/default.yml?style=for-the-badge)](https://github.com/idleberg/generator-nsis/actions)
 
-![Screenshot](https://raw.github.com/idleberg/generator-nsis/main/screenshot.png)
-
 **Features**
 
 - Modern UI-aware
