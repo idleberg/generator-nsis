@@ -24,7 +24,7 @@
 You need [Node.js](https://nodejs.org/en/) installed and available in your `PATH` [environment variable](http://superuser.com/a/284351/195953). Use your preferred Node package manager to install the Yeoman CLI tool.
 
 ```sh
-$ npm install -g yo
+$ npm install --global yo
 ```
 
 ## Installation
@@ -32,7 +32,7 @@ $ npm install -g yo
 Use your preferred package manager to install this generator
 
 ```sh
-$ npm i generator-nsis -g
+$ npm install --global generator-nsis
 ```
 
 ## Usage
