@@ -1,9 +1,10 @@
+import { GeneratorCompat as Generator } from '@idleberg/yeoman-generator';
 import { meta as languageData } from '@nsis/language-data';
 import slugify from '@sindresorhus/slugify';
+import { inverse } from 'kleur/colors';
 import semver from 'semver';
 import spdxLicenseList from 'spdx-license-list/full.js';
 import terminalLink from 'terminal-link';
-import Generator from 'yeoman-generator';
 import * as choices from '../../lib/choices.js';
 import { getAllLibraries, getLanguageChoices, licenseChoices } from '../../lib/helpers.js';
 
@@ -17,11 +18,13 @@ export default class extends Generator {
 		this.option('debug', { desc: 'Prints debug messages', default: false });
 
 		this.disabled = !this.options.unlockAll;
+		this.outdir = this.options.debug ? '.debug' : '';
 
 		globalThis.console.log(/* let it breathe */);
 	}
 
 	async prompting() {
+		this.clack.intro(inverse(` ${this.appname} `));
 		// Pre-load async choices for proper storage support
 		const includeChoices = this.options.firstParty ? choices.includes : await getAllLibraries();
 
@@ -193,17 +196,25 @@ export default class extends Generator {
 			}
 		}
 
-		await this.fs.copyTplAsync(this.templatePath('installer.nsi.ejs'), this.destinationPath('installer.nsi'), {
-			languageData: languageData,
-			pkg: this.props,
-			unlockAll: this.options['unlock-all'],
-			debug: this.options.debug,
-		});
+		await this.fs.copyTplAsync(
+			this.templatePath('installer.nsi.eta'),
+			this.destinationPath(this.outdir, 'installer.nsi'),
+			{
+				...this.props,
+				languageData: languageData,
+				unlockAll: this.options['unlock-all'],
+				debug: this.options.debug,
+			},
+		);
 
-		if (typeof this.props.spdxLicense !== 'undefined') {
-			await this.fs.copyTplAsync(this.templatePath('license.txt.ejs'), this.destinationPath('license.txt'), {
-				licenseText: this.props.licenseText,
-			});
+		if (typeof this.props.spdxLicense === 'string') {
+			await this.fs.copyTplAsync(
+				this.templatePath('license.txt.eta'),
+				this.destinationPath(this.outdir, 'license.txt'),
+				{
+					licenseText: this.props.licenseText,
+				},
+			);
 		}
 	}
 }
