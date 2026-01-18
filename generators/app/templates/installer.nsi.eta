@@ -1,51 +1,51 @@
 # Generated with generator-nsis
 # https://github.com/idleberg/generator-nsis
 
-# Includes ---------------------------------<% pkg.includes?.forEach( include => { %>
+# Includes ---------------------------------<% it.includes?.forEach( include => { %>
 !include "<%= include %>.nsh"<% }); %>
 
 # Settings ---------------------------------
-Name "<%- pkg.name %>"<% if (typeof pkg.ampersand_name !== 'undefined') { %> "<%- pkg.ampersand_name %>"<% } %>
-OutFile "<%= pkg.outfile %>.exe"
-Unicode <%= pkg.unicode %>
-SetCompressor <%= pkg.compression %>
-RequestExecutionLevel <%= pkg.elevation %>
-InstallDir "$PROGRAMFILES\<%- pkg.name %>"<% if (!pkg.includes?.includes('MUI2') && pkg.pages?.includes('license')) { %>
-LicenseData "<% if (typeof pkg.spdxLicense !== 'undefined') { %>license.txt<% } %>"<% } %>
-<% if (pkg.includes?.includes('MUI2')) { %>
-# Modern UI --------------------------------<% if (pkg.lifecycles?.includes('MUI.onGUIInit')) { %>
-!define MUI_CUSTOMFUNCTION_GUIINIT "MUI.onGUIInit"<% } %><% if (pkg.lifecycles?.includes('MUI.onUserAbort')) { %>
+Name "<%- it.name %>"<% if (typeof it.ampersand_name !== 'undefined') { %> "<%- it.ampersand_name %>"<% } %>
+OutFile "<%= it.outfile %>.exe"
+Unicode <%= it.unicode %>
+SetCompressor <%= it.compression %>
+RequestExecutionLevel <%= it.elevation %>
+InstallDir "$PROGRAMFILES\<%- it.name %>"<% if (!it.includes?.includes('MUI2') && it.pages?.includes('license')) { %>
+LicenseData "<% if (typeof it.spdxLicense !== 'undefined') { %>license.txt<% } %>"<% } %>
+<% if (it.includes?.includes('MUI2')) { %>
+# Modern UI --------------------------------<% if (it.lifecycles?.includes('MUI.onGUIInit')) { %>
+!define MUI_CUSTOMFUNCTION_GUIINIT "MUI.onGUIInit"<% } %><% if (it.lifecycles?.includes('MUI.onUserAbort')) { %>
 !define MUI_CUSTOMFUNCTION_ABORT "MUI.onUserAbort"<% } %>
 <% } %>
 # Pages ------------------------------------
-<% pkg.pages?.forEach( page => { %><% if (page?.length) { %><% if (pkg.includes?.includes('MUI2')) { %>!insertmacro MUI_PAGE_<%= page.toUpperCase() %><% if (page === 'license' && typeof pkg.spdxLicense !== 'undefined') { %> "license.txt"<% } %><% } else { %>Page <%= page %><% } %><% } %>
+<% it.pages?.forEach( page => { %><% if (page?.length) { %><% if (it.includes?.includes('MUI2')) { %>!insertmacro MUI_PAGE_<%= page.toUpperCase() %><% if (page === 'license' && typeof it.spdxLicense !== 'undefined') { %> "license.txt"<% } %><% } else { %>Page <%= page %><% } %><% } %>
 <% }); %>
-# Languages --------------------------------<% if (unlockAll === false) { %>
-<% if (pkg.includes?.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "English"<% } else { %>LoadLanguageFile "${NSISDIR}\Contrib\Language files\English.nlf"<% } %><% } %><% pkg.languages?.forEach( language => { %>
-<% if (pkg.includes?.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "<%= language %>"<% } else { %>LoadLanguageFile "${NSISDIR}\Contrib\Language files\<%= language %>.nlf"<% } %><% }); %>
+# Languages --------------------------------<% if (it.unlockAll === false) { %>
+<% if (it.includes?.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "English"<% } else { %>LoadLanguageFile "${NSISDIR}\Contrib\Language files\English.nlf"<% } %><% } %><% it.languages?.forEach( language => { %>
+<% if (it.includes?.includes('MUI2')) { %>!insertmacro MUI_LANGUAGE "<%= language %>"<% } else { %>LoadLanguageFile "${NSISDIR}\Contrib\Language files\<%= language %>.nlf"<% } %><% }); %>
 
-# Sections ---------------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
+# Sections ---------------------------------<% for (let step = 0; step < parseInt(it.sections); step++) { %>
 Section "section" SECTION_<%= step + 1 %>
 SectionEnd
-<% } %><% if (pkg.includes?.includes('MUI2')) { %>
-# Descriptions -----------------------------<% for (let step = 0; step < parseInt(pkg.sections); step++) { %><% if (unlockAll === false) { %>
-LangString DESC_SECTION_<%= step + 1 %> ${LANG_ENGLISH} "English description for section <%= step + 1%>"<% } %><% pkg.languages?.forEach( language => { %>
+<% } %><% if (it.includes?.includes('MUI2')) { %>
+# Descriptions -----------------------------<% for (let step = 0; step < parseInt(it.sections); step++) { %><% if (it.unlockAll === false) { %>
+LangString DESC_SECTION_<%= step + 1 %> ${LANG_ENGLISH} "English description for section <%= step + 1%>"<% } %><% it.languages?.forEach( language => { %>
 LangString DESC_SECTION_<%= step + 1 %> ${LANG_<%= language.toUpperCase() %>} "<%= language %> description for section <%= step + 1 %>"<% }); %>
 <% } %>
-!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN<% for (let step = 0; step < parseInt(pkg.sections); step++) { %>
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN<% for (let step = 0; step < parseInt(it.sections); step++) { %>
     !insertmacro MUI_DESCRIPTION_TEXT ${SECTION_<%= step + 1 %>} $(DESC_SECTION_<%= step + 1 %>)<% } %>
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 <% } %>
-# Functions --------------------------------<% pkg.lifecycles?.forEach( lifecycle => { %>
+# Functions --------------------------------<% it.lifecycles?.forEach( lifecycle => { %>
 Function <%- lifecycle %>
-<% if (lifecycle === '.onInit' && pkg.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
-<% }); %><% if (pkg.languageDialog) { %>
+<% if (lifecycle === '.onInit' && it.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
+<% }); %><% if (it.languageDialog) { %>
 Function LanguageDialog
     Push ""
     Push ${LANG_ENGLISH}
-    Push English<% pkg.languages?.forEach( language => { %>
+    Push English<% it.languages?.forEach( language => { %>
     Push ${LANG_<%- language.toUpperCase() %>}
-    Push "<% if (pkg.unicode) { %><%- languageData[language].native %><% } else { %><%- languageData[language].long || language %><% } %>"<% }); %>
+    Push "<% if (it.unicode) { %><%- it.languageData[language].native %><% } else { %><%- it.languageData[language].long || language %><% } %>"<% }); %>
     Push A
     LangDLL::LangDialog "Installer Language" "Please select the language of the installer"
 
@@ -54,4 +54,4 @@ Function LanguageDialog
     Abort
 FunctionEnd
 <% } %>
-<% JSON.stringify(pkg.lifecycles) %>
+<% JSON.stringify(it.lifecycles) %>
