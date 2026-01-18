@@ -5,12 +5,12 @@
 !include "<%= include %>.nsh"<% }); %>
 
 # Settings ---------------------------------
-Name "<%- it.name %>"<% if (typeof it.ampersand_name !== 'undefined') { %> "<%- it.ampersand_name %>"<% } %>
+Name "<%= it.name %>"<% if (typeof it.ampersand_name !== 'undefined') { %> "<%= it.ampersand_name %>"<% } %>
 OutFile "<%= it.outfile %>.exe"
 Unicode <%= it.unicode %>
 SetCompressor <%= it.compression %>
 RequestExecutionLevel <%= it.elevation %>
-InstallDir "$PROGRAMFILES\<%- it.name %>"<% if (!it.includes?.includes('MUI2') && it.pages?.includes('license')) { %>
+InstallDir "$PROGRAMFILES\<%= it.name %>"<% if (!it.includes?.includes('MUI2') && it.pages?.includes('license')) { %>
 LicenseData "<% if (typeof it.spdxLicense !== 'undefined') { %>license.txt<% } %>"<% } %>
 <% if (it.includes?.includes('MUI2')) { %>
 # Modern UI --------------------------------<% if (it.lifecycles?.includes('MUI.onGUIInit')) { %>
@@ -37,15 +37,15 @@ LangString DESC_SECTION_<%= step + 1 %> ${LANG_<%= language.toUpperCase() %>} "<
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 <% } %>
 # Functions --------------------------------<% it.lifecycles?.forEach( lifecycle => { %>
-Function <%- lifecycle %>
+Function <%= lifecycle %>
 <% if (lifecycle === '.onInit' && it.languageDialog) { %>    Call LanguageDialog<%= '\n' %><% } %>FunctionEnd
 <% }); %><% if (it.languageDialog) { %>
 Function LanguageDialog
     Push ""
     Push ${LANG_ENGLISH}
     Push English<% it.languages?.forEach( language => { %>
-    Push ${LANG_<%- language.toUpperCase() %>}
-    Push "<% if (it.unicode) { %><%- it.languageData[language].native %><% } else { %><%- it.languageData[language].long || language %><% } %>"<% }); %>
+    Push ${LANG_<%= language.toUpperCase() %>}
+    Push "<% if (it.unicode) { %><%= it.languageData[language].native %><% } else { %><%= it.languageData[language].long || language %><% } %>"<% }); %>
     Push A
     LangDLL::LangDialog "Installer Language" "Please select the language of the installer"
 
