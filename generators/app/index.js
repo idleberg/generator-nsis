@@ -18,6 +18,7 @@ export default class extends Generator {
 		this.option('debug', { desc: 'Prints debug messages', default: false });
 
 		this.disabled = !this.options.unlockAll;
+		this.outdir = this.options.debug ? '.debug' : '';
 
 		globalThis.console.log(/* let it breathe */);
 	}
@@ -195,17 +196,25 @@ export default class extends Generator {
 			}
 		}
 
-		await this.fs.copyTplAsync(this.templatePath('installer.nsi.eta'), this.destinationPath('installer.nsi'), {
-			...this.props,
-			languageData: languageData,
-			unlockAll: this.options['unlock-all'],
-			debug: this.options.debug,
-		});
+		await this.fs.copyTplAsync(
+			this.templatePath('installer.nsi.eta'),
+			this.destinationPath(this.outdir, 'installer.nsi'),
+			{
+				...this.props,
+				languageData: languageData,
+				unlockAll: this.options['unlock-all'],
+				debug: this.options.debug,
+			},
+		);
 
 		if (typeof this.props.spdxLicense === 'string') {
-			await this.fs.copyTplAsync(this.templatePath('license.txt.eta'), this.destinationPath('license.txt'), {
-				licenseText: this.props.licenseText,
-			});
+			await this.fs.copyTplAsync(
+				this.templatePath('license.txt.eta'),
+				this.destinationPath(this.outdir, 'license.txt'),
+				{
+					licenseText: this.props.licenseText,
+				},
+			);
 		}
 	}
 }

@@ -11,6 +11,7 @@ yarn.lock
 .yo-rc.json
 
 # Project specific
+.debug
 *.nsi
 todo.md
 license.txt
