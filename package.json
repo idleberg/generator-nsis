@@ -23,7 +23,6 @@
 		"lint:e18e": "e18e-cli analyze",
 		"lint:code": "biome check",
 		"lint": "concurrently --prefix '{name}' -c 'green,blue' 'npm:lint:*'",
-		"prepack": "rimraf installer.nsi license.txt",
 		"prepare": "lefthook install",
 		"publish:npm": "np --any-branch",
 		"test": "uvu --ignore tests/__helper.js"
@@ -55,7 +54,6 @@
 		"concurrently": "^9.2.1",
 		"mem-fs": "^4.1.3",
 		"np": "^10.2.0",
-		"rimraf": "^6.1.2",
 		"tsm": "^2.3.0",
 		"typescript": "^5.9.3",
 		"uvu": "^0.5.6",
