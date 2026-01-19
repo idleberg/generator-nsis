@@ -19,12 +19,12 @@ export default class extends Generator {
 
 		this.disabled = !this.options.unlockAll;
 		this.outdir = this.options.debug ? '.debug' : '';
-
-		globalThis.console.log(/* let it breathe */);
 	}
 
 	async prompting() {
+		globalThis.console.log(/* let it breathe */);
 		this.clack.intro(inverse(` ${this.appname} `));
+
 		// Pre-load async choices for proper storage support
 		const includeChoices = this.options.firstParty ? choices.includes : await getAllLibraries();
 
