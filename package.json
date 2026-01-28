@@ -35,7 +35,7 @@
 		"node": ">=20"
 	},
 	"dependencies": {
-		"@idleberg/yeoman-generator": "^0.1.1",
+		"@idleberg/yeoman-generator": "^0.1.4",
 		"@nsis/language-data": "^0.9.3",
 		"@sindresorhus/slugify": "^3.0.0",
 		"glob": "^13.0.0",
@@ -52,7 +52,7 @@
 		"@lukeed/uuid": "^2.0.1",
 		"@types/node": "^24.5.2",
 		"concurrently": "^9.2.1",
-		"np": "^10.2.0",
+		"np": "^11.0.1",
 		"tsm": "^2.3.0",
 		"typescript": "^5.9.3",
 		"uvu": "^0.5.6",
