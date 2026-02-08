@@ -24,7 +24,7 @@
 		"lint:code": "biome check",
 		"lint": "concurrently --prefix '{name}' -c 'green,blue' 'npm:lint:*'",
 		"prepare": "lefthook install",
-		"publish:npm": "np --any-branch",
+		"publish:npm": "np",
 		"test": "uvu --ignore tests/__helper.js"
 	},
 	"repository": {
