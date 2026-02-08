@@ -7,6 +7,7 @@ import spdxLicenseList from 'spdx-license-list/full.js';
 import terminalLink from 'terminal-link';
 import * as choices from '../../lib/choices.js';
 import { getAllLibraries, getLanguageChoices, licenseChoices } from '../../lib/helpers.js';
+import $ from '../../package.json' with { type: 'json' };
 
 export default class extends Generator {
 	constructor(args, opts) {
@@ -23,7 +24,7 @@ export default class extends Generator {
 
 	async prompting() {
 		globalThis.console.log(/* let it breathe */);
-		this.clack.intro(inverse(` ${this.appname} `));
+		this.clack.intro(inverse(` ${$.name} `));
 
 		// Pre-load async choices for proper storage support
 		const includeChoices = this.options.firstParty ? choices.includes : await getAllLibraries();
