@@ -17,9 +17,6 @@ importers:
       '@sindresorhus/slugify':
         specifier: ^3.0.0
         version: 3.0.0
-      glob:
-        specifier: ^13.0.6
-        version: 13.0.6
       kleur:
         specifier: ^4.1.5
         version: 4.1.5
