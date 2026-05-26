@@ -1,9 +1,16 @@
 autoInstallPeers: true
+
 publicHoistPattern:
-  - '*@biomejs/biome*'
-  - '*@e18e/cli*'
-  - '*@total-typescript/tsconfig*'
-  - '*lefthook*'
+  - "*@biomejs/biome*"
+  - "*@e18e/cli*"
+  - "*@total-typescript/tsconfig*"
+  - "*lefthook*"
+
 allowBuilds:
   esbuild: true
   lefthook: true
+
+minimumReleaseAgeExclude:
+  - "@idleberg/configs"
+  - "@idleberg/yeoman-generator"
+  - "makensis"
