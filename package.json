@@ -20,7 +20,7 @@
 		"README.md"
 	],
 	"scripts": {
-		"lint:e18e": "e18e-cli analyze",
+		"lint:e18e": "e18e-cli analyze --log-level error",
 		"lint:code": "biome check",
 		"lint": "concurrently --prefix '{name}' -c 'green,blue' 'npm:lint:*'",
 		"publish:npm": "np",
