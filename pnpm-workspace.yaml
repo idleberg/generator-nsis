@@ -14,3 +14,4 @@ minimumReleaseAgeExclude:
   - "@idleberg/configs"
   - "@idleberg/yeoman-generator"
   - "makensis"
+  - yeoman-adapter-clack@0.5.2
